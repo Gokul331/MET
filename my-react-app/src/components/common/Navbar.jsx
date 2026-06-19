@@ -37,25 +37,15 @@ const Navbar = () => {
     >
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
-          <div style={{
-            width: 110, height: 110,
-            borderRadius: 12,
-            background: 'linear-gradient(135deg, #f5f5f5ff, #f1f5f9)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 4px 16px rgba(11,79,145,0.15)',
-            flexShrink: 0,
-            overflow: 'hidden',
-            padding: '4px',
-            border: '1px solid #e2e8f0'
-          }}>
+        <Link to="/" className="navbar-brand-link">
+          <div className="navbar-logo-container">
             <img src={logoImg} alt="MET Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
           <div>
-            <div style={{ fontSize: '2.75rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
-              Mari <span style={{ background: 'linear-gradient(135deg, #0b4f91, #38bdf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Educational Trust</span>
+            <div className="navbar-brand-title">
+              Mari <span>Educational Trust</span>
             </div>
-            <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--text-primary)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+            <div className="navbar-brand-subtitle">
               "பிச்சை புகினும் கற்கை நன்றே"
             </div>
           </div>
@@ -110,7 +100,6 @@ const Navbar = () => {
         <button
           onClick={() => setIsOpen(!isOpen)}
           style={{
-            display: 'none',
             padding: '10px',
             borderRadius: 10,
             background: 'rgba(11,79,145,0.05)',
@@ -142,6 +131,7 @@ const Navbar = () => {
                 key={link.to}
                 to={link.to}
                 end={link.to === '/'}
+                onClick={() => setIsOpen(false)}
                 style={({ isActive }) => ({
                   padding: '12px 16px',
                   borderRadius: 10,
@@ -160,6 +150,7 @@ const Navbar = () => {
             <div style={{ paddingTop: 12, marginTop: 8, borderTop: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', gap: 8 }}>
               <Link
                 to="/apply"
+                onClick={() => setIsOpen(false)}
                 style={{ padding: '12px 16px', background: 'linear-gradient(135deg,var(--blue-primary),var(--blue-dark))', color: '#fff', borderRadius: 10, fontWeight: 600, textDecoration: 'none', textAlign: 'center' }}
               >
                 Apply Now

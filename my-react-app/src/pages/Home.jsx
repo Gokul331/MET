@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <div className="home-container">
       {/* Hero Section */}
-      <section className="hero-split" style={{ padding: '160px 0 100px 0', minHeight: 'auto', position: 'relative' }}>
+      <section className="hero-split-new">
         <div className="hero-background" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <div className="hero-bg-image-wrapper" style={{ position: 'absolute', inset: 0 }}>
             <img src={bgImg} alt="Hero Background" className="hero-full-img" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -81,7 +81,7 @@ export default function Home() {
           <div className="hero-bg-overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.15) 100%)' }} />
         </div>
         <div className="container" style={{ position: 'relative', zIndex: 5 }}>
-          <div className="hero-split-wrap" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '40px', alignItems: 'center' }}>
+          <div className="hero-split-wrap">
             
             {/* Left Column */}
             <div className="hero-split-left-new" style={{ animation: 'fadeInUp 0.8s ease' }}>
@@ -97,7 +97,7 @@ export default function Home() {
                 Mari Educational Trust provides personalized guidance, scholarship assistance, and reliable college admissions support. Empowering students across Tamil Nadu to achieve their professional goals.
               </p>
               
-              <div className="hero-buttons" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '40px' }}>
+              <div className="hero-buttons">
                 <Link to="/apply" className="btn-dark" style={{ background: 'linear-gradient(135deg, var(--blue-primary), var(--blue-dark))', boxShadow: '0 4px 20px rgba(11,79,145,0.25)', padding: '14px 32px', fontSize: '0.95rem' }}>
                   Apply for Admission <FaChevronRight size={12} style={{ marginLeft: '4px' }} />
                 </Link>
@@ -106,7 +106,7 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="hero-trust" style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
+              <div className="hero-trust">
                 {[
                   { value: 'Govt.', label: 'Registered MSME' },
                   { value: '5k - 25k', label: 'Scholarship Support' },
