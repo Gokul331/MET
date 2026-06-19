@@ -537,9 +537,11 @@ nav.glass {
     width: 70px;
     height: 70px;
   }
+
   .navbar-brand-title {
     font-size: 1.6rem;
   }
+
   .navbar-brand-subtitle {
     font-size: 0.8rem;
     letter-spacing: 0.08em;
@@ -550,15 +552,18 @@ nav.glass {
   .navbar-brand-link {
     gap: 8px;
   }
+
   .navbar-logo-container {
     width: 50px;
     height: 50px;
     border-radius: 8px;
     padding: 2px;
   }
+
   .navbar-brand-title {
     font-size: 1.25rem;
   }
+
   .navbar-brand-subtitle {
     font-size: 0.65rem;
     letter-spacing: 0.04em;
@@ -569,8 +574,10 @@ nav.glass {
   .navbar-brand-title {
     font-size: 1.15rem;
   }
+
   .navbar-brand-subtitle {
-    display: none;
+    font-size: 0.5rem;
+    letter-spacing: 0.04em;
   }
 }
 
@@ -937,6 +944,7 @@ nav.glass {
   .hero-buttons {
     gap: 12px;
   }
+
   .hero-trust {
     gap: 20px;
     justify-content: space-between;
