@@ -1,0 +1,128 @@
+/* Glassmorphism Advanced Styles */
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(42, 127, 170, 0.3);
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(42, 127, 170, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Card with gradient border */
+.glass-border-gradient {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 1px;
+}
+
+.glass-border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(42, 127, 170, 0.3), rgba(255, 255, 255, 0.05), rgba(42, 127, 170, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Input fields with glass */
+.glass-input {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  border-color: rgba(42, 127, 170, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 30px rgba(42, 127, 170, 0.05);
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Button with glass */
+.glass-btn-primary {
+  background: linear-gradient(135deg, rgba(42, 127, 170, 0.3), rgba(42, 127, 170, 0.1));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(42, 127, 170, 0.3);
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.glass-btn-primary:hover {
+  background: linear-gradient(135deg, rgba(42, 127, 170, 0.5), rgba(42, 127, 170, 0.2));
+  border-color: rgba(42, 127, 170, 0.6);
+  box-shadow: 0 8px 40px rgba(42, 127, 170, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Glass grid card for colleges */
+.glass-college-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.glass-college-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(42, 127, 170, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Animated glass border */
+.glass-animated-border {
+  position: relative;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(60deg, 
+    rgba(42, 127, 170, 0.2),
+    rgba(255, 255, 255, 0.05),
+    rgba(42, 127, 170, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
+  background-size: 300% 300%;
+  animation: borderGlow 6s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
