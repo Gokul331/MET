@@ -11,6 +11,22 @@
     box-sizing: border-box;
   }
 
+  html {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    html {
+      font-size: 13px;
+    }
+  }
+
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background: radial-gradient(ellipse at 0% 0%, #0a1628 0%, #050a15 60%, #03070f 100%);

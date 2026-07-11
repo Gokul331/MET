@@ -82,6 +82,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     # ── nested college details ────────────────────────────────────────────────
     college_details = serializers.SerializerMethodField()
+    image_url = serializers.SerializerMethodField()
 
     class Meta:
         model  = Course
@@ -99,6 +100,9 @@ class CourseSerializer(serializers.ModelSerializer):
             'course_name',
             'degree_type',
             'duration',
+            'course_description',
+            'image',
+            'image_url',
             'is_active',
             'created_at',
             'updated_at',
@@ -112,6 +116,12 @@ class CourseSerializer(serializers.ModelSerializer):
             obj.college,
             context=self.context,
         ).data
+
+    def get_image_url(self, obj):
+        request = self.context.get('request')
+        if obj.image and request:
+            return request.build_absolute_uri(obj.image.url)
+        return None
 
 
 class CourseDetailSerializer(CourseSerializer):

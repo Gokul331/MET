@@ -4369,49 +4369,60 @@ input[type="range"].filter-range {
   .about-hero-grid-left .hero-btn-group {
     justify-content: center !important;
   }
+
+  .about-hero-img-wrap {
+    height: 260px;
+    margin-top: 16px;
+  }
 }
 
-/* ── CollegeDetail Universite Theme Overrides ── */
-.cd-split-hero-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 52px;
-  align-items: center;
+.about-hero-img-wrap {
+  height: 380px;
 }
 
-@media (max-width: 900px) {
-  .cd-split-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    text-align: center;
-  }
+.cd-classic-hero-container {
+  padding: 0 16px;
+}
 
-  .cd-split-hero-left {
-    text-align: center !important;
+@media (max-width: 768px) {
+  .cd-classic-hero-container {
+    padding: 24px 16px;
+    border-radius: 24px;
   }
+}
 
-  .cd-split-hero-left h1 {
-    text-align: center !important;
-  }
-
-  .cd-split-hero-left p {
-    margin: 0 auto 28px !important;
-    text-align: center !important;
-  }
-
-  .cd-split-hero-left .cd-btn-group {
-    justify-content: center !important;
-  }
+.cd-classic-hero-text h1 {
+  font-size: 3rem !important;
 }
 
 .cd-hero-visual-frame {
   position: relative;
   width: 100%;
-  height: 380px;
-  border-radius: 24px;
+  height: 480px;
+  border-radius: 32px;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.1);
   overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .cd-classic-hero-text h1 {
+    font-size: 2.2rem !important;
+  }
+  .cd-hero-visual-frame {
+    height: 300px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cd-classic-hero-text h1 {
+    font-size: 1.8rem !important;
+  }
+  .cd-hero-visual-frame {
+    height: 220px;
+    border-radius: 16px;
+  }
 }
 
 .cd-hero-visual-frame img {
@@ -4422,10 +4433,10 @@ input[type="range"].filter-range {
 
 .cd-thumbnails-row {
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 12px;
+  margin-top: 16px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
 }
 
 .cd-thumbnail-btn {
@@ -6082,4 +6093,92 @@ input[type="range"].filter-range {
         gap: 16px;
         padding: 20px 0;
     }
+}
+
+/* Responsive Page Grids */
+.page-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.page-content-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.page-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.page-detail-content-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 40px;
+}
+
+@media (max-width: 992px) {
+  .page-hero-grid,
+  .page-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .page-content-grid {
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+  }
+  
+  .page-detail-content-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .col-span-8,
+  .col-span-4 {
+    grid-column: span 1 !important;
+  }
+}
+
+.col-span-8 {
+  grid-column: span 8;
+}
+.col-span-4 {
+  grid-column: span 4;
+}
+
+.page-about-grid-left {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.page-about-grid-right {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .page-about-grid-left,
+  .page-about-grid-right {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .page-content-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }

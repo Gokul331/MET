@@ -3,8 +3,8 @@
     "college_id": 1,
     "college_name": "Dhanalakshmi Srinivasan College of Engineering and Technology - DSCET",
     "short_name": "DSCET",
-    "location_city": "Chengalpattu",
-    "location_state": "Tamil Nadu",
+    "location_city": "Chennai",
+    "location_state": "Tamil Nadu",   
     "banner_image": "https://www.dsuchennai.ac.in/img/dsu-chennai.jpg",
     "college_images": [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz_P2sxLmt19hvgLUm5ATP7OJVSRe_RGpSzUmemgzG&s",

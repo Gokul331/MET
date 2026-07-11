@@ -41,17 +41,17 @@ export default function About() {
           <div className="hero-bg-pattern" />
           <div className="container">
             <div className="about-hero-grid">
-              
+
               {/* Left Column: Text Content & Actions */}
-              <div className="about-hero-grid-left" style={{ textAlign: 'left' }}>
+              <div className="about-hero-grid-left">
                 <div className="section-label-premium" style={{ display: 'inline-flex' }}>
                   <span className="label-dot" /> Mari Educational Trust
                 </div>
-                <h1 className="section-title-premium" style={{ fontSize: '3rem', fontWeight: 900, lineHeight: 1.25, margin: '14px 0 20px', textTransform: 'uppercase', textAlign: 'left', letterSpacing: '-0.5px' }}>
+                <h1 className="section-title-premium" style={{ fontWeight: 900, lineHeight: 1.25, margin: '14px 0 20px', textTransform: 'uppercase', letterSpacing: '-0.5px' }}>
                   Your Trusted Guide to<br />
                   <span className="title-highlight">Professional Success</span>
                 </h1>
-                <p className="section-subtitle-premium" style={{ margin: '0 0 28px', maxWidth: '500px', fontSize: '1rem', lineHeight: 1.68, textAlign: 'left' }}>
+                <p className="section-subtitle-premium" style={{ margin: '0 0 28px', maxWidth: '500px', fontSize: '1rem', lineHeight: 1.68 }}>
                   Helping students secure direct, merit-based, and trust-assisted admissions in reputable engineering and medical programs since 2014.
                 </p>
                 <div className="hero-btn-group" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
@@ -59,9 +59,9 @@ export default function About() {
                   <Link to="/colleges" className="btn-outline" style={{ padding: '12px 28px' }}>Explore Colleges</Link>
                 </div>
               </div>
-              
+
               {/* Right Column: Hero Image visual with sticker badges */}
-              <div style={{ position: 'relative', height: '380px', width: '100%', borderRadius: '24px', zIndex: 2 }}>
+              <div className="about-hero-img-wrap" style={{ position: 'relative', width: '100%', borderRadius: '24px', zIndex: 2 }}>
                 {/* Floating badge sticker overlapping the top corner */}
                 <div className="about-badge-sticker" style={{ top: '-12px', right: '20px' }}>
                   <span>⭐ Govt. Registered</span>
@@ -87,7 +87,7 @@ export default function About() {
             <h2 className="about-typography-statement">
               We believe in <strong>innovative, transparent, and direct admission counseling</strong>, leveraging our <strong>deep institutional networks</strong> and <strong>expert counseling advisors</strong> to guide every aspiring student toward their dream college path.
             </h2>
-            
+
             {/* 4-Column Statistics Grid */}
             <div className="about-stats-grid">
               {STATS.map((stat, i) => (
@@ -103,7 +103,7 @@ export default function About() {
         {/* ── Section 3: Our Mission (Overlapping Left Visual) ── */}
         <section style={{ padding: '60px 0' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '64px', alignItems: 'center' }}>
+            <div className="page-about-grid-left">
               {/* Left: Overlapping collage wrapper */}
               <div className="about-collage-container">
                 <img
@@ -149,7 +149,7 @@ export default function About() {
         {/* ── Section 4: Our Vision (Overlapping Right Visual) ── */}
         <section style={{ padding: '60px 0' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '64px', alignItems: 'center' }}>
+            <div className="page-about-grid-right">
               {/* Left: Vision content block */}
               <div>
                 <div className="section-label-premium" style={{ display: 'inline-flex' }}>
@@ -195,7 +195,7 @@ export default function About() {
         {/* ── Section 5: Our History (Overlapping Left Visual) ── */}
         <section style={{ padding: '60px 0' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '64px', alignItems: 'center' }}>
+            <div className="page-about-grid-left">
               {/* Left: Overlapping collage wrapper */}
               <div className="about-collage-container">
                 <img
@@ -260,10 +260,10 @@ export default function About() {
                 alt="Workspace laptop"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.7)' }}
               />
-              
+
               {/* Play overlay button */}
               <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setActiveVideo(true)}
@@ -291,7 +291,7 @@ export default function About() {
             {/* Video active state popup */}
             <AnimatePresence>
               {activeVideo && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -307,7 +307,7 @@ export default function About() {
                     padding: '24px'
                   }}
                 >
-                  <motion.div 
+                  <motion.div
                     initial={{ scale: 0.95, y: 15 }}
                     animate={{ scale: 1, y: 0 }}
                     exit={{ scale: 0.95, y: 15 }}

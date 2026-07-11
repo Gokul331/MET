@@ -358,7 +358,7 @@ export default function Courses() {
         <section className="colleges-hero" style={{ padding: '130px 0 60px', background: '#fff', borderBottom: '1px solid var(--border)' }}>
           <div className="hero-bg-pattern" />
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '48px', alignItems: 'center' }}>
+            <div className="page-hero-grid">
 
               {/* Left Column: Heading & Highlights */}
               <div style={{ textAlign: 'left' }}>
@@ -439,7 +439,7 @@ export default function Courses() {
         {/* ── Section 3: Sidebar + Grid layout ── */}
         <section style={{ padding: '40px 0' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: '36px', alignItems: 'start' }}>
+            <div className="page-content-grid">
 
               {/* Sidebar Filters */}
               {Sidebar}
@@ -523,8 +523,8 @@ export default function Courses() {
                               <div className="course-card-image-wrap" style={{ position: 'relative', height: '160px', width: '100%', overflow: 'hidden', background: 'var(--bg-soft)' }}>
                                 <img
                                   src={
-                                    getCourseImage(course.course_name || course.title || course.name, course.category_display || course.category) ||
-                                    course.college_details?.primary_image_url || course.college_details?.banner_image || course.image
+                                    course.image_url || course.image ||
+                                    getCourseImage(course.course_name || course.title || course.name, course.category_display || course.category)
                                   }
                                   alt={course.course_name || course.title || course.name}
                                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}

@@ -460,8 +460,8 @@ export default function Home() {
                 {colleges.map(college => (
                   <div key={college.id} className="college-card">
                     <div className="college-card-image">
-                      {college.primary_image_url
-                        ? <img src={college.primary_image_url} alt={college.college_name || college.name} />
+                      {college.displayImage
+                        ? <img src={college.displayImage} alt={college.college_name || college.name} />
                         : <div className="college-img-placeholder">🏛️</div>
                       }
                       <span className="college-card-badge">
@@ -475,7 +475,7 @@ export default function Home() {
                         {college.location_city || college.location || 'Tamil Nadu'}
                       </p>
                       <div className="college-card-actions">
-                        <Link to={`/colleges/${college.short_name || college.slug}`} className="btn-view">
+                        <Link to={`/colleges/${college.short_name || college.college_id || college.id}`} className="btn-view">
                           View Details
                         </Link>
                         <Link

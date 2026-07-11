@@ -95,6 +95,8 @@ class Course(models.Model):
         College, null=True, blank=True,
         on_delete=models.SET_NULL, related_name='courses'
     )
+    course_description = models.TextField(blank=True)
+    image       = models.ImageField(upload_to='courses/images/', null=True, blank=True)
     is_active   = models.BooleanField(default=True)
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)

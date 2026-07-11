@@ -144,7 +144,8 @@ export default function Colleges() {
     .filter(c => {
       const name    = (c.college_name || c.name || '').toLowerCase();
       const city    = (c.location_city || '').toLowerCase();
-      const courses = (c.courses_offered_display || c.courses_offered || []).map(x => x.toLowerCase());
+      const coursesArr = c.courses_offered_display || c.courses_offered || [];
+      const courses = Array.isArray(coursesArr) ? coursesArr.map(x => String(x).toLowerCase()) : [];
       const affil   = (c.university_affiliation || '').toLowerCase();
       const type    = (c.college_type || '').toLowerCase();
 
@@ -282,7 +283,7 @@ export default function Colleges() {
         <section className="colleges-hero" style={{ padding: '130px 0 60px', background: '#fff', borderBottom: '1px solid var(--border)' }}>
           <div className="hero-bg-pattern" />
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '48px', alignItems: 'center' }}>
+            <div className="page-hero-grid">
               
               {/* Left Column: Heading & Highlights */}
               <div style={{ textAlign: 'left' }}>
@@ -363,7 +364,7 @@ export default function Colleges() {
         {/* ── Section 3: Sidebar + Grid layout ── */}
         <section style={{ padding: '40px 0' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: '36px', alignItems: 'start' }}>
+            <div className="page-content-grid">
               
               {/* Sidebar filter options */}
               {Sidebar}
@@ -439,7 +440,8 @@ export default function Colleges() {
                       const city  = c.location_city || '';
                       const state = c.location_state || 'Tamil Nadu';
                       const img   = c.primary_image_url || c.primary_image || c.banner_image_url || c.banner_image || c.college_images?.[0] || collegesHero3;
-                      const branches = c.courses_offered_display || c.courses_offered || [];
+                      const branchesArr = c.courses_offered_display || c.courses_offered || [];
+                      const branches = Array.isArray(branchesArr) ? branchesArr : [];
 
                       return (
                         <div key={id || i} className="college-card-premium card-3d">

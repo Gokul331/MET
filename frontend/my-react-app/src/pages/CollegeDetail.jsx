@@ -385,75 +385,81 @@ export default function CollegeDetail() {
               </Link>
             </div>
 
-            <div className="cd-split-hero-grid">
+            <div className="cd-classic-hero-container" style={{ textAlign: 'left', maxWidth: '1000px', margin: '0 auto 48px', padding: '0', background: 'transparent', border: 'none', boxShadow: 'none' }}>
+              
+              {/* Primary Image with Absolute Positioned Text */}
+              <div className="cd-hero-visual-frame" style={{ position: 'relative', height: '350px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 12px 32px rgba(0,0,0,0.1)' }}>
+                <img
+                  src={images[activeImg]}
+                  alt={name}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  onError={(e) => {
+                    e.target.src = '';
+                    e.target.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:4rem;background:var(--blue-pale);color:var(--blue)">🏛️</div>';
+                  }}
+                />
+                
+                {/* Gradient Overlay for Text Readability */}
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%)', zIndex: 1 }} />
 
-              {/* Left Column: College branding, details, actions */}
-              <div className="cd-split-hero-left" style={{ textAlign: 'left' }}>
-                <div className="section-label-premium" style={{ display: 'inline-flex' }}>
-                  <span className="label-dot" /> {college.short_name || 'MET Institute'}
-                </div>
-                <h1 className="section-title-premium" style={{ fontSize: '2.6rem', fontWeight: 900, lineHeight: 1.25, margin: '14px 0 16px', textAlign: 'left', letterSpacing: '-0.5px', textTransform: 'uppercase' }}>
-                  {name}
-                </h1>
+                {/* Absolute Text Container */}
+                <div style={{ position: 'absolute', bottom: '24px', left: '32px', right: '32px', zIndex: 2, color: 'white' }}>
+                  <div className="section-label-premium" style={{ display: 'inline-flex', marginBottom: '8px', background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)', color: '#fff', border: 'none' }}>
+                    <span className="label-dot" style={{ background: '#4ade80' }} /> {college.short_name || 'MET Institute'}
+                  </div>
+                  <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 900, lineHeight: 1.2, margin: '0 0 12px', letterSpacing: '-0.5px', textTransform: 'uppercase', color: '#fff' }}>
+                    {name}
+                  </h1>
 
-                {/* Meta details tag list */}
-                <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '28px', fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
-                  {city && (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      📍 {city}, {state}
-                    </span>
-                  )}
-                  {college.rating && (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      ⭐ {college.rating} / 5 Rating
-                    </span>
-                  )}
-                  {college.established && (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      📅 Estd. {college.established}
-                    </span>
-                  )}
-                </div>
-
-                <div className="cd-btn-group" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-                  <Link to="/apply" state={{ college }} className="btn-primary" style={{ padding: '12px 28px' }}>
-                    Apply For Seat
-                  </Link>
-                  <a href="tel:+919843139330" className="btn-outline" style={{ padding: '12px 28px', textDecoration: 'none' }}>
-                    Download Brochure
-                  </a>
+                  <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', fontSize: '0.9rem', color: 'rgba(255,255,255,0.9)', fontWeight: 600 }}>
+                    {city && (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        📍 {city}, {state}
+                      </span>
+                    )}
+                    {college.rating && (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        ⭐ {college.rating} / 5 Rating
+                      </span>
+                    )}
+                    {college.established && (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        📅 Estd. {college.established}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 
-              {/* Right Column: Hero Image Frame & Thumbnail bar */}
-              <div>
-                <div className="cd-hero-visual-frame">
-                  <img
-                    src={images[activeImg]}
-                    alt={name}
-                    onError={(e) => {
-                      e.target.src = '';
-                      e.target.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;background:var(--blue-pale);color:var(--blue)">🏛️</div>';
-                    }}
-                  />
+              {/* Thumbnails Row */}
+              {images.length > 1 && (
+                <div className="cd-thumbnails-row" style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '20px', flexWrap: 'wrap' }}>
+                  {images.map((img, i) => (
+                    <button
+                      key={i}
+                      className={`cd-thumbnail-btn${activeImg === i ? ' active' : ''}`}
+                      onClick={() => setActiveImg(i)}
+                      style={{ width: '80px', height: '60px', borderRadius: '12px', border: activeImg === i ? '3px solid var(--blue)' : '3px solid transparent', padding: '0', overflow: 'hidden', cursor: 'pointer', transition: 'all 0.3s ease' }}
+                    >
+                      <img
+                        src={img}
+                        alt={`Thumbnail ${i + 1}`}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        onError={(e) => { e.target.parentElement.style.display = 'none'; }}
+                      />
+                    </button>
+                  ))}
                 </div>
-                {images.length > 1 && (
-                  <div className="cd-thumbnails-row">
-                    {images.map((img, i) => (
-                      <button
-                        key={i}
-                        className={`cd-thumbnail-btn${activeImg === i ? ' active' : ''}`}
-                        onClick={() => setActiveImg(i)}
-                      >
-                        <img
-                          src={img}
-                          alt={`Thumbnail ${i + 1}`}
-                          onError={(e) => { e.target.parentElement.style.display = 'none'; }}
-                        />
-                      </button>
-                    ))}
-                  </div>
-                )}
+              )}
+
+              {/* Action Buttons */}
+              <div className="cd-btn-group" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '32px' }}>
+                <Link to="/apply" state={{ college }} className="btn-primary" style={{ padding: '14px 36px', fontSize: '1.05rem', minWidth: '200px', textAlign: 'center' }}>
+                  Apply For Seat
+                </Link>
+                <a href="tel:+919843139330" className="btn-outline" style={{ padding: '14px 36px', fontSize: '1.05rem', textDecoration: 'none', minWidth: '200px', textAlign: 'center', background: '#fff' }}>
+                  Download Brochure
+                </a>
               </div>
 
             </div>
@@ -530,7 +536,7 @@ export default function CollegeDetail() {
         {/* ── Section 4: Why Choose Us (2x2 Facilities Grid) ── */}
         <section style={{ padding: '60px 0' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '64px', alignItems: 'center' }}>
+            <div className="page-detail-grid">
 
               {/* Left Column: Visual description */}
               <div>

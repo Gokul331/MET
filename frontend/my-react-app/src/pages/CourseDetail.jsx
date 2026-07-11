@@ -67,7 +67,7 @@ export default function CourseDetail() {
         <section className="course-detail-hero" style={{ padding: '140px 0 70px', background: '#fff', borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
           <div className="hero-bg-pattern" />
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '48px', alignItems: 'center' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '48px', alignItems: 'center' }}>
               
               {/* Left Column: Info */}
               <div>
@@ -79,7 +79,7 @@ export default function CourseDetail() {
                 <div className="section-label-premium" style={{ display: 'inline-flex', marginBottom: '14px' }}>
                   <span className="label-dot" /> {course.category_display || course.category || 'Academic Course'}
                 </div>
-                <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0 0 16px', lineHeight: 1.25 }}>
+                <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: 800, color: 'var(--text-primary)', margin: '0 0 16px', lineHeight: 1.25 }}>
                   {course.title || course.course_name || course.name}
                 </h1>
                 <p style={{ fontSize: '0.96rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '28px', maxWidth: '520px' }}>
@@ -100,7 +100,7 @@ export default function CourseDetail() {
               {/* Right Column: Hero Image Card */}
               <div className="card-3d" style={{ position: 'relative', borderRadius: '28px', overflow: 'hidden', border: '1px solid var(--border)', boxShadow: 'var(--shadow-lg)', height: '340px' }}>
                 <img
-                  src={getCourseImage(course.course_name || course.title || course.name, course.category_display || course.category)}
+                  src={course.image_url || course.image || getCourseImage(course.course_name || course.title || course.name, course.category_display || course.category)}
                   alt={course.title}
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
@@ -117,10 +117,10 @@ export default function CourseDetail() {
         {/* ── Content Section ── */}
         <section style={{ marginTop: '60px' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '40px' }}>
+            <div className="page-detail-content-grid">
               
               {/* Left Column: Colleges (8 cols) */}
-              <div style={{ gridColumn: 'span 8' }}>
+              <div className="col-span-8">
                 <div className="section-label-premium" style={{ display: 'inline-flex' }}>
                   <span className="label-dot" /> Course Providers
                 </div>
@@ -129,11 +129,15 @@ export default function CourseDetail() {
                 </h2>
 
                 {course.colleges_info && course.colleges_info.length > 0 ? (
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: '24px' }}>
                     {course.colleges_info.map((col) => (
                       <div key={col.id} className="college-card-premium card-3d" style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', border: '1px solid var(--border)', borderRadius: '24px', overflow: 'hidden' }}>
-                        <div style={{ height: '120px', background: 'var(--blue-pale)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem' }}>
-                          🏛️
+                        <div style={{ height: '120px', background: 'var(--blue-pale)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', overflow: 'hidden' }}>
+                          {col.image ? (
+                            <img src={col.image} alt={col.college_name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = '🏛️'; }} />
+                          ) : (
+                            '🏛️'
+                          )}
                         </div>
                         <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between' }}>
                           <div>
@@ -143,7 +147,7 @@ export default function CourseDetail() {
                             </p>
                           </div>
                           <Link 
-                            to={col.short_name ? `/colleges/${col.short_name}` : '/colleges'} 
+                            to={`/colleges/${col.short_name || col.id}`} 
                             className="btn-outline btn-sm" 
                             style={{ textAlign: 'center', padding: '10px 14px', fontSize: '0.78rem', textDecoration: 'none' }}
                           >
@@ -163,7 +167,7 @@ export default function CourseDetail() {
               </div>
 
               {/* Right Column: Admission CTA Sidebar (4 cols) */}
-              <div style={{ gridColumn: 'span 4' }}>
+              <div className="col-span-4">
                 <div style={{ position: 'sticky', top: '100px' }}>
                   <div className="card-3d" style={{ background: 'linear-gradient(185deg, var(--blue) 0%, #1d4ed8 100%)', padding: '32px', borderRadius: '28px', color: '#fff', boxShadow: 'var(--shadow-lg)' }}>
                     <div style={{ fontSize: '2.5rem', marginBottom: '16px' }}>🎓</div>

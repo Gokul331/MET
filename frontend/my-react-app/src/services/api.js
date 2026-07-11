@@ -112,7 +112,8 @@ export const normalizeCourse = (item) => {
       college_name: item.college_details.college_name,
       location_city: item.college_details.location_city,
       location_state: item.college_details.location_state,
-      short_name: item.college_details.college_name.split(' - ').pop() || ''
+      short_name: item.college_details.college_name.split(' - ').pop() || '',
+      image: item.college_details.primary_image_url || item.college_details.banner_image || item.college_details.logo_url || null
     }] : [];
 
     return {
@@ -127,7 +128,7 @@ export const normalizeCourse = (item) => {
       students: students,
       rating: parseFloat(rating),
       colleges_info: colleges_info,
-      image: getCourseImage(item.course_name_display, item.category_display || item.category)
+      image: item.image_url || getCourseImage(item.course_name_display, item.category_display || item.category)
     };
   }
   return item;
