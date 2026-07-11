@@ -12,13 +12,15 @@ class CollegeListSerializer(serializers.ModelSerializer):
     class Meta:
         model = College
         fields = [
-            'id', 'college_name', 'short_name',
+            'id', 'college_name', 'short_name', 'slug',
             'location_city', 'location_state',
             'university_affiliation', 'college_type', 'accreditation',
-            'established', 'courses_offered', 'courses_offered_display',
+            'established', 'rating', 'courses_offered', 'courses_offered_display',
             'primary_image_url', 'banner_image_url',
+            'college_images', 'campus_images',
             'phone', 'email', 'website',
-            'is_active', 'created_at',
+            'facilities', 'why_choose_us',
+            'is_active', 'created_at', 'updated_at',
         ]
 
     def get_primary_image_url(self, obj):
