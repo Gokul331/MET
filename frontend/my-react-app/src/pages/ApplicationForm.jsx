@@ -20,10 +20,7 @@ export default function ApplicationForm() {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(true);
 
-    // Derived filtered lists for cascading dropdowns
-    const [availableCategories, setAvailableCategories] = useState([]);
-    const [availableDegreeTypes, setAvailableDegreeTypes] = useState([]);
-    const [availableCourses, setAvailableCourses] = useState([]);
+    // Derived filtered lists for cascading dropdowns (computed below)
 
     const [form, setForm] = useState({
         // Preferences
@@ -76,6 +73,61 @@ export default function ApplicationForm() {
         });
     }, [allCourses, form.college_id, colleges]);
 
+    const availableCategories = useMemo(() => {
+        const seen = new Map();
+        collegeCourses.forEach(c => {
+            if (c.category && !seen.has(c.category)) {
+                seen.set(c.category, c.category_display || c.category);
+            }
+        });
+        return Array.from(seen.entries()).map(([value, label]) => ({ value, label }));
+    }, [collegeCourses]);
+
+    const availableDegreeTypes = useMemo(() => {
+        if (!form.category) return [];
+        const seen = new Map();
+        collegeCourses.filter(c => c.category === form.category).forEach(c => {
+            if (c.degree_type && !seen.has(c.degree_type)) {
+                seen.set(c.degree_type, c.degree_type_display || c.degree_type.toUpperCase());
+            }
+        });
+        return Array.from(seen.entries()).map(([value, label]) => ({ value, label }));
+    }, [collegeCourses, form.category]);
+
+    const availableCourses = useMemo(() => {
+        if (!form.degree_type) return [];
+        return collegeCourses.filter(c => c.category === form.category && c.degree_type === form.degree_type);
+    }, [collegeCourses, form.category, form.degree_type]);
+
+    useEffect(() => {
+        if (availableCategories.length === 1 && form.category !== availableCategories[0].value) {
+            setForm(prev => ({
+                ...prev,
+                category: availableCategories[0].value,
+                category_display: availableCategories[0].label
+            }));
+        }
+    }, [availableCategories, form.category]);
+
+    useEffect(() => {
+        if (availableDegreeTypes.length === 1 && form.degree_type !== availableDegreeTypes[0].value) {
+            setForm(prev => ({
+                ...prev,
+                degree_type: availableDegreeTypes[0].value,
+                degree_type_display: availableDegreeTypes[0].label
+            }));
+        }
+    }, [availableDegreeTypes, form.degree_type]);
+
+    useEffect(() => {
+        if (availableCourses.length === 1 && form.course_name !== availableCourses[0].course_name) {
+            setForm(prev => ({
+                ...prev,
+                course_name: availableCourses[0].course_name
+            }));
+        }
+    }, [availableCourses, form.course_name]);
+
     useEffect(() => {
         window.scrollTo(0, 0);
         (async () => {
@@ -117,25 +169,6 @@ export default function ApplicationForm() {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // ── Helpers ──────────────────────────────────────────────────
-    const getUniqueCategories = (courses) => {
-        const seen = new Map();
-        courses.forEach(c => {
-            if (c.category && !seen.has(c.category)) {
-                seen.set(c.category, c.category_display || c.category);
-            }
-        });
-        return Array.from(seen.entries()).map(([value, label]) => ({ value, label }));
-    };
-
-    const getUniqueDegreeTypes = (courses) => {
-        const seen = new Map();
-        courses.forEach(c => {
-            if (c.degree_type && !seen.has(c.degree_type)) {
-                seen.set(c.degree_type, c.degree_type_display || c.degree_type.toUpperCase());
-            }
-        });
-        return Array.from(seen.entries()).map(([value, label]) => ({ value, label }));
-    };
 
     // ── Handlers ─────────────────────────────────────────────────
 
@@ -143,17 +176,6 @@ export default function ApplicationForm() {
         const collegeId = e.target.value;
         const selected = colleges.find(c => String(c.id) === String(collegeId));
  
-        // Filter courses by college_id and name
-        const filteredCourses = allCourses.filter(c => 
-            String(c.college) === String(collegeId) ||
-            (selected && c.college_details?.college_name &&
-             String(c.college_details.college_name).toLowerCase() === String(selected.college_name).toLowerCase())
-        );
-        const cats = getUniqueCategories(filteredCourses);
- 
-        setAvailableCategories(cats);
-        setAvailableDegreeTypes([]);
-        setAvailableCourses([]);
         setForm(p => ({
             ...p,
             college_id: collegeId,
@@ -165,26 +187,13 @@ export default function ApplicationForm() {
             course_name: '',
         }));
  
-        // Auto-select category if only one available
-        if (cats.length === 1) {
-            setForm(prev => ({
-                ...prev,
-                category: cats[0].value,
-                category_display: cats[0].label
-            }));
-        }
- 
         if (errors.college_name) setErrors(p => ({ ...p, college_name: '' }));
     };
 
     const handleCategoryChange = (e) => {
         const cat = e.target.value;
         const catObj = availableCategories.find(c => c.value === cat);
-        const filteredCourses = collegeCourses.filter(c => c.category === cat);
-        const degreeTypes = getUniqueDegreeTypes(filteredCourses);
 
-        setAvailableDegreeTypes(degreeTypes);
-        setAvailableCourses([]);
         setForm(p => ({
             ...p,
             category: cat,
@@ -194,40 +203,19 @@ export default function ApplicationForm() {
             course_name: '',
         }));
 
-        // Auto-select degree type if only one available
-        if (degreeTypes.length === 1) {
-            setForm(prev => ({
-                ...prev,
-                degree_type: degreeTypes[0].value,
-                degree_type_display: degreeTypes[0].label
-            }));
-        }
-
         if (errors.category) setErrors(p => ({ ...p, category: '' }));
     };
 
     const handleDegreeTypeChange = (e) => {
         const dt = e.target.value;
         const dtObj = availableDegreeTypes.find(d => d.value === dt);
-        const filteredCourses = collegeCourses.filter(
-            c => c.category === form.category && c.degree_type === dt
-        );
 
-        setAvailableCourses(filteredCourses);
         setForm(p => ({
             ...p,
             degree_type: dt,
             degree_type_display: dtObj?.label || dt,
             course_name: '',
         }));
-
-        // Auto-select course if only one available
-        if (filteredCourses.length === 1) {
-            setForm(prev => ({
-                ...prev,
-                course_name: filteredCourses[0].course_name
-            }));
-        }
 
         if (errors.degree_type) setErrors(p => ({ ...p, degree_type: '' }));
     };
@@ -350,44 +338,70 @@ export default function ApplicationForm() {
 
     const STEPS = ['Preferences', 'Bio-data', 'Parents & Address', 'Education & Reference'];
 
+    const selectedCollege = colleges.find(c => String(c.id) === String(form.college_id));
+    const selectedCourseImage = selectedCollege?.primary_image_url || selectedCollege?.cover_image || selectedCollege?.logo_url || "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80";
+
     return (
         <PageTransition>
             <div className="application-page">
 
-            {/* Hero Section */}
-            <section className="application-hero section-hero">
-                <div className="hero-bg-pattern" />
-                <div className="container">
-                    <div className="application-hero-content" style={{ maxWidth: 700 }}>
-                        <div className="section-label-premium">
-                            <span className="label-dot" />
-                            MET Scholarship Scheme
-                        </div>
-                        <h1 className="hero-title" style={{ fontSize: 'clamp(1.8rem, 4.5vw, 3.2rem)' }}>
-                            Apply for <span className="title-highlight">Scholarship</span>
-                        </h1>
-                        <p className="hero-desc" style={{ maxWidth: 520, fontSize: 'clamp(0.95rem, 1.2vw, 1.08rem)' }}>
-                            Fill in your preferences, bio-data, academic records, and parents' information
-                            to register for financial assistance.
-                        </p>
-                    </div>
+
+            <section className="application-form-section">
+                <div className="container" style={{ marginBottom: '32px' }}>
+                    <h1 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
+                        Scholarship Application
+                    </h1>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+                        Please complete all the steps below to submit your application.
+                    </p>
                 </div>
-            </section>
+                <div className="container application-split-layout has-summary-sidebar">
+                    <div className="application-sidebar-left">
+                        <div className="sidebar-sticky-wrapper">
+                            <div style={{ marginBottom: '32px', paddingLeft: '8px' }}>
+                                <button
+                                    type="button"
+                                    onClick={() => navigate(-1)}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        fontSize: '1.05rem',
+                                        fontWeight: '600',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px',
+                                        color: 'var(--text-primary)',
+                                        padding: 0
+                                    }}
+                                >
+                                    ← New Application
+                                </button>
+                            </div>
+                            <div className="vertical-stepper">
+                                {STEPS.map((stepName, i) => {
+                                    const stepNum = i + 1;
+                                    const isActive = step === stepNum;
+                                    const isCompleted = step > stepNum;
+                                    const statusClass = isActive ? 'active' : isCompleted ? 'completed' : 'inactive';
+                                    return (
+                                        <div key={stepName} className={`vertical-step-item ${statusClass}`}>
+                                            <div className={`step-circle ${statusClass}`}>
+                                                {isCompleted ? '✓' : stepNum}
+                                            </div>
+                                            <div className="step-content">
+                                                <span className="step-title">{stepName}</span>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
 
-            {/* Form Section */}
-            <section className="application-form-section section-md">
-                <div className="container container-narrow">
-                    {/* Stepper - keep your existing stepper code */}
-
+                    <div className="application-main-column">
                     {/* Form */}
-                    <form className="application-form card-3d" onSubmit={handleSubmit} style={{
-                        padding: 'clamp(20px, 4vw, 40px)',
-                        background: 'var(--bg-card)',
-                        border: '1px solid var(--border)',
-                        borderRadius: 'var(--r-xl)',
-                        boxShadow: 'var(--shadow-sm)',
-                        transition: 'var(--transition)'
-                    }}>
+                    <form className="application-form" onSubmit={handleSubmit}>
                         {errors.submit && (
                             <div className="error-banner" style={{
                                 marginBottom: 24,
@@ -446,237 +460,179 @@ export default function ApplicationForm() {
                                         <p style={{ fontWeight: 500 }}>Loading colleges and courses…</p>
                                     </div>
                                 ) : (
-                                    <div style={{
-                                        display: 'grid',
-                                        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                                        gap: 'clamp(16px, 2vw, 20px)'
-                                    }}>
-                                        <div className="form-group" style={{
-                                            gridColumn: '1 / -1',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            gap: 6
-                                        }}>
-                                            <label style={{
-                                                fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                                fontWeight: 700,
-                                                color: 'var(--text-secondary)',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.07em'
-                                            }}>
-                                                College Name *
-                                            </label>
-                                            <select
-                                                id="college_id"
-                                                name="college_id"
-                                                value={form.college_id}
-                                                onChange={handleCollegeChange}
-                                                style={{
-                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                    background: 'var(--bg-soft)',
-                                                    border: '1.5px solid var(--border)',
-                                                    borderRadius: 'var(--r-md)',
-                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                    color: 'var(--text-primary)',
-                                                    fontFamily: 'inherit',
-                                                    transition: 'var(--transition)',
-                                                    outline: 'none',
-                                                    width: '100%'
-                                                }}
-                                            >
-                                                <option value="">-- Select College --</option>
-                                                {colleges.map(c => (
-                                                    <option key={c.college_id || c.id} value={c.college_id || c.id}>
-                                                        {c.college_name || c.name}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            {errors.college_name && (
-                                                <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>
-                                                    {errors.college_name}
-                                                </span>
-                                            )}
-                                        </div>
+                                    <div className="form-fields-container">
 
-                                        <div className="form-group" style={{
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            gap: 6
-                                        }}>
-                                            <label style={{
-                                                fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                                fontWeight: 700,
-                                                color: 'var(--text-secondary)',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.07em'
-                                            }}>
-                                                Category *
-                                            </label>
-                                            <select
-                                                id="category"
-                                                name="category"
-                                                value={form.category}
-                                                onChange={handleCategoryChange}
-                                                disabled={!form.college_id}
-                                                style={{
-                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                    background: !form.college_id ? 'var(--gray-100)' : 'var(--bg-soft)',
-                                                    border: '1.5px solid var(--border)',
-                                                    borderRadius: 'var(--r-md)',
-                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                    color: 'var(--text-primary)',
-                                                    fontFamily: 'inherit',
-                                                    transition: 'var(--transition)',
-                                                    outline: 'none',
-                                                    cursor: !form.college_id ? 'not-allowed' : 'pointer',
-                                                    width: '100%'
-                                                }}
-                                            >
-                                                <option value="">
-                                                    {!form.college_id ? '-- Select College First --' : '-- Select Category --'}
-                                                </option>
-                                                {availableCategories.map(cat => (
-                                                    <option key={cat.value} value={cat.value}>
-                                                        {cat.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            {errors.category && (
-                                                <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>
-                                                    {errors.category}
-                                                </span>
-                                            )}
-                                        </div>
+                                        <div className="form-fields-vertical" style={{ display: 'flex', flexDirection: 'column' }}>
 
-                                        <div className="form-group" style={{
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            gap: 6
-                                        }}>
-                                            <label style={{
-                                                fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                                fontWeight: 700,
-                                                color: 'var(--text-secondary)',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.07em'
-                                            }}>
-                                                Degree Type *
-                                            </label>
-                                            <select
-                                                id="degree_type"
-                                                name="degree_type"
-                                                value={form.degree_type}
-                                                onChange={handleDegreeTypeChange}
-                                                disabled={!form.category}
-                                                style={{
-                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                    background: !form.category ? 'var(--gray-100)' : 'var(--bg-soft)',
-                                                    border: '1.5px solid var(--border)',
-                                                    borderRadius: 'var(--r-md)',
-                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                    color: 'var(--text-primary)',
-                                                    fontFamily: 'inherit',
-                                                    transition: 'var(--transition)',
-                                                    outline: 'none',
-                                                    cursor: !form.category ? 'not-allowed' : 'pointer',
-                                                    width: '100%'
-                                                }}
-                                            >
-                                                <option value="">
-                                                    {!form.category ? '-- Select Category First --' : '-- Select Degree Type --'}
-                                                </option>
-                                                {availableDegreeTypes.map(dt => (
-                                                    <option key={dt.value} value={dt.value}>
-                                                        {dt.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            {errors.degree_type && (
-                                                <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>
-                                                    {errors.degree_type}
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        <div className="form-group" style={{
-                                            gridColumn: '1 / -1',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            gap: 6
-                                        }}>
-                                            <label style={{
-                                                fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                                fontWeight: 700,
-                                                color: 'var(--text-secondary)',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.07em'
-                                            }}>
-                                                Course Name *
-                                            </label>
-                                            <select
-                                                id="course_name"
-                                                name="course_name"
-                                                value={form.course_name}
-                                                onChange={handleChange}
-                                                disabled={!form.degree_type}
-                                                style={{
-                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                    background: !form.degree_type ? 'var(--gray-100)' : 'var(--bg-soft)',
-                                                    border: '1.5px solid var(--border)',
-                                                    borderRadius: 'var(--r-md)',
-                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                    color: 'var(--text-primary)',
-                                                    fontFamily: 'inherit',
-                                                    transition: 'var(--transition)',
-                                                    outline: 'none',
-                                                    cursor: !form.degree_type ? 'not-allowed' : 'pointer',
-                                                    width: '100%'
-                                                }}
-                                            >
-                                                <option value="">
-                                                    {!form.degree_type ? '-- Select Degree Type First --' : '-- Select Course --'}
-                                                </option>
-                                                {availableCourses.map(c => (
-                                                    <option key={c.course_id} value={c.course_name}>
-                                                        {c.course_name_display || c.course_name}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            {errors.course_name && (
-                                                <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>
-                                                    {errors.course_name}
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        {form.college_id && (
-                                            <div className="form-group" style={{
-                                                gridColumn: '1 / -1'
-                                            }}>
-                                                <div style={{
-                                                    background: 'rgba(37, 99, 235, 0.06)',
-                                                    border: '1px solid rgba(37, 99, 235, 0.15)',
-                                                    borderRadius: 'var(--r-md)',
-                                                    padding: 'clamp(14px, 2vw, 16px) clamp(16px, 2.5vw, 20px)',
-                                                    fontSize: 'clamp(0.8rem, 1vw, 0.88rem)',
-                                                    lineHeight: 1.8,
-                                                    color: 'var(--text-muted)'
-                                                }}>
-                                                    <strong style={{
-                                                        color: 'var(--text-primary)',
-                                                        display: 'block',
-                                                        marginBottom: 6,
-                                                        fontSize: 'clamp(0.85rem, 1vw, 0.9rem)'
-                                                    }}>
-                                                        📋 Your Selection
-                                                    </strong>
-                                                    <span><strong>College:</strong> {form.college_name || '—'}</span><br />
-                                                    <span><strong>Category:</strong> {form.category_display || '—'}</span><br />
-                                                    <span><strong>Degree:</strong> {form.degree_type_display || '—'}</span><br />
-                                                    <span><strong>Course:</strong> {form.course_name || '—'}</span>
+                                            <div className="form-row-horizontal">
+                                                <div className="form-label-col">
+                                                    <label>College Name *</label>
+                                                    <span className="label-desc">Select the partner college</span>
+                                                </div>
+                                                <div className="form-input-col">
+                                                    <select
+                                                        id="college_id"
+                                                        name="college_id"
+                                                        value={form.college_id}
+                                                        onChange={handleCollegeChange}
+                                                        style={{
+                                                            padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                            background: 'var(--bg-soft)',
+                                                            border: '1.5px solid var(--border)',
+                                                            borderRadius: 'var(--r-md)',
+                                                            fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                            color: 'var(--text-primary)',
+                                                            fontFamily: 'inherit',
+                                                            transition: 'var(--transition)',
+                                                            outline: 'none',
+                                                            width: '100%'
+                                                        }}
+                                                    >
+                                                        <option value="">-- Select College --</option>
+                                                        {colleges.map(c => (
+                                                            <option key={c.college_id || c.id} value={c.college_id || c.id}>
+                                                                {c.college_name || c.name}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                    {errors.college_name && (
+                                                        <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>
+                                                            {errors.college_name}
+                                                        </span>
+                                                    )}
                                                 </div>
                                             </div>
-                                        )}
+
+                                            <div className="form-row-horizontal">
+                                                <div className="form-label-col">
+                                                    <label>Category *</label>
+                                                    <span className="label-desc">Select course category</span>
+                                                </div>
+                                                <div className="form-input-col">
+                                                    <select
+                                                        id="category"
+                                                        name="category"
+                                                        value={form.category}
+                                                        onChange={handleCategoryChange}
+                                                        disabled={!form.college_id}
+                                                        style={{
+                                                            padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                            background: !form.college_id ? 'var(--gray-100)' : 'var(--bg-soft)',
+                                                            border: '1.5px solid var(--border)',
+                                                            borderRadius: 'var(--r-md)',
+                                                            fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                            color: 'var(--text-primary)',
+                                                            fontFamily: 'inherit',
+                                                            transition: 'var(--transition)',
+                                                            outline: 'none',
+                                                            cursor: !form.college_id ? 'not-allowed' : 'pointer',
+                                                            width: '100%'
+                                                        }}
+                                                    >
+                                                        <option value="">
+                                                            {!form.college_id ? '-- Select College First --' : '-- Select Category --'}
+                                                        </option>
+                                                        {availableCategories.map(cat => (
+                                                            <option key={cat.value} value={cat.value}>
+                                                                {cat.label}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                    {errors.category && (
+                                                        <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>
+                                                            {errors.category}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            <div className="form-row-horizontal">
+                                                <div className="form-label-col">
+                                                    <label>Degree Type *</label>
+                                                    <span className="label-desc">Select degree level</span>
+                                                </div>
+                                                <div className="form-input-col">
+                                                    <select
+                                                        id="degree_type"
+                                                        name="degree_type"
+                                                        value={form.degree_type}
+                                                        onChange={handleDegreeTypeChange}
+                                                        disabled={!form.category}
+                                                        style={{
+                                                            padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                            background: !form.category ? 'var(--gray-100)' : 'var(--bg-soft)',
+                                                            border: '1.5px solid var(--border)',
+                                                            borderRadius: 'var(--r-md)',
+                                                            fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                            color: 'var(--text-primary)',
+                                                            fontFamily: 'inherit',
+                                                            transition: 'var(--transition)',
+                                                            outline: 'none',
+                                                            cursor: !form.category ? 'not-allowed' : 'pointer',
+                                                            width: '100%'
+                                                        }}
+                                                    >
+                                                        <option value="">
+                                                            {!form.category ? '-- Select Category First --' : '-- Select Degree Type --'}
+                                                        </option>
+                                                        {availableDegreeTypes.map(dt => (
+                                                            <option key={dt.value} value={dt.value}>
+                                                                {dt.label}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                    {errors.degree_type && (
+                                                        <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>
+                                                            {errors.degree_type}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            <div className="form-row-horizontal">
+                                                <div className="form-label-col">
+                                                    <label>Course Name *</label>
+                                                    <span className="label-desc">Select specific course</span>
+                                                </div>
+                                                <div className="form-input-col">
+                                                    <select
+                                                        id="course_name"
+                                                        name="course_name"
+                                                        value={form.course_name}
+                                                        onChange={handleChange}
+                                                        disabled={!form.degree_type}
+                                                        style={{
+                                                            padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                            background: !form.degree_type ? 'var(--gray-100)' : 'var(--bg-soft)',
+                                                            border: '1.5px solid var(--border)',
+                                                            borderRadius: 'var(--r-md)',
+                                                            fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                            color: 'var(--text-primary)',
+                                                            fontFamily: 'inherit',
+                                                            transition: 'var(--transition)',
+                                                            outline: 'none',
+                                                            cursor: !form.degree_type ? 'not-allowed' : 'pointer',
+                                                            width: '100%'
+                                                        }}
+                                                    >
+                                                        <option value="">
+                                                            {!form.degree_type ? '-- Select Degree Type First --' : '-- Select Course --'}
+                                                        </option>
+                                                        {availableCourses.map(c => (
+                                                            <option key={c.course_id} value={c.course_name}>
+                                                                {c.course_name_display || c.course_name}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                    {errors.course_name && (
+                                                        <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>
+                                                            {errors.course_name}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 )}
                                 </motion.div>
@@ -710,279 +666,264 @@ export default function ApplicationForm() {
                                     }} />
                                     Student Bio-data
                                 </h2>
-                                <div style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                                    gap: 'clamp(16px, 2vw, 20px)'
-                                }}>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>First Name *</label>
-                                        <input
-                                            name="first_name"
-                                            value={form.first_name}
-                                            onChange={handleChange}
-                                            placeholder="First name"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.first_name && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.first_name}</span>}
+                                <div className="form-fields-vertical" style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>First Name *</label>
+                                            <span className="label-desc">Enter your legal first name</span>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                name="first_name"
+                                                value={form.first_name}
+                                                onChange={handleChange}
+                                                placeholder="First name"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.first_name && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.first_name}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Last Name *</label>
-                                        <input
-                                            name="last_name"
-                                            value={form.last_name}
-                                            onChange={handleChange}
-                                            placeholder="Last name"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.last_name && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.last_name}</span>}
+                                    
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Last Name *</label>
+                                            <span className="label-desc">Enter your legal last name</span>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                name="last_name"
+                                                value={form.last_name}
+                                                onChange={handleChange}
+                                                placeholder="Last name"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.last_name && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.last_name}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Gender *</label>
-                                        <select
-                                            name="gender"
-                                            value={form.gender}
-                                            onChange={handleChange}
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        >
-                                            <option value="">Select Gender</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                        {errors.gender && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.gender}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Gender *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <select
+                                                name="gender"
+                                                value={form.gender}
+                                                onChange={handleChange}
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            >
+                                                <option value="">Select Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                            {errors.gender && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.gender}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Date of Birth *</label>
-                                        <input
-                                            type="date"
-                                            name="dob"
-                                            value={form.dob}
-                                            onChange={handleChange}
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.dob && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.dob}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Date of Birth *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                type="date"
+                                                name="dob"
+                                                value={form.dob}
+                                                onChange={handleChange}
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.dob && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.dob}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Mobile Number *</label>
-                                        <input
-                                            type="tel"
-                                            name="mobile"
-                                            value={form.mobile}
-                                            onChange={handleChange}
-                                            placeholder="10-digit mobile number"
-                                            maxLength={10}
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.mobile && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.mobile}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Mobile Number *</label>
+                                            <span className="label-desc">10-digit mobile number</span>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                type="tel"
+                                                name="mobile"
+                                                value={form.mobile}
+                                                onChange={handleChange}
+                                                placeholder="10-digit mobile number"
+                                                maxLength={10}
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.mobile && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.mobile}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Email ID *</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={form.email}
-                                            onChange={handleChange}
-                                            placeholder="name@domain.com"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.email && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.email}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Email ID *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                value={form.email}
+                                                onChange={handleChange}
+                                                placeholder="name@domain.com"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.email && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.email}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Blood Group *</label>
-                                        <select
-                                            name="blood_group"
-                                            value={form.blood_group}
-                                            onChange={handleChange}
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        >
-                                            <option value="">Select Blood Group</option>
-                                            {BLOOD_GROUPS.map(g => <option key={g} value={g}>{g}</option>)}
-                                        </select>
-                                        {errors.blood_group && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.blood_group}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Blood Group *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <select
+                                                name="blood_group"
+                                                value={form.blood_group}
+                                                onChange={handleChange}
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            >
+                                                <option value="">Select Blood Group</option>
+                                                {BLOOD_GROUPS.map(g => <option key={g} value={g}>{g}</option>)}
+                                            </select>
+                                            {errors.blood_group && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.blood_group}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Community *</label>
-                                        <select
-                                            name="community"
-                                            value={form.community}
-                                            onChange={handleChange}
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        >
-                                            <option value="">Select Community</option>
-                                            {COMMUNITIES.map(c => <option key={c} value={c}>{c}</option>)}
-                                        </select>
-                                        {errors.community && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.community}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Community *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <select
+                                                name="community"
+                                                value={form.community}
+                                                onChange={handleChange}
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            >
+                                                <option value="">Select Community</option>
+                                                {COMMUNITIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                            </select>
+                                            {errors.community && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.community}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{
-                                        gridColumn: '1 / -1',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: 6
-                                    }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Aadhar Number *</label>
-                                        <input
-                                            name="aadhar_number"
-                                            value={form.aadhar_number}
-                                            onChange={handleChange}
-                                            placeholder="12-digit Aadhar number"
-                                            maxLength={12}
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.aadhar_number && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.aadhar_number}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Aadhar Number *</label>
+                                            <span className="label-desc">12-digit Aadhar number</span>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                name="aadhar_number"
+                                                value={form.aadhar_number}
+                                                onChange={handleChange}
+                                                placeholder="12-digit Aadhar number"
+                                                maxLength={12}
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.aadhar_number && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.aadhar_number}</span>}
+                                        </div>
                                     </div>
                                 </div>
                                 </motion.div>
@@ -1016,248 +957,227 @@ export default function ApplicationForm() {
                                     }} />
                                     Parent's Details &amp; Address
                                 </h2>
-                                <div style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                                    gap: 'clamp(16px, 2vw, 20px)'
-                                }}>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Father's Name *</label>
-                                        <input
-                                            name="father_name"
-                                            value={form.father_name}
-                                            onChange={handleChange}
-                                            placeholder="Father name"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.father_name && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.father_name}</span>}
+                                <div className="form-fields-vertical" style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Father's Name *</label>
+                                            <span className="label-desc">Enter father's full name</span>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                name="father_name"
+                                                value={form.father_name}
+                                                onChange={handleChange}
+                                                placeholder="Father name"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.father_name && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.father_name}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Father's Mobile *</label>
-                                        <input
-                                            type="tel"
-                                            name="father_mobile"
-                                            value={form.father_mobile}
-                                            onChange={handleChange}
-                                            placeholder="Father 10-digit mobile"
-                                            maxLength={10}
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.father_mobile && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.father_mobile}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Father's Mobile *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                type="tel"
+                                                name="father_mobile"
+                                                value={form.father_mobile}
+                                                onChange={handleChange}
+                                                placeholder="Father 10-digit mobile"
+                                                maxLength={10}
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.father_mobile && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.father_mobile}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Mother's Name *</label>
-                                        <input
-                                            name="mother_name"
-                                            value={form.mother_name}
-                                            onChange={handleChange}
-                                            placeholder="Mother name"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.mother_name && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.mother_name}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Mother's Name *</label>
+                                            <span className="label-desc">Enter mother's full name</span>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                name="mother_name"
+                                                value={form.mother_name}
+                                                onChange={handleChange}
+                                                placeholder="Mother name"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.mother_name && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.mother_name}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Mother's Mobile *</label>
-                                        <input
-                                            type="tel"
-                                            name="mother_mobile"
-                                            value={form.mother_mobile}
-                                            onChange={handleChange}
-                                            placeholder="Mother 10-digit mobile"
-                                            maxLength={10}
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.mother_mobile && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.mother_mobile}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Mother's Mobile *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                type="tel"
+                                                name="mother_mobile"
+                                                value={form.mother_mobile}
+                                                onChange={handleChange}
+                                                placeholder="Mother 10-digit mobile"
+                                                maxLength={10}
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.mother_mobile && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.mother_mobile}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{
-                                        gridColumn: '1 / -1',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: 6
-                                    }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Address Line 1 *</label>
-                                        <input
-                                            name="address_line1"
-                                            value={form.address_line1}
-                                            onChange={handleChange}
-                                            placeholder="Door No, Street Name, Locality"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.address_line1 && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.address_line1}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Address Line 1 *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                name="address_line1"
+                                                value={form.address_line1}
+                                                onChange={handleChange}
+                                                placeholder="Door No, Street Name, Locality"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.address_line1 && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.address_line1}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{
-                                        gridColumn: '1 / -1',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: 6
-                                    }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Address Line 2</label>
-                                        <input
-                                            name="address_line2"
-                                            value={form.address_line2}
-                                            onChange={handleChange}
-                                            placeholder="Landmark, Area (Optional)"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Address Line 2</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                name="address_line2"
+                                                value={form.address_line2}
+                                                onChange={handleChange}
+                                                placeholder="Landmark, Area (Optional)"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>City *</label>
-                                        <input
-                                            name="city"
-                                            value={form.city}
-                                            onChange={handleChange}
-                                            placeholder="City / District"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.city && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.city}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>City *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                name="city"
+                                                value={form.city}
+                                                onChange={handleChange}
+                                                placeholder="City / District"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.city && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.city}</span>}
+                                        </div>
                                     </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Pincode *</label>
-                                        <input
-                                            name="pincode"
-                                            value={form.pincode}
-                                            onChange={handleChange}
-                                            placeholder="6-digit pincode"
-                                            maxLength={6}
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.pincode && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.pincode}</span>}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Pincode *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                name="pincode"
+                                                value={form.pincode}
+                                                onChange={handleChange}
+                                                placeholder="6-digit pincode"
+                                                maxLength={6}
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.pincode && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.pincode}</span>}
+                                        </div>
                                     </div>
                                 </div>
                                 </motion.div>
@@ -1291,203 +1211,188 @@ export default function ApplicationForm() {
                                     }} />
                                     Education &amp; Reference
                                 </h2>
-                                <div style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                                    gap: 'clamp(16px, 2vw, 20px)'
-                                }}>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>10th Marks Percentage *</label>
-                                        <input
-                                            type="number"
-                                            name="tenth_percentage"
-                                            value={form.tenth_percentage}
-                                            onChange={handleChange}
-                                            placeholder="e.g. 92.5"
-                                            min="0"
-                                            max="100"
-                                            step="0.01"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.tenth_percentage && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.tenth_percentage}</span>}
-                                    </div>
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>12th Marks Percentage *</label>
-                                        <input
-                                            type="number"
-                                            name="twelfth_percentage"
-                                            value={form.twelfth_percentage}
-                                            onChange={handleChange}
-                                            placeholder="e.g. 88.3"
-                                            min="0"
-                                            max="100"
-                                            step="0.01"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
-                                        {errors.twelfth_percentage && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.twelfth_percentage}</span>}
+                                <div className="form-fields-vertical" style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>10th Marks Percentage *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                type="number"
+                                                name="tenth_percentage"
+                                                value={form.tenth_percentage}
+                                                onChange={handleChange}
+                                                placeholder="e.g. 92.5"
+                                                min="0"
+                                                max="100"
+                                                step="0.01"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.tenth_percentage && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.tenth_percentage}</span>}
+                                        </div>
                                     </div>
 
-                                    <div className="form-group" style={{
-                                        gridColumn: '1 / -1',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: 10,
-                                        padding: '8px 0'
-                                    }}>
-                                        <input
-                                            type="checkbox"
-                                            id="has_diploma"
-                                            name="has_diploma"
-                                            checked={form.has_diploma}
-                                            onChange={handleChange}
-                                            style={{
-                                                width: 18,
-                                                height: 18,
-                                                accentColor: 'var(--blue)',
-                                                cursor: 'pointer'
-                                            }}
-                                        />
-                                        <label htmlFor="has_diploma" style={{
-                                            margin: 0,
-                                            cursor: 'pointer',
-                                            fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                            fontWeight: 600,
-                                            color: 'var(--text-secondary)'
-                                        }}>
-                                            Has Diploma
-                                        </label>
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>12th Marks Percentage *</label>
+                                        </div>
+                                        <div className="form-input-col">
+                                            <input
+                                                type="number"
+                                                name="twelfth_percentage"
+                                                value={form.twelfth_percentage}
+                                                onChange={handleChange}
+                                                placeholder="e.g. 88.3"
+                                                min="0"
+                                                max="100"
+                                                step="0.01"
+                                                style={{
+                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                    background: 'var(--bg-soft)',
+                                                    border: '1.5px solid var(--border)',
+                                                    borderRadius: 'var(--r-md)',
+                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                    color: 'var(--text-primary)',
+                                                    fontFamily: 'inherit',
+                                                    transition: 'var(--transition)',
+                                                    outline: 'none',
+                                                    width: '100%'
+                                                }}
+                                            />
+                                            {errors.twelfth_percentage && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.twelfth_percentage}</span>}
+                                        </div>
+                                    </div>
+
+                                    <div className="form-row-horizontal" style={{ borderBottom: 'none', paddingBottom: 0 }}>
+                                        <div className="form-label-col">
+                                            <label>Has Diploma</label>
+                                        </div>
+                                        <div className="form-input-col" style={{ display: 'flex', alignItems: 'center' }}>
+                                            <input
+                                                type="checkbox"
+                                                id="has_diploma"
+                                                name="has_diploma"
+                                                checked={form.has_diploma}
+                                                onChange={handleChange}
+                                                style={{
+                                                    width: 18,
+                                                    height: 18,
+                                                    accentColor: 'var(--blue)',
+                                                    cursor: 'pointer'
+                                                }}
+                                            />
+                                        </div>
                                     </div>
 
                                     {form.has_diploma && (
-                                        <div className="form-group" style={{
-                                            gridColumn: '1 / -1',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            gap: 6,
-                                            animation: 'fadeInUp 0.3s var(--ease) both'
-                                        }}>
-                                            <label style={{
-                                                fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                                fontWeight: 700,
-                                                color: 'var(--text-secondary)',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.07em'
-                                            }}>Diploma Marks Percentage *</label>
-                                            <input
-                                                type="number"
-                                                name="diploma_percentage"
-                                                value={form.diploma_percentage}
-                                                onChange={handleChange}
-                                                placeholder="Diploma %"
-                                                min="0"
-                                                max="100"
-                                                step="0.01"
-                                                style={{
-                                                    padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                    background: 'var(--bg-soft)',
-                                                    border: '1.5px solid var(--border)',
-                                                    borderRadius: 'var(--r-md)',
-                                                    fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                    color: 'var(--text-primary)',
-                                                    fontFamily: 'inherit',
-                                                    transition: 'var(--transition)',
-                                                    outline: 'none',
-                                                    width: '100%'
-                                                }}
-                                            />
-                                            {errors.diploma_percentage && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.diploma_percentage}</span>}
+                                        <div className="form-row-horizontal" style={{ paddingTop: 0, animation: 'fadeInUp 0.3s var(--ease) both' }}>
+                                            <div className="form-label-col">
+                                                <label>Diploma Marks Percentage *</label>
+                                            </div>
+                                            <div className="form-input-col">
+                                                <input
+                                                    type="number"
+                                                    name="diploma_percentage"
+                                                    value={form.diploma_percentage}
+                                                    onChange={handleChange}
+                                                    placeholder="Diploma %"
+                                                    min="0"
+                                                    max="100"
+                                                    step="0.01"
+                                                    style={{
+                                                        padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                        background: 'var(--bg-soft)',
+                                                        border: '1.5px solid var(--border)',
+                                                        borderRadius: 'var(--r-md)',
+                                                        fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                        color: 'var(--text-primary)',
+                                                        fontFamily: 'inherit',
+                                                        transition: 'var(--transition)',
+                                                        outline: 'none',
+                                                        width: '100%'
+                                                    }}
+                                                />
+                                                {errors.diploma_percentage && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.diploma_percentage}</span>}
+                                            </div>
                                         </div>
                                     )}
 
-                                    <div className="form-group" style={{
-                                        gridColumn: '1 / -1',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: 10,
-                                        padding: '8px 0'
-                                    }}>
-                                        <input
-                                            type="checkbox"
-                                            id="has_ug"
-                                            name="has_ug"
-                                            checked={form.has_ug}
-                                            onChange={handleChange}
-                                            style={{
-                                                width: 18,
-                                                height: 18,
-                                                accentColor: 'var(--blue)',
-                                                cursor: 'pointer'
-                                            }}
-                                        />
-                                        <label htmlFor="has_ug" style={{
-                                            margin: 0,
-                                            cursor: 'pointer',
-                                            fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                            fontWeight: 600,
-                                            color: 'var(--text-secondary)'
-                                        }}>
-                                            Has Undergraduate (UG)
-                                        </label>
+                                    <div className="form-row-horizontal" style={{ borderBottom: 'none', paddingBottom: 0 }}>
+                                        <div className="form-label-col">
+                                            <label>Has Undergraduate (UG)</label>
+                                        </div>
+                                        <div className="form-input-col" style={{ display: 'flex', alignItems: 'center' }}>
+                                            <input
+                                                type="checkbox"
+                                                id="has_ug"
+                                                name="has_ug"
+                                                checked={form.has_ug}
+                                                onChange={handleChange}
+                                                style={{
+                                                    width: 18,
+                                                    height: 18,
+                                                    accentColor: 'var(--blue)',
+                                                    cursor: 'pointer'
+                                                }}
+                                            />
+                                        </div>
                                     </div>
 
                                     {form.has_ug && (
-                                        <div className="form-group" style={{
-                                            gridColumn: '1 / -1',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            gap: 6,
-                                            animation: 'fadeInUp 0.3s var(--ease) both'
-                                        }}>
-                                            <label style={{
-                                                fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                                fontWeight: 700,
-                                                color: 'var(--text-secondary)',
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '0.07em'
-                                            }}>UG Marks Percentage *</label>
+                                        <div className="form-row-horizontal" style={{ paddingTop: 0, animation: 'fadeInUp 0.3s var(--ease) both' }}>
+                                            <div className="form-label-col">
+                                                <label>UG Marks Percentage *</label>
+                                            </div>
+                                            <div className="form-input-col">
+                                                <input
+                                                    type="number"
+                                                    name="ug_percentage"
+                                                    value={form.ug_percentage}
+                                                    onChange={handleChange}
+                                                    placeholder="UG %"
+                                                    min="0"
+                                                    max="100"
+                                                    step="0.01"
+                                                    style={{
+                                                        padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
+                                                        background: 'var(--bg-soft)',
+                                                        border: '1.5px solid var(--border)',
+                                                        borderRadius: 'var(--r-md)',
+                                                        fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
+                                                        color: 'var(--text-primary)',
+                                                        fontFamily: 'inherit',
+                                                        transition: 'var(--transition)',
+                                                        outline: 'none',
+                                                        width: '100%'
+                                                    }}
+                                                />
+                                                {errors.ug_percentage && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.ug_percentage}</span>}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div className="form-row-horizontal">
+                                        <div className="form-label-col">
+                                            <label>Reference Name (Optional)</label>
+                                            <span className="label-desc">Name of person who referred you</span>
+                                        </div>
+                                        <div className="form-input-col">
                                             <input
-                                                type="number"
-                                                name="ug_percentage"
-                                                value={form.ug_percentage}
+                                                name="reference_name"
+                                                value={form.reference_name}
                                                 onChange={handleChange}
-                                                placeholder="UG %"
-                                                min="0"
-                                                max="100"
-                                                step="0.01"
+                                                placeholder="Name of person who referred you"
                                                 style={{
                                                     padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
                                                     background: 'var(--bg-soft)',
@@ -1501,41 +1406,7 @@ export default function ApplicationForm() {
                                                     width: '100%'
                                                 }}
                                             />
-                                            {errors.ug_percentage && <span className="form-error" style={{ fontSize: 'clamp(0.7rem, 0.85vw, 0.76rem)', color: 'var(--red)' }}>{errors.ug_percentage}</span>}
                                         </div>
-                                    )}
-
-                                    <div className="form-group" style={{
-                                        gridColumn: '1 / -1',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: 6
-                                    }}>
-                                        <label style={{
-                                            fontSize: 'clamp(0.7rem, 0.9vw, 0.78rem)',
-                                            fontWeight: 700,
-                                            color: 'var(--text-secondary)',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.07em'
-                                        }}>Reference Name (Optional)</label>
-                                        <input
-                                            name="reference_name"
-                                            value={form.reference_name}
-                                            onChange={handleChange}
-                                            placeholder="Name of person who referred you"
-                                            style={{
-                                                padding: 'clamp(10px, 1.2vw, 11px) clamp(12px, 1.5vw, 14px)',
-                                                background: 'var(--bg-soft)',
-                                                border: '1.5px solid var(--border)',
-                                                borderRadius: 'var(--r-md)',
-                                                fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
-                                                color: 'var(--text-primary)',
-                                                fontFamily: 'inherit',
-                                                transition: 'var(--transition)',
-                                                outline: 'none',
-                                                width: '100%'
-                                            }}
-                                        />
                                     </div>
                                 </div>
                                 </motion.div>
@@ -1543,10 +1414,10 @@ export default function ApplicationForm() {
                         </AnimatePresence>
 
                         {/* Form Actions */}
-                        <div style={{
+                        <div className="form-actions" style={{
                             display: 'flex',
                             justifyContent: 'space-between',
-                            marginTop: 32,
+                            marginTop: 24,
                             borderTop: '1px solid var(--border)',
                             paddingTop: 24,
                             flexWrap: 'wrap',
@@ -1624,6 +1495,33 @@ export default function ApplicationForm() {
                             )}
                         </div>
                     </form>
+                    </div>
+
+                    <div className="application-sidebar-right">
+                        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '20px', color: 'var(--text-primary)' }}>Selected College</h3>
+                        {selectedCollege ? (
+                            <>
+                                <div style={{ borderRadius: 'var(--r-md)', overflow: 'hidden', marginBottom: '16px', boxShadow: 'var(--shadow-sm)' }}>
+                                    <img src={selectedCourseImage} alt={selectedCollege.name} style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />
+                                </div>
+                                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '8px', lineHeight: '1.4' }}>{selectedCollege.name}</h4>
+                                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '20px', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
+                                    <span style={{marginTop: '2px'}}>📍</span> {selectedCollege.location || 'Tamil Nadu'}
+                                </p>
+                                {form.course_name && (
+                                    <div style={{ background: 'var(--bg-soft)', padding: '14px', borderRadius: 'var(--r-md)', border: '1px solid var(--border)' }}>
+                                        <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700, display: 'block', marginBottom: '6px', letterSpacing: '0.05em' }}>Course Applied</span>
+                                        <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)', lineHeight: '1.4', display: 'block' }}>{form.course_name}</strong>
+                                    </div>
+                                )}
+                            </>
+                        ) : (
+                            <div style={{ textAlign: 'center', padding: '40px 20px', background: 'var(--bg-subtle)', borderRadius: 'var(--r-md)', border: '1px dashed var(--border)' }}>
+                                <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '12px', opacity: 0.4 }}>🏛️</span>
+                                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Select a college to view its details</p>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </section>
 

@@ -1,16 +1,21 @@
 import axios from 'axios';
 
-import catEngineering from '../assets/cat_engineering.jpg';
-import catMedical from '../assets/cat_medical.jpg';
-import catNursing from '../assets/cat_nursing.jpg';
-import catAlliedHealth from '../assets/cat_allied_health.jpg';
-import catArtsScience from '../assets/cat_arts_science.jpg';
-import catManagement from '../assets/cat_management.jpg';
-import catLaw from '../assets/cat_law.jpg';
-import catArchitecture from '../assets/cat_architecture.jpg';
-import catPolytechnic from '../assets/cat_polytechnic.jpg';
-import catAgriculture from '../assets/cat_agriculture.jpg';
-import catDefault from '../assets/cat_default.jpg';
+import catEngineering         from '../assets/categories/cat_engineering.jpg';
+import catPolytechnic         from '../assets/categories/cat_polytechnic.jpg';
+import catComputerApplications from '../assets/categories/cat_computer_applications.jpg';
+import catMedical             from '../assets/categories/cat_medical.jpg';
+import catNursing             from '../assets/categories/cat_nursing.jpg';
+import catAlliedHealth        from '../assets/categories/cat_allied_health.jpg';
+import catPhysiotherapy       from '../assets/categories/cat_physiotherapy.jpg';
+import catOccupationalTherapy from '../assets/categories/cat_occupational_therapy.jpg';
+import catArtsScience         from '../assets/categories/cat_arts_science.jpg';
+import catManagement          from '../assets/categories/cat_management.jpg';
+import catPharmacy            from '../assets/categories/cat_pharmacy.jpg';
+import catLaw                 from '../assets/categories/cat_law.jpg';
+import catArchitecture        from '../assets/categories/cat_architecture.jpg';
+import catPhysicalEducation   from '../assets/categories/cat_physical_education.jpg';
+import catAgriculture         from '../assets/cat_agriculture.jpg';
+import catDefault             from '../assets/cat_default.jpg';
 
 const BASE_URL = 'http://localhost:8000/api';
 
@@ -121,7 +126,8 @@ export const normalizeCourse = (item) => {
       description: description,
       students: students,
       rating: parseFloat(rating),
-      colleges_info: colleges_info
+      colleges_info: colleges_info,
+      image: getCourseImage(item.course_name_display, item.category_display || item.category)
     };
   }
   return item;
@@ -246,11 +252,17 @@ export const getCourseImage = (title, category) => {
   if (t.includes('nursing') || cat === 'nursing') {
     return catNursing;
   }
+  if (t.includes('physiotherapy') || cat === 'physiotherapy') {
+    return catPhysiotherapy;
+  }
+  if (t.includes('occupational') || cat === 'occupational_therapy') {
+    return catOccupationalTherapy;
+  }
   if (cat.includes('allied') || cat.includes('health') || t.includes('allied')) {
     return catAlliedHealth;
   }
   if (cat.includes('pharmacy') || t.includes('pharmacy') || t.includes('pharm')) {
-    return catDefault;
+    return catPharmacy;
   }
   if (t.includes('mba') || t.includes('mca') || cat === 'management') {
     return catManagement;
@@ -261,8 +273,14 @@ export const getCourseImage = (title, category) => {
   if (t.includes('architecture') || cat === 'architecture' || t.includes('arch')) {
     return catArchitecture;
   }
-  if (t.includes('polytechnic') || t.includes('diploma') || t.includes('wrench')) {
+  if (t.includes('polytechnic') || t.includes('diploma')) {
     return catPolytechnic;
+  }
+  if (t.includes('computer') || cat === 'computer_applications' || t.includes('bca') || t.includes('mca')) {
+    return catComputerApplications;
+  }
+  if (t.includes('physical education') || cat === 'education') {
+    return catPhysicalEducation;
   }
   if (t.includes('engineering') || cat === 'engineering') {
     return catEngineering;

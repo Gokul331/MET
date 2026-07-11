@@ -9,15 +9,20 @@ import coursesHero3 from '../assets/courses_hero_3.jpg';
 import coursesHero4 from '../assets/courses_hero_4.jpg';
 import coursesHero5 from '../assets/courses_hero_5.jpg';
 
-import catEngineering from '../assets/cat_engineering.jpg';
-import catMedical from '../assets/cat_medical.jpg';
-import catNursing from '../assets/cat_nursing.jpg';
-import catAlliedHealth from '../assets/cat_allied_health.jpg';
-import catArtsScience from '../assets/cat_arts_science.jpg';
-import catManagement from '../assets/cat_management.jpg';
-import catLaw from '../assets/cat_law.jpg';
-import catArchitecture from '../assets/cat_architecture.jpg';
-import catPolytechnic from '../assets/cat_polytechnic.jpg';
+import catEngineering from '../assets/categories/cat_engineering.jpg';
+import catPolytechnic from '../assets/categories/cat_polytechnic.jpg';
+import catComputerApplications from '../assets/categories/cat_computer_applications.jpg';
+import catMedical from '../assets/categories/cat_medical.jpg';
+import catNursing from '../assets/categories/cat_nursing.jpg';
+import catAlliedHealth from '../assets/categories/cat_allied_health.jpg';
+import catPhysiotherapy from '../assets/categories/cat_physiotherapy.jpg';
+import catOccupationalTherapy from '../assets/categories/cat_occupational_therapy.jpg';
+import catArtsScience from '../assets/categories/cat_arts_science.jpg';
+import catManagement from '../assets/categories/cat_management.jpg';
+import catPharmacy from '../assets/categories/cat_pharmacy.jpg';
+import catLaw from '../assets/categories/cat_law.jpg';
+import catArchitecture from '../assets/categories/cat_architecture.jpg';
+import catPhysicalEducation from '../assets/categories/cat_physical_education.jpg';
 import catAgriculture from '../assets/cat_agriculture.jpg';
 import catDefault from '../assets/cat_default.jpg';
 import {
@@ -75,24 +80,28 @@ const getCourseIcon = (title, category) => {
 
 
 const DEFAULT_COURSES = [
-  { id: 1,  title: 'Engineering (B.E / B.Tech)', category: 'Engineering',    level: 'Undergraduate', duration: '4 Years',   students: 450, rating: 4.8, image: catEngineering,  description: 'CS, ECE, Mechanical, Civil, EEE and more at Anna University affiliates.' },
-  { id: 2,  title: 'Medical (MBBS)',              category: 'Medical',        level: 'Undergraduate', duration: '5.5 Years', students: 200, rating: 4.9, image: catMedical,  description: 'MBBS, BDS programs at MCI/NMC-recognised institutions across Tamil Nadu.' },
-  { id: 3,  title: 'Nursing (B.Sc)',              category: 'Nursing',        level: 'Undergraduate', duration: '4 Years',   students: 300, rating: 4.7, image: catNursing,  description: 'B.Sc Nursing and P.B.B.Sc Nursing with strong clinical training.' },
-  { id: 4,  title: 'Allied Health Sciences',      category: 'Allied Health',  level: 'Undergraduate', duration: '3 Years',   students: 250, rating: 4.6, image: catAlliedHealth,  description: 'Physiotherapy, Lab Tech, Radiology, Optometry and more.' },
-  { id: 5,  title: 'Arts & Science (BA/BSc/BCom)',category: 'Arts & Science', level: 'Undergraduate', duration: '3 Years',   students: 380, rating: 4.5, image: catArtsScience,  description: 'Humanities, Sciences, and Commerce undergraduate programs.' },
-  { id: 6,  title: 'MBA / MCA',                   category: 'Management',     level: 'Postgraduate',  duration: '2 Years',   students: 280, rating: 4.7, image: catManagement,  description: 'MBA & MCA from AICTE-approved institutes with industry exposure.' },
-  { id: 7,  title: 'Law (LLB)',                   category: 'Law',            level: 'Undergraduate', duration: '3–5 Years', students: 150, rating: 4.6, image: catLaw,  description: '3-Year LLB and 5-Year integrated BA LLB at BCI-affiliated colleges.' },
-  { id: 8,  title: 'Architecture (B.Arch)',        category: 'Architecture',   level: 'Undergraduate', duration: '5 Years',   students: 100, rating: 4.7, image: catArchitecture, description: 'Bachelor of Architecture with COA recognition and studio practice.' },
-  { id: 9,  title: 'Pharmacy (B.Pharm / D.Pharm)',category: 'Pharmacy',       level: 'Undergraduate', duration: '2–4 Years', students: 180, rating: 4.6, image: catDefault,  description: 'B.Pharm and D.Pharm with strong clinical and industry placement.' },
-  { id: 10, title: 'Polytechnic / Diploma',       category: 'Engineering',    level: 'Diploma',       duration: '3 Years',   students: 320, rating: 4.4, image: catPolytechnic,  description: 'Practical Diploma in Engineering — job-ready in 3 years.' },
-  { id: 11, title: 'M.Tech / M.E',                category: 'Engineering',    level: 'Postgraduate',  duration: '2 Years',   students: 120, rating: 4.6, image: catEngineering,  description: 'Postgraduate Engineering programs with specialised research focus.' },
-  { id: 12, title: 'M.Sc / M.A / M.Com',          category: 'Arts & Science', level: 'Postgraduate',  duration: '2 Years',   students: 160, rating: 4.4, image: catArtsScience,  description: 'Postgraduate programs in Sciences, Arts, and Commerce disciplines.' },
+  { id: 1, title: 'Engineering (B.E / B.Tech)', category: 'Engineering', level: 'Undergraduate', duration: '4 Years', students: 450, rating: 4.8, image: catEngineering, description: 'CS, ECE, Mechanical, Civil, EEE and more at Anna University affiliates.' },
+  { id: 2, title: 'Medical (MBBS)', category: 'Medical', level: 'Undergraduate', duration: '5.5 Years', students: 200, rating: 4.9, image: catMedical, description: 'MBBS, BDS programs at MCI/NMC-recognised institutions across Tamil Nadu.' },
+  { id: 3, title: 'Nursing (B.Sc)', category: 'Nursing', level: 'Undergraduate', duration: '4 Years', students: 300, rating: 4.7, image: catNursing, description: 'B.Sc Nursing and P.B.B.Sc Nursing with strong clinical training.' },
+  { id: 4, title: 'Allied Health Sciences', category: 'Allied Health', level: 'Undergraduate', duration: '3 Years', students: 250, rating: 4.6, image: catAlliedHealth, description: 'Physiotherapy, Lab Tech, Radiology, Optometry and more.' },
+  { id: 5, title: 'Arts & Science (BA/BSc/BCom)', category: 'Arts & Science', level: 'Undergraduate', duration: '3 Years', students: 380, rating: 4.5, image: catArtsScience, description: 'Humanities, Sciences, and Commerce undergraduate programs.' },
+  { id: 6, title: 'MBA / MCA', category: 'Management', level: 'Postgraduate', duration: '2 Years', students: 280, rating: 4.7, image: catManagement, description: 'MBA & MCA from AICTE-approved institutes with industry exposure.' },
+  { id: 7, title: 'Law (LLB)', category: 'Law', level: 'Undergraduate', duration: '3–5 Years', students: 150, rating: 4.6, image: catLaw, description: '3-Year LLB and 5-Year integrated BA LLB at BCI-affiliated colleges.' },
+  { id: 8, title: 'Architecture (B.Arch)', category: 'Architecture', level: 'Undergraduate', duration: '5 Years', students: 100, rating: 4.7, image: catArchitecture, description: 'Bachelor of Architecture with COA recognition and studio practice.' },
+  { id: 9, title: 'Pharmacy (B.Pharm / D.Pharm)', category: 'Pharmacy', level: 'Undergraduate', duration: '2–4 Years', students: 180, rating: 4.6, image: catPharmacy, description: 'B.Pharm and D.Pharm with strong clinical and industry placement.' },
+  { id: 10, title: 'Polytechnic / Diploma', category: 'Engineering', level: 'Diploma', duration: '3 Years', students: 320, rating: 4.4, image: catPolytechnic, description: 'Practical Diploma in Engineering — job-ready in 3 years.' },
+  { id: 11, title: 'M.Tech / M.E', category: 'Engineering', level: 'Postgraduate', duration: '2 Years', students: 120, rating: 4.6, image: catEngineering, description: 'Postgraduate Engineering programs with specialised research focus.' },
+  { id: 12, title: 'M.Sc / M.A / M.Com', category: 'Arts & Science', level: 'Postgraduate', duration: '2 Years', students: 160, rating: 4.4, image: catArtsScience, description: 'Postgraduate programs in Sciences, Arts, and Commerce disciplines.' },
+  { id: 13, title: 'BCA / MCA', category: 'Computer Applications', level: 'Undergraduate', duration: '3 Years', students: 200, rating: 4.5, image: catComputerApplications, description: 'Bachelor & Master of Computer Applications with strong IT placement.' },
+  { id: 14, title: 'Physiotherapy (BPT)', category: 'Allied Health', level: 'Undergraduate', duration: '4.5 Years', students: 140, rating: 4.6, image: catPhysiotherapy, description: 'Bachelor of Physiotherapy with hands-on clinical internship.' },
+  { id: 15, title: 'Occupational Therapy', category: 'Allied Health', level: 'Undergraduate', duration: '4.5 Years', students: 90, rating: 4.5, image: catOccupationalTherapy, description: 'BOT program focusing on rehabilitation and patient independence.' },
+  { id: 16, title: 'Physical Education (B.P.Ed)', category: 'Education', level: 'Undergraduate', duration: '2 Years', students: 110, rating: 4.4, image: catPhysicalEducation, description: 'Bachelor of Physical Education — sports science and coaching.' },
 ];
 
 const CATEGORIES = ['Engineering', 'Medical', 'Nursing', 'Allied Health', 'Arts & Science', 'Management', 'Law', 'Architecture', 'Pharmacy', 'Agricultural Science'];
-const LEVELS     = ['Undergraduate', 'Postgraduate', 'Diploma'];
-const DURATIONS  = ['2 Years', '3 Years', '4 Years', '5 Years', '5+ Years'];
-const RATINGS    = [4, 3];
+const LEVELS = ['Undergraduate', 'Postgraduate', 'Diploma'];
+const DURATIONS = ['2 Years', '3 Years', '4 Years', '5 Years', '5+ Years'];
+const RATINGS = [4, 3];
 
 const FilterIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -134,16 +143,16 @@ function Stars({ rating }) {
 }
 
 export default function Courses() {
-  const [courses, setCourses]         = useState([]);
-  const [loading, setLoading]         = useState(true);
-  const [search, setSearch]           = useState('');
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sortBy, setSortBy]           = useState('default');
+  const [sortBy, setSortBy] = useState('default');
 
   const [selCategories, setSelCategories] = useState([]);
-  const [selLevels,     setSelLevels]     = useState([]);
-  const [selDurations,  setSelDurations]  = useState([]);
-  const [minRating,     setMinRating]     = useState(0);
+  const [selLevels, setSelLevels] = useState([]);
+  const [selDurations, setSelDurations] = useState([]);
+  const [minRating, setMinRating] = useState(0);
 
   const defaultImages = [
     coursesHero1,
@@ -209,11 +218,11 @@ export default function Courses() {
 
   const filtered = courses
     .filter(c => {
-      const title    = (c.title || c.name || '').toLowerCase();
+      const title = (c.title || c.name || '').toLowerCase();
       const category = (c.category_display || c.category || '').toLowerCase();
-      const level    = (c.level || c.degree_type_display || '').toLowerCase();
+      const level = (c.level || c.degree_type_display || '').toLowerCase();
       const duration = (c.duration || '');
-      const rating   = parseFloat(c.rating || 0);
+      const rating = parseFloat(c.rating || 0);
 
       if (search && !title.includes(search.toLowerCase())) return false;
       if (selCategories.length > 0 && !selCategories.some(f => category.includes(f.toLowerCase()))) return false;
@@ -223,8 +232,8 @@ export default function Courses() {
       return true;
     })
     .sort((a, b) => {
-      if (sortBy === 'name-asc')    return (a.title || a.name || '').localeCompare(b.title || b.name || '');
-      if (sortBy === 'name-desc')   return (b.title || b.name || '').localeCompare(a.title || a.name || '');
+      if (sortBy === 'name-asc') return (a.title || a.name || '').localeCompare(b.title || b.name || '');
+      if (sortBy === 'name-desc') return (b.title || b.name || '').localeCompare(a.title || a.name || '');
       if (sortBy === 'rating-desc') return (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0);
       if (sortBy === 'students-desc') return (parseInt(b.students) || 0) - (parseInt(a.students) || 0);
       return 0;
@@ -350,7 +359,7 @@ export default function Courses() {
           <div className="hero-bg-pattern" />
           <div className="container">
             <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '48px', alignItems: 'center' }}>
-              
+
               {/* Left Column: Heading & Highlights */}
               <div style={{ textAlign: 'left' }}>
                 <div className="section-label-premium" style={{ display: 'inline-flex' }}>
@@ -431,7 +440,7 @@ export default function Courses() {
         <section style={{ padding: '40px 0' }}>
           <div className="container">
             <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: '36px', alignItems: 'start' }}>
-              
+
               {/* Sidebar Filters */}
               {Sidebar}
 
@@ -509,11 +518,14 @@ export default function Courses() {
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '24px' }}>
                           {coursesByCategory[catName].map((course, i) => (
                             <div key={course.id || i} className={`course-card-premium card-3d ${getStreamClass(course.category_display || course.category)}`} style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '0', background: '#fff', border: '1px solid var(--border)', borderRadius: '24px', overflow: 'hidden', justifyContent: 'space-between' }}>
-                              
+
                               {/* 1. Image on top */}
                               <div className="course-card-image-wrap" style={{ position: 'relative', height: '160px', width: '100%', overflow: 'hidden', background: 'var(--bg-soft)' }}>
                                 <img
-                                  src={course.college_details?.primary_image_url || course.college_details?.banner_image || course.image || getCourseImage(course.course_name || course.title || course.name, course.category_display || course.category)}
+                                  src={
+                                    getCourseImage(course.course_name || course.title || course.name, course.category_display || course.category) ||
+                                    course.college_details?.primary_image_url || course.college_details?.banner_image || course.image
+                                  }
                                   alt={course.course_name || course.title || course.name}
                                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
                                   className="course-card-img"
@@ -522,7 +534,7 @@ export default function Courses() {
                                   }}
                                 />
                               </div>
-                              
+
                               {/* Body container with padding */}
                               <div style={{ padding: '20px 20px 24px', display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between' }}>
                                 <div>
@@ -530,7 +542,7 @@ export default function Courses() {
                                   <h3 style={{ fontSize: '0.96rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0 0 12px', lineHeight: 1.35 }}>
                                     {course.course_name || course.title || course.name}
                                   </h3>
-                                  
+
                                   {/* 3. Course Duration */}
                                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: 600, marginBottom: '20px' }}>
                                     <span>⏱</span> <strong>Duration:</strong> {course.duration || '3–4 Years'}
@@ -539,17 +551,17 @@ export default function Courses() {
 
                                 {/* 4. Buttons */}
                                 <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
-                                  <Link 
-                                    to={`/courses/${course.id || course.course_id}`} 
-                                    className="btn-outline btn-sm" 
+                                  <Link
+                                    to={`/courses/${course.id || course.course_id}`}
+                                    className="btn-outline btn-sm"
                                     style={{ flexGrow: 1, textAlign: 'center', padding: '10px 14px', fontSize: '0.78rem', textDecoration: 'none' }}
                                   >
                                     Show Colleges
                                   </Link>
-                                  <Link 
-                                    to="/apply" 
-                                    state={{ course: course }} 
-                                    className="btn-primary btn-sm" 
+                                  <Link
+                                    to="/apply"
+                                    state={{ course: course }}
+                                    className="btn-primary btn-sm"
                                     style={{ flexGrow: 1, textAlign: 'center', padding: '10px 14px', fontSize: '0.78rem' }}
                                   >
                                     Apply

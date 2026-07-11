@@ -1,19 +1,48 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { fetchColleges } from '../services/api';
 import {
-  FaGraduationCap, FaAward, FaUserCheck,
   FaChevronRight, FaPhoneAlt, FaWhatsapp, FaMapMarkerAlt,
+  FaArrowRight,
 } from 'react-icons/fa';
-import bgImg from '../assets/BG.png';
+import catEngineering from '../assets/categories/cat_engineering.jpg';
+import catPolytechnic from '../assets/categories/cat_polytechnic.jpg';
+import catComputerApplications from '../assets/categories/cat_computer_applications.jpg';
+import catMedical from '../assets/categories/cat_medical.jpg';
+import catNursing from '../assets/categories/cat_nursing.jpg';
+import catAlliedHealth from '../assets/categories/cat_allied_health.jpg';
+import catPhysiotherapy from '../assets/categories/cat_physiotherapy.jpg';
+import catOccupationalTherapy from '../assets/categories/cat_occupational_therapy.jpg';
+import catArtsScience from '../assets/categories/cat_arts_science.jpg';
+import catManagement from '../assets/categories/cat_management.jpg';
+import catPharmacy from '../assets/categories/cat_pharmacy.jpg';
+import catLaw from '../assets/categories/cat_law.jpg';
+import catArchitecture from '../assets/categories/cat_architecture.jpg';
+import catPhysicalEducation from '../assets/categories/cat_physical_education.jpg';
 import PageTransition from '../components/common/PageTransition';
+
+const SLIDE_CATEGORIES = [
+  { name: 'Engineering', image: catEngineering },
+  { name: 'Medical (MBBS)', image: catMedical },
+  { name: 'Nursing', image: catNursing },
+  { name: 'Polytechnic', image: catPolytechnic },
+  { name: 'Computer Applications', image: catComputerApplications },
+  { name: 'Allied Health Sciences', image: catAlliedHealth },
+  { name: 'Physiotherapy', image: catPhysiotherapy },
+  { name: 'Occupational Therapy', image: catOccupationalTherapy },
+  { name: 'Arts & Science', image: catArtsScience },
+  { name: 'Management (MBA/MCA)', image: catManagement },
+  { name: 'Pharmacy', image: catPharmacy },
+  { name: 'Law (LLB)', image: catLaw },
+  { name: 'Architecture', image: catArchitecture },
+  { name: 'Physical Education', image: catPhysicalEducation },
+];
 
 const SERVICES = [
   { icon: '🎓', title: 'Admission Guidance', desc: 'Expert guidance through the complex admission process for engineering, medical, and allied programs across Tamil Nadu.' },
   { icon: '🎯', title: 'Career Counselling', desc: 'Personalised one-on-one sessions to match your interests and strengths with the right academic path.' },
   { icon: '📚', title: 'Course Selection', desc: 'Choose from a broad spectrum of programs that align with your academic background and career ambitions.' },
   { icon: '💰', title: 'Scholarship Support', desc: 'Assistance in securing merit-based and need-based scholarships ranging from ₹5,000 to ₹25,000.' },
-  { icon: '📝', title: 'Documentation Help', desc: 'Full support for application forms, statement of purpose, and all required documentation — stress-free.' },
 ];
 
 const PROCESS_STEPS = [
@@ -30,11 +59,67 @@ const MARQUEE_ITEMS = [
 
 export default function Home() {
   const [colleges, setColleges] = useState([]);
+  const [collegeStats, setCollegeStats] = useState({ eng: 50, med: 25, arts: 40 });
   const [loading, setLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const location = useLocation();
   const [toast, setToast] = useState({ show: false, message: '', type: '' });
+
+  // Slideshow state
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [nextSlide, setNextSlide] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const slideTimerRef = useRef(null);
+  const isPausedRef = useRef(false);
+
+  const advanceSlide = () => {
+    if (isPausedRef.current) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide(prev => {
+        const next = (prev + 1) % SLIDE_CATEGORIES.length;
+        setNextSlide((next + 1) % SLIDE_CATEGORIES.length);
+        return next;
+      });
+      setIsTransitioning(false);
+    }, 600);
+  };
+
+  useEffect(() => {
+    slideTimerRef.current = setInterval(advanceSlide, 2800);
+    return () => clearInterval(slideTimerRef.current);
+  }, []);
+
+  const handlePause = () => {
+    isPausedRef.current = true;
+    setIsPaused(true);
+  };
+
+  const handleResume = () => {
+    isPausedRef.current = false;
+    setIsPaused(false);
+  };
+
+  const goToSlide = (idx) => {
+    clearInterval(slideTimerRef.current);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide(idx);
+      setNextSlide((idx + 1) % SLIDE_CATEGORIES.length);
+      setIsTransitioning(false);
+    }, 300);
+    slideTimerRef.current = setInterval(advanceSlide, 2800);
+  };
+
+  // Build upcoming thumbnails: next 4 after current
+  const upcomingThumbs = Array.from({ length: 4 }, (_, i) =>
+    SLIDE_CATEGORIES[(currentSlide + 1 + i) % SLIDE_CATEGORIES.length]
+  ).map((cat, i) => ({
+    ...cat,
+    idx: (currentSlide + 1 + i) % SLIDE_CATEGORIES.length,
+  }));;
 
   useEffect(() => {
     if (location.state?.success) {
@@ -60,9 +145,25 @@ export default function Home() {
       try {
         setLoading(true);
         const data = await fetchColleges();
-        const list = (Array.isArray(data) ? data : data.results || []).slice(0, 6).map(c => ({
+        const allColleges = Array.isArray(data) ? data : data.results || [];
+
+        let eng = 0, med = 0, arts = 0;
+        allColleges.forEach(c => {
+          const courses = c.courses_offered || c.courses_offered_display || [];
+          const coursesStr = courses.join(' ').toLowerCase();
+          if (coursesStr.includes('engineering') || coursesStr.includes('technology')) eng++;
+          if (coursesStr.includes('medical') || coursesStr.includes('health') || coursesStr.includes('nursing') || coursesStr.includes('pharmacy')) med++;
+          if (coursesStr.includes('arts') || coursesStr.includes('science')) arts++;
+        });
+
+        // Only update if we actually got real data to prevent showing 0s on empty API
+        if (allColleges.length > 0) {
+          setCollegeStats({ eng, med, arts });
+        }
+
+        const list = allColleges.slice(0, 6).map(c => ({
           ...c,
-          displayImage: c.cover_image || c.college_images?.[0] || c.logo_url || null,
+          displayImage: c.primary_image_url || c.cover_image || c.college_images?.[0] || c.logo_url || null,
         }));
         setColleges(list);
       } catch (err) {
@@ -78,133 +179,125 @@ export default function Home() {
       <div className="home-container">
 
         {/* ══════════════════════════════════════
-          HERO SECTION
+          HERO — BENTO GRID
           ══════════════════════════════════════ */}
-        <section className="hero-split-new" style={{ position: 'relative' }}>
+        <section className="hero-bento-section">
+          <div className="hero-bento-wrap">
 
-          {/* Background image + overlay */}
-          <div className="hero-background" style={{ zIndex: 0 }}>
-            <div className="hero-bg-image-wrapper">
-              <img src={bgImg} alt="" className="hero-full-img" aria-hidden="true" />
+            {/* ── Left: Category Slideshow ── */}
+            <div
+              className="hero-slideshow-panel"
+              onMouseEnter={handlePause}
+              onMouseLeave={handleResume}
+            >
+
+              {/* Pause indicator */}
+              {isPaused && (
+                <div className="slide-pause-badge">
+                  <span>⏸</span> PAUSED
+                </div>
+              )}
+
+              {/* Slide layers */}
+              {SLIDE_CATEGORIES.map((cat, idx) => (
+                <div
+                  key={idx}
+                  className={`slide-layer ${idx === currentSlide
+                      ? isTransitioning ? 'slide-exit' : 'slide-active'
+                      : 'slide-hidden'
+                    }`}
+                >
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
+                    className={`slide-image ${idx === currentSlide && !isTransitioning ? 'slide-zoom' : ''
+                      }`}
+                  />
+                  <div className="slide-overlay" />
+                </div>
+              ))}
+
+              {/* Category Name Badge */}
+              <div className={`slide-name-badge ${isTransitioning ? 'slide-name-exit' : 'slide-name-enter'}`}>
+                <span className="slide-name-label">CATEGORY</span>
+                <strong className="slide-name-text">
+                  {SLIDE_CATEGORIES[currentSlide].name}
+                </strong>
+              </div>
+
+              {/* Upcoming Thumbnails Strip */}
+              <div className="slide-thumbs-strip">
+                {upcomingThumbs.map((cat, i) => (
+                  <button
+                    key={i}
+                    className={`slide-thumb-item ${i === 0 ? 'slide-thumb-next' : ''}`}
+                    onClick={() => goToSlide(cat.idx)}
+                    title={cat.name}
+                  >
+                    <img src={cat.image} alt={cat.name} />
+                    <div className="slide-thumb-overlay" />
+                    <span className="slide-thumb-name">{cat.name}</span>
+                    {i === 0 && <span className="slide-thumb-next-label">NEXT ›</span>}
+                  </button>
+                ))}
+              </div>
+
+              {/* Counter */}
+              <div className="slide-counter">
+                <span className="slide-counter-cur">{String(currentSlide + 1).padStart(2, '0')}</span>
+                <span className="slide-counter-sep">/</span>
+                <span className="slide-counter-total">{String(SLIDE_CATEGORIES.length).padStart(2, '0')}</span>
+              </div>
+
             </div>
-            <div className="hero-bg-overlay" />
-          </div>
 
-          {/* Decorative blobs */}
-          <div className="hero-bg-deco" aria-hidden="true" />
+            {/* ── Right: Content ── */}
+            <div className="hero-bento-content">
 
-          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-            <div className="hero-split-wrap">
+              {/* Eyebrow */}
+              <div className="bento-eyebrow">
+                <span className="bento-eyebrow-dot" />
+                Admissions {new Date().getFullYear()}–{new Date().getFullYear() + 1} Open
+              </div>
 
-              {/* Left column */}
-              <div className="hero-split-left-new">
-                {/* Eyebrow */}
-                <div className="hero-badge">
-                  <span className="badge-pulse" />
-                  Admissions {new Date().getFullYear()}–{new Date().getFullYear() + 1} Open
-                </div>
+              {/* Headline */}
+              <h1 className="hero-bento-title">
+                YOUR PATH<br />
+                TO A<br />
+                <span className="bento-title-accent">DREAM</span><br />
+                COLLEGE
+              </h1>
 
-                {/* Headline */}
-                <h1 className="hero-title">
-                  Your Journey to a<br />
-                  <span className="highlight">Dream College</span> Starts Here
-                </h1>
-
-                {/* Sub */}
-                <p className="hero-desc">
-                  Mari Educational Trust provides expert admission guidance, scholarship
-                  assistance, and reliable counselling — empowering students across Tamil Nadu
-                  to reach their professional goals.
-                </p>
-
-                {/* CTAs */}
-                <div className="hero-buttons">
-                  <Link to="/apply" className="btn-primary">
-                    Apply for Admission <FaChevronRight size={11} />
-                  </Link>
-                  <Link to="/colleges" className="btn-secondary">
-                    Explore Colleges
-                  </Link>
-                </div>
-
-                {/* Trust metrics */}
-                <div className="hero-trust">
-                  {[
-                    { value: 'Govt.', label: 'Registered MSME' },
-                    { value: '5k–25k', label: 'Scholarship Support' },
-                    { value: '100%', label: 'Dedicated Guidance' },
-                  ].map((item, idx) => (
-                    <div key={idx} className="trust-item">
-                      <span className="trust-num">{item.value}</span>
-                      <span className="trust-label">{item.label}</span>
-                    </div>
-                  ))}
+              {/* CTA Row */}
+              <div className="hero-bento-cta-row">
+                <Link to="/apply" className="bento-btn-dark">
+                  APPLY NOW
+                </Link>
+                <Link to="/colleges" className="bento-btn-arrow" aria-label="Explore Colleges">
+                  <FaArrowRight size={16} />
+                </Link>
+                <div className="bento-cta-side-img">
+                  <img src={catNursing} alt="" />
                 </div>
               </div>
 
-              {/* Right column — notification card */}
-              <div className="hero-split-right-new" style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <div className="hero-premium-glass-card" style={{ maxWidth: 390, width: '100%' }}>
-
-                  <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 20, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ color: 'var(--gold)', fontSize: '1.1rem' }}>★</span>
-                    Active Notifications
-                  </h3>
-
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                    {[
-                      {
-                        icon: <FaGraduationCap color="#2563eb" size={17} />,
-                        bg: '#eff6ff',
-                        title: 'Engineering Admissions',
-                        desc: 'B.E / B.Tech counselling support is now active.',
-                      },
-                      {
-                        icon: <FaAward color="#f59e0b" size={17} />,
-                        bg: '#fef3c7',
-                        title: 'Scholarship Registration',
-                        desc: 'Secure merit-based scholarship slots for 2024–25.',
-                      },
-                      {
-                        icon: <FaUserCheck color="#10b981" size={17} />,
-                        bg: '#d1fae5',
-                        title: 'Medical Placements',
-                        desc: 'MBBS & Allied Health assistance is open now.',
-                      },
-                    ].map((note, idx) => (
-                      <div key={idx} className="notif-card">
-                        <div className="notif-icon-box" style={{ background: note.bg }}>
-                          {note.icon}
-                        </div>
-                        <div>
-                          <div className="notif-title">{note.title}</div>
-                          <p className="notif-desc">{note.desc}</p>
-                        </div>
-                      </div>
-                    ))}
+              {/* Numbered Steps */}
+              <div className="hero-bento-steps">
+                <div className="bento-step-divider" />
+                {[
+                  { num: '01', text: 'Free counselling & career guidance session', year: '/2025' },
+                  { num: '02', text: 'Scholarship mapping & documentation support', year: '/2025' },
+                ].map((step, i) => (
+                  <div key={i} className="bento-step-row">
+                    <span className="bento-step-num">{step.num}</span>
+                    <div className="bento-step-thumb">
+                      <img src={i === 0 ? catEngineering : catManagement} alt="" />
+                    </div>
+                    <p className="bento-step-text">{step.text}</p>
+                    <span className="bento-step-year">{step.year}</span>
+                    <div className="bento-step-divider" />
                   </div>
-
-                  <div style={{ marginTop: 20 }}>
-                    <Link
-                      to="/apply"
-                      className="glass-btn-hover"
-                      style={{
-                        display: 'block',
-                        padding: '11px',
-                        background: '#eff6ff',
-                        border: '1px solid #dbeafe',
-                        borderRadius: 12,
-                        color: '#1d4ed8',
-                        fontSize: '0.86rem',
-                        fontWeight: 700,
-                        textDecoration: 'none',
-                        textAlign: 'center',
-                      }}
-                    >
-                      Fill Direct Application →
-                    </Link>
-                  </div>
-                </div>
+                ))}
               </div>
 
             </div>
@@ -213,17 +306,34 @@ export default function Home() {
 
 
         {/* ══════════════════════════════════════
-          MARQUEE
+          CATEGORY SCROLL STRIP
           ══════════════════════════════════════ */}
-        <section className="marquee-section" aria-hidden="true">
-          <div className="marquee-wrapper">
-            {[0, 1].map(key => (
-              <div key={key} className="marquee-track">
-                {MARQUEE_ITEMS.map((item, i) => (
-                  <span key={i} className="marquee-item">
-                    <span className="marquee-dot">◆</span>
-                    {item}
-                  </span>
+        <section className="cat-scroll-section" aria-label="Course categories">
+          {/* Row 1 — scrolls left */}
+          <div className="cat-scroll-row">
+            {[0, 1].map(dup => (
+              <div key={dup} className="cat-scroll-track cat-scroll-left" aria-hidden={dup === 1}>
+                {SLIDE_CATEGORIES.map((cat, i) => (
+                  <div key={i} className="cat-scroll-card">
+                    <img src={cat.image} alt={cat.name} className="cat-scroll-img" />
+                    <div className="cat-scroll-overlay" />
+                    <span className="cat-scroll-name">{cat.name}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2 — scrolls right */}
+          <div className="cat-scroll-row">
+            {[0, 1].map(dup => (
+              <div key={dup} className="cat-scroll-track cat-scroll-right" aria-hidden={dup === 1}>
+                {[...SLIDE_CATEGORIES].reverse().map((cat, i) => (
+                  <div key={i} className="cat-scroll-card">
+                    <img src={cat.image} alt={cat.name} className="cat-scroll-img" />
+                    <div className="cat-scroll-overlay" />
+                    <span className="cat-scroll-name">{cat.name}</span>
+                  </div>
                 ))}
               </div>
             ))}
@@ -231,36 +341,38 @@ export default function Home() {
         </section>
 
 
+
         {/* ══════════════════════════════════════
-          SERVICES
+          HOW IT WORKS (SERVICES)
           ══════════════════════════════════════ */}
-        <section className="services-section">
-          <div className="services-container">
-            <div className="section-header-centered">
-              <div className="section-label-premium">
-                <span className="label-dot" /> Our Expertise
-              </div>
-              <h2 className="section-title-premium">
-                Services We <span className="title-highlight">Offer</span>
-              </h2>
-              <p className="section-subtitle-premium">
-                End-to-end admission support so your university journey begins on the right foot.
-              </p>
+        <section className="hiw-section">
+          <div className="hiw-container">
+
+            <div className="hiw-header">
+              <span className="hiw-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                PROCESS
+              </span>
+              <h2 className="hiw-title">Services We Offer Today</h2>
             </div>
 
-            <div className="services-grid">
-              {SERVICES.map((svc, i) => (
-                <div key={i} className="service-card">
-                  <div className="service-icon-wrapper">
-                    <div className="service-icon-bg">
-                      <span className="service-icon" role="img" aria-label={svc.title}>{svc.icon}</span>
-                    </div>
+            <div className="hiw-steps-wrapper">
+              {/* Wavy dashed line background */}
+              <svg className="hiw-dashed-line" preserveAspectRatio="none" viewBox="0 0 1000 100">
+                <path d="M 125 50 C 208 0, 291 100, 375 50 C 458 0, 541 100, 625 50 C 708 0, 791 100, 875 50" fill="none" stroke="#cfcfcf" strokeWidth="2" strokeDasharray="6 6" />
+              </svg>
+
+              <div className="hiw-steps-grid">
+                {SERVICES.map((svc, i) => (
+                  <div key={i} className="hiw-step">
+                    <div className="hiw-badge">{svc.icon}</div>
+                    <h3 className="hiw-step-title">{svc.title}</h3>
+                    <p className="hiw-step-desc">{svc.desc}</p>
                   </div>
-                  <h3 className="service-card-title">{svc.title}</h3>
-                  <p className="service-card-desc">{svc.desc}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
           </div>
         </section>
 
@@ -319,12 +431,37 @@ export default function Home() {
                 </Link>
               </div>
 
+              {/* College Stats */}
+              <div className="partner-stats-row">
+                <div className="partner-stat-card">
+                  <span className="stat-icon">⚙️</span>
+                  <div className="stat-info">
+                    <h3 className="stat-num">{collegeStats.eng}+</h3>
+                    <p className="stat-label">Engineering Colleges</p>
+                  </div>
+                </div>
+                <div className="partner-stat-card">
+                  <span className="stat-icon">⚕️</span>
+                  <div className="stat-info">
+                    <h3 className="stat-num">{collegeStats.med}+</h3>
+                    <p className="stat-label">Medical Colleges</p>
+                  </div>
+                </div>
+                <div className="partner-stat-card">
+                  <span className="stat-icon">🎨</span>
+                  <div className="stat-info">
+                    <h3 className="stat-num">{collegeStats.arts}+</h3>
+                    <p className="stat-label">Arts & Science Colleges</p>
+                  </div>
+                </div>
+              </div>
+
               <div className="colleges-grid">
                 {colleges.map(college => (
                   <div key={college.id} className="college-card">
                     <div className="college-card-image">
-                      {college.displayImage
-                        ? <img src={college.displayImage} alt={college.name} />
+                      {college.primary_image_url
+                        ? <img src={college.primary_image_url} alt={college.college_name || college.name} />
                         : <div className="college-img-placeholder">🏛️</div>
                       }
                       <span className="college-card-badge">
@@ -332,13 +469,13 @@ export default function Home() {
                       </span>
                     </div>
                     <div className="college-card-body">
-                      <h3 className="college-card-name">{college.name}</h3>
+                      <h3 className="college-card-name">{college.college_name || college.name}</h3>
                       <p className="college-card-location">
                         <FaMapMarkerAlt size={12} color="#f59e0b" />
-                        {college.location || 'Tamil Nadu'}
+                        {college.location_city || college.location || 'Tamil Nadu'}
                       </p>
                       <div className="college-card-actions">
-                        <Link to={`/colleges/${college.slug}`} className="btn-view">
+                        <Link to={`/colleges/${college.short_name || college.slug}`} className="btn-view">
                           View Details
                         </Link>
                         <Link
