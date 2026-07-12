@@ -29,7 +29,7 @@ const FAQS = [
     items: [
       {
         q: 'Which courses do you offer admission guidance for?',
-        a: 'We provide guidance for Engineering, Medical (MBBS), Nursing, Allied Health Sciences, Arts & Science, Polytechnic/Diploma, Law, Architecture, MBA, MCA, and Pharmacy programs.',
+        a: 'We provide guidance for Engineering & Technology, Medical (MBBS), Nursing, Allied Health Sciences, Arts & Science, Polytechnic/Diploma, Law, Architecture, MBA, MCA, and Pharmacy programs.',
       },
       {
         q: 'Are the colleges affiliated and recognised?',

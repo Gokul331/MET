@@ -80,25 +80,35 @@ const getCourseIcon = (title, category) => {
 
 
 const DEFAULT_COURSES = [
-  { id: 1, title: 'Engineering (B.E / B.Tech)', category: 'Engineering', level: 'Undergraduate', duration: '4 Years', students: 450, rating: 4.8, image: catEngineering, description: 'CS, ECE, Mechanical, Civil, EEE and more at Anna University affiliates.' },
+  { id: 1, title: 'Engineering (B.E / B.Tech)', category: 'Engineering & Technology', level: 'Undergraduate', duration: '4 Years', students: 450, rating: 4.8, image: catEngineering, description: 'CS, ECE, Mechanical, Civil, EEE and more at Anna University affiliates.' },
   { id: 2, title: 'Medical (MBBS)', category: 'Medical', level: 'Undergraduate', duration: '5.5 Years', students: 200, rating: 4.9, image: catMedical, description: 'MBBS, BDS programs at MCI/NMC-recognised institutions across Tamil Nadu.' },
   { id: 3, title: 'Nursing (B.Sc)', category: 'Nursing', level: 'Undergraduate', duration: '4 Years', students: 300, rating: 4.7, image: catNursing, description: 'B.Sc Nursing and P.B.B.Sc Nursing with strong clinical training.' },
-  { id: 4, title: 'Allied Health Sciences', category: 'Allied Health', level: 'Undergraduate', duration: '3 Years', students: 250, rating: 4.6, image: catAlliedHealth, description: 'Physiotherapy, Lab Tech, Radiology, Optometry and more.' },
+  { id: 4, title: 'Allied Health Sciences', category: 'Allied Health Science', level: 'Undergraduate', duration: '3 Years', students: 250, rating: 4.6, image: catAlliedHealth, description: 'Physiotherapy, Lab Tech, Radiology, Optometry and more.' },
   { id: 5, title: 'Arts & Science (BA/BSc/BCom)', category: 'Arts & Science', level: 'Undergraduate', duration: '3 Years', students: 380, rating: 4.5, image: catArtsScience, description: 'Humanities, Sciences, and Commerce undergraduate programs.' },
   { id: 6, title: 'MBA / MCA', category: 'Management', level: 'Postgraduate', duration: '2 Years', students: 280, rating: 4.7, image: catManagement, description: 'MBA & MCA from AICTE-approved institutes with industry exposure.' },
   { id: 7, title: 'Law (LLB)', category: 'Law', level: 'Undergraduate', duration: '3–5 Years', students: 150, rating: 4.6, image: catLaw, description: '3-Year LLB and 5-Year integrated BA LLB at BCI-affiliated colleges.' },
   { id: 8, title: 'Architecture (B.Arch)', category: 'Architecture', level: 'Undergraduate', duration: '5 Years', students: 100, rating: 4.7, image: catArchitecture, description: 'Bachelor of Architecture with COA recognition and studio practice.' },
   { id: 9, title: 'Pharmacy (B.Pharm / D.Pharm)', category: 'Pharmacy', level: 'Undergraduate', duration: '2–4 Years', students: 180, rating: 4.6, image: catPharmacy, description: 'B.Pharm and D.Pharm with strong clinical and industry placement.' },
-  { id: 10, title: 'Polytechnic / Diploma', category: 'Engineering', level: 'Diploma', duration: '3 Years', students: 320, rating: 4.4, image: catPolytechnic, description: 'Practical Diploma in Engineering — job-ready in 3 years.' },
-  { id: 11, title: 'M.Tech / M.E', category: 'Engineering', level: 'Postgraduate', duration: '2 Years', students: 120, rating: 4.6, image: catEngineering, description: 'Postgraduate Engineering programs with specialised research focus.' },
+  { id: 10, title: 'Polytechnic / Diploma', category: 'Engineering & Technology', level: 'Diploma', duration: '3 Years', students: 320, rating: 4.4, image: catPolytechnic, description: 'Practical Diploma in Engineering — job-ready in 3 years.' },
+  { id: 11, title: 'M.Tech / M.E', category: 'Engineering & Technology', level: 'Postgraduate', duration: '2 Years', students: 120, rating: 4.6, image: catEngineering, description: 'Postgraduate Engineering programs with specialised research focus.' },
   { id: 12, title: 'M.Sc / M.A / M.Com', category: 'Arts & Science', level: 'Postgraduate', duration: '2 Years', students: 160, rating: 4.4, image: catArtsScience, description: 'Postgraduate programs in Sciences, Arts, and Commerce disciplines.' },
   { id: 13, title: 'BCA / MCA', category: 'Computer Applications', level: 'Undergraduate', duration: '3 Years', students: 200, rating: 4.5, image: catComputerApplications, description: 'Bachelor & Master of Computer Applications with strong IT placement.' },
-  { id: 14, title: 'Physiotherapy (BPT)', category: 'Allied Health', level: 'Undergraduate', duration: '4.5 Years', students: 140, rating: 4.6, image: catPhysiotherapy, description: 'Bachelor of Physiotherapy with hands-on clinical internship.' },
-  { id: 15, title: 'Occupational Therapy', category: 'Allied Health', level: 'Undergraduate', duration: '4.5 Years', students: 90, rating: 4.5, image: catOccupationalTherapy, description: 'BOT program focusing on rehabilitation and patient independence.' },
+  { id: 14, title: 'Physiotherapy (BPT)', category: 'Allied Health Science', level: 'Undergraduate', duration: '4.5 Years', students: 140, rating: 4.6, image: catPhysiotherapy, description: 'Bachelor of Physiotherapy with hands-on clinical internship.' },
+  { id: 15, title: 'Occupational Therapy', category: 'Allied Health Science', level: 'Undergraduate', duration: '4.5 Years', students: 90, rating: 4.5, image: catOccupationalTherapy, description: 'BOT program focusing on rehabilitation and patient independence.' },
   { id: 16, title: 'Physical Education (B.P.Ed)', category: 'Education', level: 'Undergraduate', duration: '2 Years', students: 110, rating: 4.4, image: catPhysicalEducation, description: 'Bachelor of Physical Education — sports science and coaching.' },
 ];
 
-const CATEGORIES = ['Engineering', 'Medical', 'Nursing', 'Allied Health', 'Arts & Science', 'Management', 'Law', 'Architecture', 'Pharmacy', 'Agricultural Science'];
+const COURSE_FILTERS = [
+  { id: 'engineering', label: 'Engineering & Technology' },
+  { id: 'medical',     label: 'Medical / MBBS' },
+  { id: 'nursing',     label: 'Nursing' },
+  { id: 'allied',      label: 'Allied Health' },
+  { id: 'arts',        label: 'Arts & Science' },
+  { id: 'management',  label: 'Management / MBA' },
+  { id: 'law',         label: 'Law' },
+  { id: 'pharmacy',    label: 'Pharmacy' },
+  { id: 'agriculture', label: 'Agricultural Science' },
+];
 const LEVELS = ['Undergraduate', 'Postgraduate', 'Diploma'];
 const DURATIONS = ['2 Years', '3 Years', '4 Years', '5 Years', '5+ Years'];
 const RATINGS = [4, 3];
@@ -198,10 +208,7 @@ export default function Courses() {
     setMinRating(0); setSearch('');
   };
 
-  const categoriesList = Array.from(new Set([
-    ...CATEGORIES,
-    ...courses.map(c => c.category_display || c.category).filter(Boolean)
-  ])).sort();
+  const courseLabel = id => COURSE_FILTERS.find(f => f.id === id)?.label || id;
 
   const getStreamClass = (category) => {
     const cat = (category || '').toLowerCase();
@@ -225,7 +232,10 @@ export default function Courses() {
       const rating = parseFloat(c.rating || 0);
 
       if (search && !title.includes(search.toLowerCase())) return false;
-      if (selCategories.length > 0 && !selCategories.some(f => category.includes(f.toLowerCase()))) return false;
+      if (selCategories.length > 0 && !selCategories.some(f => {
+        if (f === 'agriculture') return category.includes('agricultur');
+        return category.includes(f.toLowerCase());
+      })) return false;
       if (selLevels.length > 0 && !selLevels.some(f => level.includes(f.toLowerCase()))) return false;
       if (selDurations.length > 0 && !selDurations.some(f => duration.includes(f.replace(' Years', '')))) return false;
       if (minRating > 0 && rating < minRating) return false;
@@ -275,16 +285,16 @@ export default function Courses() {
         </div>
 
         <div className="filter-aside-body">
-          {/* Category */}
-          <FilterGroup title="Stream Category">
-            {categoriesList.map(cat => (
-              <label key={cat} className={`filter-checkbox-tag${selCategories.includes(cat) ? ' active' : ''}`}>
+          {/* Course streams */}
+          <FilterGroup title="Academic Stream">
+            {COURSE_FILTERS.map(f => (
+              <label key={f.id} className={`filter-checkbox-tag${selCategories.includes(f.id) ? ' active' : ''}`}>
                 <input
                   type="checkbox"
-                  checked={selCategories.includes(cat)}
-                  onChange={() => toggle(selCategories, setSelCategories, cat)}
+                  checked={selCategories.includes(f.id)}
+                  onChange={() => toggle(selCategories, setSelCategories, f.id)}
                 />
-                {cat}
+                {f.label}
               </label>
             ))}
           </FilterGroup>
@@ -451,7 +461,7 @@ export default function Courses() {
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
                     {selCategories.map(c => (
                       <div key={c} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'var(--blue-pale)', color: 'var(--blue)', padding: '4px 12px', borderRadius: '50px', fontSize: '0.74rem', fontWeight: 700 }}>
-                        {c}
+                        {courseLabel(c)}
                         <button onClick={() => toggle(selCategories, setSelCategories, c)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--blue)', fontWeight: 800 }}>✕</button>
                       </div>
                     ))}

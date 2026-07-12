@@ -10,7 +10,7 @@ const SCHOLARSHIPS = [
     amount: '₹25,000',
     eligibility: 'Students scoring 90%+ in 12th standard',
     details: [
-      'Applicable for Engineering & Medical programs',
+      'Applicable for Engineering & Technology & Medical programs',
       'One-time award at the time of admission',
       'No repayment required',
     ],
@@ -34,7 +34,7 @@ const SCHOLARSHIPS = [
     amount: '₹20,000',
     eligibility: 'Students with NEET / JEE rank under 50,000',
     details: [
-      'For Medical & Engineering aspirants',
+      'For Medical & Engineering & Technology aspirants',
       'Rank-based slab system',
       'Stackable with other scholarships',
     ],

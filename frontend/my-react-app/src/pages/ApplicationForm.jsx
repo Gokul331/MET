@@ -1562,11 +1562,11 @@ export default function ApplicationForm() {
                         padding: 16px !important;
                     }
                     
-                    .stepper-label {
+                    .step-title {
                         font-size: 0.6rem !important;
                     }
                     
-                    .stepper-circle {
+                    .step-circle {
                         width: 28px !important;
                         height: 28px !important;
                         font-size: 0.7rem !important;
@@ -1582,11 +1582,11 @@ export default function ApplicationForm() {
                 }
 
                 @media (max-width: 400px) {
-                    .stepper-label {
+                    .step-title {
                         display: none !important;
                     }
                     
-                    .stepper-circle {
+                    .step-circle {
                         width: 32px !important;
                         height: 32px !important;
                     }

@@ -9,7 +9,7 @@ import collegesHero4 from '../assets/colleges_hero_4.jpg';
 import collegesHero5 from '../assets/colleges_hero_5.jpg';
 
 const COURSE_FILTERS = [
-  { id: 'engineering', label: 'Engineering' },
+  { id: 'engineering', label: 'Engineering & Technology' },
   { id: 'medical',     label: 'Medical / MBBS' },
   { id: 'nursing',     label: 'Nursing' },
   { id: 'allied',      label: 'Allied Health' },

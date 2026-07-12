@@ -22,7 +22,7 @@ import catPhysicalEducation from '../assets/categories/cat_physical_education.jp
 import PageTransition from '../components/common/PageTransition';
 
 const SLIDE_CATEGORIES = [
-  { name: 'Engineering', image: catEngineering },
+  { name: 'Engineering & Technology', image: catEngineering },
   { name: 'Medical (MBBS)', image: catMedical },
   { name: 'Nursing', image: catNursing },
   { name: 'Polytechnic', image: catPolytechnic },
@@ -39,7 +39,7 @@ const SLIDE_CATEGORIES = [
 ];
 
 const SERVICES = [
-  { icon: '🎓', title: 'Admission Guidance', desc: 'Expert guidance through the complex admission process for engineering, medical, and allied programs across Tamil Nadu.' },
+  { icon: '🎓', title: 'Admission Guidance', desc: 'Expert guidance through the complex admission process for engineering & technology, medical, and allied programs across Tamil Nadu.' },
   { icon: '🎯', title: 'Career Counselling', desc: 'Personalised one-on-one sessions to match your interests and strengths with the right academic path.' },
   { icon: '📚', title: 'Course Selection', desc: 'Choose from a broad spectrum of programs that align with your academic background and career ambitions.' },
   { icon: '💰', title: 'Scholarship Support', desc: 'Assistance in securing merit-based and need-based scholarships ranging from ₹5,000 to ₹25,000.' },
@@ -53,7 +53,7 @@ const PROCESS_STEPS = [
 ];
 
 const MARQUEE_ITEMS = [
-  'Engineering', 'Medical (MBBS)', 'Nursing', 'Allied Health Sciences',
+  'Engineering & Technology', 'Medical (MBBS)', 'Nursing', 'Allied Health Sciences',
   'Arts & Science', 'Polytechnic', 'Law', 'Architecture', 'MBA', 'Pharmacy',
 ];
 
@@ -437,7 +437,7 @@ export default function Home() {
                   <span className="stat-icon">⚙️</span>
                   <div className="stat-info">
                     <h3 className="stat-num">{collegeStats.eng}+</h3>
-                    <p className="stat-label">Engineering Colleges</p>
+                    <p className="stat-label">Engineering & Technology Colleges</p>
                   </div>
                 </div>
                 <div className="partner-stat-card">

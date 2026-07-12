@@ -1,4 +1,6 @@
 from django.db import models
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 
 class College(models.Model):
@@ -50,11 +52,11 @@ class College(models.Model):
 
 # ── Category display labels (slug → human label) ──────────────────────────────
 CATEGORY_DISPLAY = {
-    'engineering':           'Engineering and Technology',
-    'polytechnic':           'Engineering and Technology',
+    'engineering':           'Engineering & Technology',
+    'polytechnic':           'Engineering & Technology',
     'computer_applications': 'Computer Applications',
     'management':            'Management',
-    'arts_science':          'Arts and Science',
+    'arts_science':          'Arts & Science',
     'pharmacy':              'Pharmacy',
     'allied_health_science': 'Allied Health Science',
     'physiotherapy':         'Allied Health Science',
@@ -97,6 +99,18 @@ class Course(models.Model):
     )
     course_description = models.TextField(blank=True)
     image       = models.ImageField(upload_to='courses/images/', null=True, blank=True)
+    image_small = ImageSpecField(source='image',
+                                 processors=[ResizeToFill(300, 300)],
+                                 format='JPEG',
+                                 options={'quality': 80})
+    image_medium = ImageSpecField(source='image',
+                                  processors=[ResizeToFill(600, 600)],
+                                  format='JPEG',
+                                  options={'quality': 85})
+    image_large = ImageSpecField(source='image',
+                                 processors=[ResizeToFill(1000, 1000)],
+                                 format='JPEG',
+                                 options={'quality': 90})
     is_active   = models.BooleanField(default=True)
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)

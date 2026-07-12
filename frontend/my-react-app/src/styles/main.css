@@ -6090,8 +6090,47 @@ input[type="range"].filter-range {
     }
     .form-row-horizontal {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 12px;
         padding: 20px 0;
+    }
+    .application-main-column {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .application-main-column {
+        padding: 20px;
+    }
+    .application-sidebar-left {
+        padding: 20px;
+    }
+    .form-step-title {
+        font-size: 1.1rem !important;
+        margin-bottom: 20px !important;
+    }
+    .form-row-horizontal {
+        padding: 16px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .application-main-column {
+        padding: 16px;
+    }
+    .application-sidebar-left {
+        padding: 16px;
+    }
+    .vertical-step-item {
+        gap: 8px;
+    }
+    .step-circle {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+    .step-title {
+        font-size: 0.85rem;
     }
 }
 

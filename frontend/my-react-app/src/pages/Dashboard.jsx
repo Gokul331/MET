@@ -267,7 +267,7 @@ export default function Dashboard() {
                   </p>
                   <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                     {[
-                      { id: 'Engineering', icon: '⚙️', label: 'Engineering' },
+                      { id: 'Engineering', icon: '⚙️', label: 'Engineering & Technology' },
                       { id: 'Medical', icon: '🩺', label: 'Medical / MBBS' },
                       { id: 'Arts', icon: '📖', label: 'Arts & Science' },
                       { id: 'Nursing', icon: '💉', label: 'Nursing' },
