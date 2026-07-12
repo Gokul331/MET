@@ -452,8 +452,8 @@ export default function Colleges() {
                               src={img}
                               alt={cName}
                               onError={e => {
-                                e.target.src = '';
-                                e.target.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:2.5rem;background:var(--blue-pale);color:var(--blue)">🏛️</div>';
+                                e.target.onerror = null;
+                                e.target.src = 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80';
                               }}
                             />
                             <span style={{ position: 'absolute', top: '14px', left: '14px', background: 'var(--white)', border: '1px solid var(--border)', padding: '4px 10px', borderRadius: '50px', fontSize: '0.74rem', fontWeight: 800, color: 'var(--text-primary)' }}>

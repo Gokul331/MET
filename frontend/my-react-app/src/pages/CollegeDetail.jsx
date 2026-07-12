@@ -394,8 +394,8 @@ export default function CollegeDetail() {
                   alt={name}
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   onError={(e) => {
-                    e.target.src = '';
-                    e.target.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:4rem;background:var(--blue-pale);color:var(--blue)">🏛️</div>';
+                    e.target.onerror = null;
+                    e.target.src = 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80';
                   }}
                 />
                 

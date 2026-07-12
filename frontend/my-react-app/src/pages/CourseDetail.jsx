@@ -134,7 +134,7 @@ export default function CourseDetail() {
                       <div key={col.id} className="college-card-premium card-3d" style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', border: '1px solid var(--border)', borderRadius: '24px', overflow: 'hidden' }}>
                         <div style={{ height: '120px', background: 'var(--blue-pale)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', overflow: 'hidden' }}>
                           {col.image ? (
-                            <img src={col.image} alt={col.college_name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = '🏛️'; }} />
+                            <img src={col.image} alt={col.college_name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.onerror = null; e.target.src = 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80'; }} />
                           ) : (
                             '🏛️'
                           )}
