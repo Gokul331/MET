@@ -21,7 +21,7 @@ export default function ApplicationForm() {
     const [submitting, setSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(true);
-    const [isSuccess, setIsSuccess] = useState(true); // User had it set to true for testing
+    const [isSuccess, setIsSuccess] = useState(false); // User had it set to true for testing
     const [showSuccessUI, setShowSuccessUI] = useState(false);
     const [successAppId, setSuccessAppId] = useState(null);
     const [countdown, setCountdown] = useState(5);
@@ -415,34 +415,54 @@ export default function ApplicationForm() {
         return (
             <PageTransition>
                 <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--white)', padding: '20px' }}>
-                    <div style={{ textAlign: 'center', padding: '50px 30px', maxWidth: '600px', width: '100%', background: '#fff', borderRadius: '24px', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', border: '1px solid var(--border)' }}>
-                        <img src={Logo} alt="MET Logo" style={{ height: '70px', marginBottom: '24px', objectFit: 'contain' }} />
+                    <div style={{ position: 'relative', overflow: 'hidden', textAlign: 'center', padding: '50px 30px', maxWidth: '600px', width: '100%', background: '#fff', borderRadius: '24px', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', border: '1px solid var(--border)' }}>
+                        {/* Background Logo Watermark */}
+                        <div style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '70%',
+                            height: '70%',
+                            backgroundImage: `url(${Logo})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'center',
+                            backgroundSize: 'contain',
+                            opacity: 0.05,
+                            pointerEvents: 'none',
+                            zIndex: 0
+                        }} />
                         
-                        <div className="success-checkmark" style={{ marginBottom: '20px' }}>
-                            <div className="check-icon">
-                                <span className="icon-line line-tip"></span>
-                                <span className="icon-line line-long"></span>
-                                <div className="icon-circle"></div>
-                                <div className="icon-fix"></div>
+                        {/* Main Content */}
+                        <div style={{ position: 'relative', zIndex: 1 }}>
+                            <img src={Logo} alt="MET Logo" style={{ height: '70px', marginBottom: '24px', objectFit: 'contain' }} />
+                            
+                            <div className="success-checkmark" style={{ marginBottom: '20px' }}>
+                                <div className="check-icon">
+                                    <span className="icon-line line-tip"></span>
+                                    <span className="icon-line line-long"></span>
+                                    <div className="icon-circle"></div>
+                                    <div className="icon-fix"></div>
+                                </div>
                             </div>
-                        </div>
 
-                        <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.2rem)', color: '#4CAF50', marginBottom: '16px', fontWeight: 800 }}>
-                            Application Submitted!
-                        </h1>
-                        <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '36px', lineHeight: 1.6 }}>
-                            Thank you! Your application number is <strong style={{ color: 'var(--blue)' }}>{successAppId || 'MET-10294'}</strong>. Our team <strong style={{
-                                background: 'linear-gradient(to right, #001f3f, #0074D9)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                fontWeight: '900'
-                            }}>MARI EDUCATION TRUST</strong> will contact you soon.
-                        </p>
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', background: 'var(--blue-pale)', padding: '12px 24px', borderRadius: '50px' }}>
-                            <span style={{ width: '18px', height: '18px', border: '3px solid var(--blue)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-                            <p style={{ fontSize: '0.95rem', color: 'var(--blue)', fontWeight: 700, margin: 0 }}>
-                                Redirecting to home page in {countdown} seconds...
+                            <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.2rem)', color: '#4CAF50', marginBottom: '16px', fontWeight: 800 }}>
+                                Application Submitted!
+                            </h1>
+                            <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '36px', lineHeight: 1.6 }}>
+                                Thank you! Your application number is <strong style={{ color: 'var(--blue)' }}>{successAppId || 'MET-10294'}</strong>. Our team <strong style={{
+                                    background: 'linear-gradient(to right, #001f3f, #0074D9)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    fontWeight: '900'
+                                }}>MARI EDUCATION TRUST</strong> will contact you soon.
                             </p>
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', background: 'var(--blue-pale)', padding: '12px 24px', borderRadius: '50px' }}>
+                                <span style={{ width: '18px', height: '18px', border: '3px solid var(--blue)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+                                <p style={{ fontSize: '0.95rem', color: 'var(--blue)', fontWeight: 700, margin: 0 }}>
+                                    Redirecting to home page in {countdown} seconds...
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
