@@ -1,0 +1,4481 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$n93Dz9xaVZcmN7tI5OyXjr$+AoA1jVCt32qZEL5hNvp58/GUtvx46aeb2QklzOuozU=",
+        "last_login": "2026-07-10T17:21:18.612Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@met.org",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-06-23T13:38:41.989Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "colleges.college",
+    "pk": 1,
+    "fields": {
+        "college_name": "Dhanalakshmi Srinivasan College of Engineering and Technology - DSCET",
+        "short_name": "DSCET",
+        "slug": null,
+        "location_city": "Chengalpattu",
+        "location_state": "Tamil Nadu",
+        "university_affiliation": "Anna University",
+        "college_type": "affiliated",
+        "accreditation": "Approved by AICTE, NBA & NAAC A+",
+        "established": 2001,
+        "rating": null,
+        "description": "Dhanalakshmi Srinivasan College of Engineering and Technology - DSCET is a premier educational institution providing state-of-the-art facilities and a modern curriculum.",
+        "courses_offered": [
+            "Engineering ",
+            "Management",
+            "Computer Applications"
+        ],
+        "primary_image": "colleges/images/dscet_primary_pFgJZIQ.jpg",
+        "banner_image": "colleges/banners/dscet_banner_BRPOVUd.jpg",
+        "college_images": [],
+        "campus_images": [],
+        "phone": "+91 44 2744 3801",
+        "email": "info@dscet.edu.in",
+        "website": "https://dsuvamshieducare.org",
+        "address": "Chengalpattu, Tamil Nadu, India",
+        "facilities": [],
+        "why_choose_us": "",
+        "is_active": true,
+        "created_at": "2026-06-23T16:35:13.641Z",
+        "updated_at": "2026-07-12T05:19:45.942Z"
+    }
+},
+{
+    "model": "colleges.college",
+    "pk": 2,
+    "fields": {
+        "college_name": "Dhanalakshmi Srinivasan College of Engineering",
+        "short_name": "DSCE",
+        "slug": null,
+        "location_city": "Coimbatore",
+        "location_state": "Tamil Nadu",
+        "university_affiliation": "Anna University",
+        "college_type": "affiliated",
+        "accreditation": "AICTE",
+        "established": 2001,
+        "rating": "4.5",
+        "description": "Dhanalakshmi Srinivasan College of Engineering (DSCE) is a premier engineering college located in Coimbatore, Tamil Nadu, offering various undergraduate and postgraduate courses in engineering and management.",
+        "courses_offered": [
+            "Engineering",
+            "Pharmacy",
+            "Management"
+        ],
+        "primary_image": "colleges/images/dsce_primary_XOTcsUV.jpg",
+        "banner_image": "colleges/banners/dsce_banner_pEhZqxo.jpg",
+        "college_images": [],
+        "campus_images": [],
+        "phone": "0422 236 0000",
+        "email": "info@dsce.ac.in",
+        "website": "https://dsce.ac.in/",
+        "address": "Coimbatore, Tamil Nadu, India",
+        "facilities": [
+            "Library",
+            "Hostel",
+            "Transport",
+            "Cafeteria",
+            "Sports",
+            "Wi-Fi Campus"
+        ],
+        "why_choose_us": "State-of-the-art infrastructure, experienced faculty, and excellent placement record.",
+        "is_active": true,
+        "created_at": "2026-06-23T16:35:13.662Z",
+        "updated_at": "2026-07-11T17:09:20.692Z"
+    }
+},
+{
+    "model": "colleges.college",
+    "pk": 3,
+    "fields": {
+        "college_name": "Dhanalakshmi Srinivasan Group of Institutions - DSGI",
+        "short_name": "DSGI",
+        "slug": null,
+        "location_city": "Perambalur",
+        "location_state": "Tamil Nadu",
+        "university_affiliation": "Anna University",
+        "college_type": "affiliated",
+        "accreditation": "Approved by AICTE, NBA & NAAC A+",
+        "established": 2001,
+        "rating": null,
+        "description": "Dhanalakshmi Srinivasan Group of Institutions - DSGI is a premier educational institution providing state-of-the-art facilities and a modern curriculum.",
+        "courses_offered": [
+            "Agricultural Science",
+            "Pharmacy",
+            "Polytechnic",
+            "Education",
+            "Engineering ",
+            "Allied Health Science",
+            "Arts and Science",
+            "Nursing"
+        ],
+        "primary_image": "colleges/images/dsgi_primary_qevjCh1.jpg",
+        "banner_image": "colleges/banners/dsgi_banner_BIpKNeB.jpg",
+        "college_images": [],
+        "campus_images": [],
+        "phone": "+91 44 2744 3801",
+        "email": "info@dsgi.edu.in",
+        "website": "https://dsuvamshieducare.org",
+        "address": "Perambalur, Tamil Nadu, India",
+        "facilities": [],
+        "why_choose_us": "",
+        "is_active": true,
+        "created_at": "2026-06-23T16:35:13.692Z",
+        "updated_at": "2026-07-12T05:20:05.672Z"
+    }
+},
+{
+    "model": "colleges.college",
+    "pk": 4,
+    "fields": {
+        "college_name": "Dhanalakshmi Srinivasan Medical College and Hospital - DSMCH",
+        "short_name": "DSMCH",
+        "slug": null,
+        "location_city": "Siruvachur",
+        "location_state": "Tamil Nadu",
+        "university_affiliation": "Anna University",
+        "college_type": "affiliated",
+        "accreditation": "Approved by AICTE, NBA & NAAC A+",
+        "established": 2001,
+        "rating": null,
+        "description": "Dhanalakshmi Srinivasan Medical College and Hospital - DSMCH is a premier educational institution providing state-of-the-art facilities and a modern curriculum.",
+        "courses_offered": [
+            "Allied Health Science",
+            "Nursing",
+            "Pharmacy"
+        ],
+        "primary_image": "colleges/images/dsmch_primary_euf0zvo.jpg",
+        "banner_image": "colleges/banners/dsmch_banner_Z89cghx.jpg",
+        "college_images": [],
+        "campus_images": [],
+        "phone": "+91 44 2744 3801",
+        "email": "info@dsmch.edu.in",
+        "website": "https://dsuvamshieducare.org",
+        "address": "Siruvachur, Tamil Nadu, India",
+        "facilities": [],
+        "why_choose_us": "",
+        "is_active": true,
+        "created_at": "2026-06-23T16:35:13.711Z",
+        "updated_at": "2026-07-12T05:20:13.808Z"
+    }
+},
+{
+    "model": "colleges.college",
+    "pk": 5,
+    "fields": {
+        "college_name": "Dhanalakshmi Srinivasan University - DSUC",
+        "short_name": "DSUC",
+        "slug": null,
+        "location_city": "Mamallapuram",
+        "location_state": "Tamil Nadu",
+        "university_affiliation": "Self-Affiliated",
+        "college_type": "private",
+        "accreditation": "Approved by AICTE & UGC",
+        "established": 2021,
+        "rating": null,
+        "description": "Dhanalakshmi Srinivasan University - DSUC is a premier educational institution providing state-of-the-art facilities and a modern curriculum.",
+        "courses_offered": [
+            "Engineering",
+            "Nursing",
+            "Pharmacy",
+            "Allied Health Science",
+            "Physiotherapy"
+        ],
+        "primary_image": "colleges/images/dsuc_primary_WpXgbuF.jpg",
+        "banner_image": "colleges/banners/dsuc_banner_9sdRnkZ.jpg",
+        "college_images": [],
+        "campus_images": [],
+        "phone": "+91 4328 220 300",
+        "email": "info@dsuc.edu.in",
+        "website": "https://dsuvamshieducare.org",
+        "address": "Mamallapuram, Tamil Nadu, India",
+        "facilities": [],
+        "why_choose_us": "",
+        "is_active": true,
+        "created_at": "2026-06-23T16:35:13.743Z",
+        "updated_at": "2026-07-12T05:20:23.375Z"
+    }
+},
+{
+    "model": "colleges.college",
+    "pk": 6,
+    "fields": {
+        "college_name": "Dhanalakshmi Srinivasan University - DSUP",
+        "short_name": "DSUP",
+        "slug": null,
+        "location_city": "Perambalur",
+        "location_state": "Tamil Nadu",
+        "university_affiliation": "Self-Affiliated",
+        "college_type": "private",
+        "accreditation": "Approved by AICTE & UGC",
+        "established": 2021,
+        "rating": null,
+        "description": "Dhanalakshmi Srinivasan University - DSUP is a premier educational institution providing state-of-the-art facilities and a modern curriculum.",
+        "courses_offered": [
+            "Engineering ",
+            "Allied Health Science",
+            "Law",
+            "Pharmacy",
+            "Agricultural Science",
+            "Physiotherapy"
+        ],
+        "primary_image": "colleges/images/dsup_primary_dA9ye0E.jpg",
+        "banner_image": "colleges/banners/dsup_banner_EFOTjuv.jpg",
+        "college_images": [],
+        "campus_images": [],
+        "phone": "+91 4328 220 300",
+        "email": "info@dsup.edu.in",
+        "website": "https://dsuvamshieducare.org",
+        "address": "Perambalur, Tamil Nadu, India",
+        "facilities": [],
+        "why_choose_us": "",
+        "is_active": true,
+        "created_at": "2026-06-23T16:35:13.765Z",
+        "updated_at": "2026-07-12T05:20:35.226Z"
+    }
+},
+{
+    "model": "colleges.college",
+    "pk": 7,
+    "fields": {
+        "college_name": "Dhanalakshmi Srinivasan University -DSUT",
+        "short_name": "DSUT",
+        "slug": null,
+        "location_city": "Trichy",
+        "location_state": "Tamil Nadu",
+        "university_affiliation": "Self-Affiliated",
+        "college_type": "private",
+        "accreditation": "Approved by AICTE & UGC",
+        "established": 2021,
+        "rating": null,
+        "description": "Dhanalakshmi Srinivasan University -DSUT is a premier educational institution providing state-of-the-art facilities and a modern curriculum.",
+        "courses_offered": [
+            "Engineering",
+            "Arts and Science",
+            "Allied Health Science",
+            "Law",
+            "Nursing",
+            "Management",
+            "Computer Applications",
+            "Pharmacy",
+            "Agricultural Science",
+            "Physiotherapy",
+            "Occupational Therapy",
+            "Architecture"
+        ],
+        "primary_image": "",
+        "banner_image": "",
+        "college_images": [],
+        "campus_images": [],
+        "phone": "+91 4328 220 300",
+        "email": "info@dsut.edu.in",
+        "website": "https://dsuvamshieducare.org",
+        "address": "Trichy, Tamil Nadu, India",
+        "facilities": [],
+        "why_choose_us": "",
+        "is_active": true,
+        "created_at": "2026-06-23T16:35:13.782Z",
+        "updated_at": "2026-07-12T05:20:53.039Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 1,
+    "fields": {
+        "course_code": "AE",
+        "course_name": "Aeronautical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Aeronautical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_1.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.746Z",
+        "updated_at": "2026-07-12T11:29:13.380Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 2,
+    "fields": {
+        "course_code": "AG",
+        "course_name": "Agriculture Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Agriculture Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/agri_2.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.754Z",
+        "updated_at": "2026-07-11T17:55:35.384Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 3,
+    "fields": {
+        "course_code": "AD",
+        "course_name": "Artificial Intelligence and Data Science",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Artificial Intelligence and Data Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_3.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.762Z",
+        "updated_at": "2026-07-12T11:29:12.909Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 4,
+    "fields": {
+        "course_code": "AIML",
+        "course_name": "Artificial Intelligence and Machine Learning",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Artificial Intelligence and Machine Learning designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_4.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.769Z",
+        "updated_at": "2026-07-12T11:29:12.434Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 5,
+    "fields": {
+        "course_code": "BME",
+        "course_name": "Biomedical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Biomedical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_5.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.787Z",
+        "updated_at": "2026-07-12T11:29:11.528Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 6,
+    "fields": {
+        "course_code": "CE",
+        "course_name": "Civil Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Civil Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_6.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.796Z",
+        "updated_at": "2026-07-12T11:29:11.090Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 7,
+    "fields": {
+        "course_code": "CS",
+        "course_name": "Computer Science and Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Computer Science and Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_7.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.805Z",
+        "updated_at": "2026-07-12T11:29:09.924Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 8,
+    "fields": {
+        "course_code": "CS_CYBER",
+        "course_name": "Computer Science and Engineering (Cyber Security)",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Computer Science and Engineering (Cyber Security) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_8.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.815Z",
+        "updated_at": "2026-07-12T11:29:09.509Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 9,
+    "fields": {
+        "course_code": "CS_IOT",
+        "course_name": "Computer Science Engineering with IOT",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Computer Science Engineering with IOT designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_9.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.822Z",
+        "updated_at": "2026-07-12T11:29:10.630Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 10,
+    "fields": {
+        "course_code": "ECE",
+        "course_name": "Electrical and Computer Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Electrical and Computer Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_10.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.831Z",
+        "updated_at": "2026-07-12T11:29:08.802Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 11,
+    "fields": {
+        "course_code": "EC",
+        "course_name": "Electronics and Communication Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Electronics and Communication Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_11.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.846Z",
+        "updated_at": "2026-07-12T11:29:08.997Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 12,
+    "fields": {
+        "course_code": "EEE",
+        "course_name": "Electrical and Electronics Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Electrical and Electronics Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_12.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.838Z",
+        "updated_at": "2026-07-12T11:29:08.261Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 13,
+    "fields": {
+        "course_code": "ENV",
+        "course_name": "Environmental Science and Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Environmental Science and Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_13.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.864Z",
+        "updated_at": "2026-07-12T11:29:13.813Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 14,
+    "fields": {
+        "course_code": "FT",
+        "course_name": "Food Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Food Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_14.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.870Z",
+        "updated_at": "2026-07-12T11:29:14.255Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 15,
+    "fields": {
+        "course_code": "IT",
+        "course_name": "Information Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Information Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_15.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.876Z",
+        "updated_at": "2026-07-12T11:29:14.858Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 16,
+    "fields": {
+        "course_code": "ROBO_AI",
+        "course_name": "Robotics and Artificial Intelligence",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Robotics and Artificial Intelligence designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_16.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.923Z",
+        "updated_at": "2026-07-12T11:29:16.989Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 17,
+    "fields": {
+        "course_code": "ME",
+        "course_name": "Mechanical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Mechanical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_17.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.882Z",
+        "updated_at": "2026-07-12T11:29:15.314Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 18,
+    "fields": {
+        "course_code": "MECHATRONICS",
+        "course_name": "Mechatronics Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in Mechatronics Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_18.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.887Z",
+        "updated_at": "2026-07-12T11:29:16.482Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 19,
+    "fields": {
+        "course_code": "ME_CS",
+        "course_name": "M.E - Communication Systems",
+        "category": "engineering",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in M.E - Communication Systems designed to prepare students for top industry opportunities.",
+        "image": "courses/images/me_19.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.893Z",
+        "updated_at": "2026-07-12T11:35:25.916Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 20,
+    "fields": {
+        "course_code": "ME_PED",
+        "course_name": "M.E - Power Electronics and Drives",
+        "category": "engineering",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in M.E - Power Electronics and Drives designed to prepare students for top industry opportunities.",
+        "image": "courses/images/me_20.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.917Z",
+        "updated_at": "2026-07-12T11:35:25.619Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 21,
+    "fields": {
+        "course_code": "ME_CSE",
+        "course_name": "M.E - Computer Science and Engineering",
+        "category": "engineering",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in M.E - Computer Science and Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/me_21.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.911Z",
+        "updated_at": "2026-07-12T11:35:25.771Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 22,
+    "fields": {
+        "course_code": "MBA",
+        "course_name": "M.B.A - Master of Business Administration",
+        "category": "management",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in M.B.A - Master of Business Administration designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.932Z",
+        "updated_at": "2026-07-11T17:47:06.579Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 23,
+    "fields": {
+        "course_code": "MCA",
+        "course_name": "M.C.A - Master of Computer Applications",
+        "category": "computer_applications",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 1,
+        "course_description": "A comprehensive program in M.C.A - Master of Computer Applications designed to prepare students for top industry opportunities.",
+        "image": "courses/images/61cf194ce3154d95fd694e192bbd2e50_3u4sGlc.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.737Z",
+        "updated_at": "2026-07-12T16:12:49.641Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 24,
+    "fields": {
+        "course_code": "AD",
+        "course_name": "Artificial Intelligence and Data Science",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Artificial Intelligence and Data Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_24.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.969Z",
+        "updated_at": "2026-07-12T11:29:12.910Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 25,
+    "fields": {
+        "course_code": "CS",
+        "course_name": "Computer Science and Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Computer Science and Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_25.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.994Z",
+        "updated_at": "2026-07-12T11:29:09.925Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 26,
+    "fields": {
+        "course_code": "CS_CYBER",
+        "course_name": "Computer Science and Engineering (Cyber Security)",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Computer Science and Engineering (Cyber Security) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_26.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.998Z",
+        "updated_at": "2026-07-12T11:29:09.510Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 27,
+    "fields": {
+        "course_code": "IT",
+        "course_name": "Information Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Information Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_27.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.043Z",
+        "updated_at": "2026-07-12T11:29:14.859Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 28,
+    "fields": {
+        "course_code": "EC",
+        "course_name": "Electronics and Communication Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Electronics and Communication Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_28.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.023Z",
+        "updated_at": "2026-07-12T11:29:08.998Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 29,
+    "fields": {
+        "course_code": "BT",
+        "course_name": "Bio Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Bio Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_29.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.987Z",
+        "updated_at": "2026-07-12T11:29:12.011Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 30,
+    "fields": {
+        "course_code": "AG",
+        "course_name": "Agriculture Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Agriculture Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/agri_30.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.937Z",
+        "updated_at": "2026-07-11T17:55:35.385Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 31,
+    "fields": {
+        "course_code": "BME",
+        "course_name": "Biomedical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Biomedical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_31.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:09.977Z",
+        "updated_at": "2026-07-12T11:29:11.529Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 32,
+    "fields": {
+        "course_code": "EEE",
+        "course_name": "Electrical and Electronics Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Electrical and Electronics Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_32.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.003Z",
+        "updated_at": "2026-07-12T11:29:08.262Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 33,
+    "fields": {
+        "course_code": "FT",
+        "course_name": "Food Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Food Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_33.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.037Z",
+        "updated_at": "2026-07-12T11:29:14.256Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 34,
+    "fields": {
+        "course_code": "ME",
+        "course_name": "Mechanical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in Mechanical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_34.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.048Z",
+        "updated_at": "2026-07-12T11:29:15.316Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 35,
+    "fields": {
+        "course_code": "MBA",
+        "course_name": "M.B.A - Master of Business Administration",
+        "category": "management",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in M.B.A - Master of Business Administration designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.053Z",
+        "updated_at": "2026-07-11T17:47:06.579Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 36,
+    "fields": {
+        "course_code": "BPHARM",
+        "course_name": "B.Pharm - Bachelor of Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in B.Pharm - Bachelor of Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.065Z",
+        "updated_at": "2026-07-11T17:47:06.582Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 37,
+    "fields": {
+        "course_code": "DPHARM",
+        "course_name": "D.Pharm - Diploma in Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "diploma",
+        "duration": "3 Years",
+        "college": 2,
+        "course_description": "A comprehensive program in D.Pharm - Diploma in Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_37.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.093Z",
+        "updated_at": "2026-07-11T18:03:14.530Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 38,
+    "fields": {
+        "course_code": "AD",
+        "course_name": "Artificial Intelligence and Data Science",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Artificial Intelligence and Data Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_38.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.155Z",
+        "updated_at": "2026-07-12T11:29:12.911Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 39,
+    "fields": {
+        "course_code": "CS",
+        "course_name": "Computer Science and Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Computer Science and Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_39.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.228Z",
+        "updated_at": "2026-07-12T11:29:09.927Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 40,
+    "fields": {
+        "course_code": "CS_CYBER",
+        "course_name": "Computer Science and Engineering (Cyber Security)",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Computer Science and Engineering (Cyber Security) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_40.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.243Z",
+        "updated_at": "2026-07-12T11:29:09.511Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 41,
+    "fields": {
+        "course_code": "IT",
+        "course_name": "Information Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Information Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_41.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.282Z",
+        "updated_at": "2026-07-12T11:29:14.860Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 42,
+    "fields": {
+        "course_code": "AIML",
+        "course_name": "Artificial Intelligence and Machine Learning",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Artificial Intelligence and Machine Learning designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_42.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.168Z",
+        "updated_at": "2026-07-12T11:29:12.436Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 43,
+    "fields": {
+        "course_code": "EC",
+        "course_name": "Electronics and Communication Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Electronics and Communication Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_43.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.267Z",
+        "updated_at": "2026-07-12T11:29:08.999Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 44,
+    "fields": {
+        "course_code": "CS_IOT",
+        "course_name": "Computer Science Engineering with IOT",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Computer Science Engineering with IOT designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_44.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.256Z",
+        "updated_at": "2026-07-12T11:29:10.631Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 45,
+    "fields": {
+        "course_code": "BME",
+        "course_name": "Biomedical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Biomedical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_45.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.187Z",
+        "updated_at": "2026-07-12T11:29:11.530Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 46,
+    "fields": {
+        "course_code": "BT",
+        "course_name": "Bio Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Bio Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_46.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.204Z",
+        "updated_at": "2026-07-12T11:29:12.012Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 47,
+    "fields": {
+        "course_code": "EEE",
+        "course_name": "Electrical and Electronics Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Electrical and Electronics Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_47.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.262Z",
+        "updated_at": "2026-07-12T11:29:08.263Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 48,
+    "fields": {
+        "course_code": "ME",
+        "course_name": "Mechanical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Mechanical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_48.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.288Z",
+        "updated_at": "2026-07-12T11:29:15.317Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 49,
+    "fields": {
+        "course_code": "AG",
+        "course_name": "Agriculture Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in Agriculture Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/agri_49.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.138Z",
+        "updated_at": "2026-07-11T17:55:35.386Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 50,
+    "fields": {
+        "course_code": "BSC_NURSING",
+        "course_name": "B.Sc - Nursing",
+        "category": "nursing",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Nursing designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.293Z",
+        "updated_at": "2026-07-11T17:47:06.580Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 51,
+    "fields": {
+        "course_code": "BPT",
+        "course_name": "B.P.T - Bachelor of Physiotherapy",
+        "category": "physiotherapy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in B.P.T - Bachelor of Physiotherapy designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.314Z",
+        "updated_at": "2026-07-11T17:47:06.589Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 52,
+    "fields": {
+        "course_code": "BPHARM",
+        "course_name": "B.Pharm - Bachelor of Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Pharm - Bachelor of Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.301Z",
+        "updated_at": "2026-07-11T17:47:06.583Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 53,
+    "fields": {
+        "course_code": "DPHARM",
+        "course_name": "D.Pharm - Diploma in Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "diploma",
+        "duration": "3 Years",
+        "college": 5,
+        "course_description": "A comprehensive program in D.Pharm - Diploma in Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_53.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.305Z",
+        "updated_at": "2026-07-11T18:03:14.532Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 54,
+    "fields": {
+        "course_code": "BSC_DT",
+        "course_name": "B.Sc - Dialysis Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Dialysis Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/be2746bc5c723d3755f746a60158b97e.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.089Z",
+        "updated_at": "2026-07-12T17:10:27.696Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 55,
+    "fields": {
+        "course_code": "BSC_PA",
+        "course_name": "B.Sc - Physician Assistant",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Physician Assistant designed to prepare students for top industry opportunities.",
+        "image": "courses/images/0eebae842c68596402ac5c5e9bd2dddc.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.126Z",
+        "updated_at": "2026-07-12T17:10:29.511Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 56,
+    "fields": {
+        "course_code": "BSC_RIT",
+        "course_name": "B.Sc - Radiography and Imaging Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Radiography and Imaging Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b99364002ddf391b220a849063399241.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.134Z",
+        "updated_at": "2026-07-12T17:10:26.310Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 57,
+    "fields": {
+        "course_code": "BSC_CPPT",
+        "course_name": "B.Sc - Cardio Pulmonary and Perfusion Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Cardio Pulmonary and Perfusion Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ddd0fc71fac51a3a8cb20037705535a6.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.069Z",
+        "updated_at": "2026-07-12T17:10:31.200Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 58,
+    "fields": {
+        "course_code": "BSC_OTAT",
+        "course_name": "B.Sc - Operation Theatre and Anaesthesia Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Operation Theatre and Anaesthesia Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/913ad02c5fca5f1d416038e9e2b55751.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.119Z",
+        "updated_at": "2026-07-12T17:10:29.730Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 59,
+    "fields": {
+        "course_code": "BSC_CVT",
+        "course_name": "B.Sc - Cardio Vascular Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Cardio Vascular Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/7ceeaed4583a22380fa5a33d686743ce.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.078Z",
+        "updated_at": "2026-07-12T17:10:30.940Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 60,
+    "fields": {
+        "course_code": "BSC_MLT",
+        "course_name": "B.Sc - Medical Laboratory Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Medical Laboratory Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/4f0247c02e3ec04a97588520d57c851c.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.114Z",
+        "updated_at": "2026-07-12T17:10:30.283Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 61,
+    "fields": {
+        "course_code": "BSC_CCT",
+        "course_name": "B.Sc - Critical Care Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Critical Care Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/Webp.net-compress-image-80-1024x683.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.085Z",
+        "updated_at": "2026-07-12T17:10:30.709Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 62,
+    "fields": {
+        "course_code": "BSC_AECT",
+        "course_name": "B.Sc - Accident and Emergency Care Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Sc - Accident and Emergency Care Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/6bfcf93d1bdbbcefd330d2c97390701d.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.065Z",
+        "updated_at": "2026-07-12T17:10:28.411Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 63,
+    "fields": {
+        "course_code": "BOPTOM",
+        "course_name": "B.Optometry",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "4 Years + 1 Year Internship",
+        "college": 5,
+        "course_description": "A comprehensive program in B.Optometry designed to prepare students for top industry opportunities.",
+        "image": "courses/images/3b3c378ad9189c8379f831e350511157.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.047Z",
+        "updated_at": "2026-07-12T17:10:32.260Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 64,
+    "fields": {
+        "course_code": "BSC_CPPT",
+        "course_name": "B.Sc - Cardio Pulmonary and Perfusion Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Sc - Cardio Pulmonary and Perfusion Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ddd0fc71fac51a3a8cb20037705535a6_F3LUw2R.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.940Z",
+        "updated_at": "2026-07-12T17:10:31.202Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 65,
+    "fields": {
+        "course_code": "BSC_CCT",
+        "course_name": "B.Sc - Critical Care Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Sc - Critical Care Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/Webp_0U3dzip.net-compress-image-80-1024x683.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.989Z",
+        "updated_at": "2026-07-12T17:10:30.711Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 66,
+    "fields": {
+        "course_code": "BSC_DT",
+        "course_name": "B.Sc - Dialysis Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Sc - Dialysis Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/be2746bc5c723d3755f746a60158b97e_MGQgPJB.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.997Z",
+        "updated_at": "2026-07-12T17:10:27.698Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 67,
+    "fields": {
+        "course_code": "BSC_OTAT",
+        "course_name": "B.Sc - Operation Theatre and Anaesthesia Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Sc - Operation Theatre and Anaesthesia Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/913ad02c5fca5f1d416038e9e2b55751_M7FK9D8.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.020Z",
+        "updated_at": "2026-07-12T17:10:29.733Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 68,
+    "fields": {
+        "course_code": "BSC_MLT",
+        "course_name": "B.Sc - Medical Laboratory Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Sc - Medical Laboratory Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/4f0247c02e3ec04a97588520d57c851c_KN0Q11Z.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.002Z",
+        "updated_at": "2026-07-12T17:10:30.283Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 69,
+    "fields": {
+        "course_code": "BSC_AECT",
+        "course_name": "B.Sc - Accident and Emergency Care Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Sc - Accident and Emergency Care Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/6bfcf93d1bdbbcefd330d2c97390701d_fwFJAm3.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.932Z",
+        "updated_at": "2026-07-12T17:10:28.413Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 70,
+    "fields": {
+        "course_code": "BSC_CVT",
+        "course_name": "B.Sc - Cardio Vascular Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Sc - Cardio Vascular Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/7ceeaed4583a22380fa5a33d686743ce_nNN7gQU.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.985Z",
+        "updated_at": "2026-07-12T17:10:30.943Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 71,
+    "fields": {
+        "course_code": "BSC_RIT",
+        "course_name": "B.Sc - Radiography and Imaging Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Sc - Radiography and Imaging Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b99364002ddf391b220a849063399241_Mi0cgmt.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.027Z",
+        "updated_at": "2026-07-12T17:10:26.312Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 72,
+    "fields": {
+        "course_code": "BSC_NURSING",
+        "course_name": "B.Sc - Nursing",
+        "category": "nursing",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Sc - Nursing designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.031Z",
+        "updated_at": "2026-07-11T17:47:06.580Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 73,
+    "fields": {
+        "course_code": "DPHARM",
+        "course_name": "D.Pharm - Diploma in Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "diploma",
+        "duration": "3 Years",
+        "college": 4,
+        "course_description": "A comprehensive program in D.Pharm - Diploma in Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_73.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.039Z",
+        "updated_at": "2026-07-11T18:03:14.533Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 74,
+    "fields": {
+        "course_code": "BPHARM",
+        "course_name": "B.Pharm - Bachelor of Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 4,
+        "course_description": "A comprehensive program in B.Pharm - Bachelor of Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.036Z",
+        "updated_at": "2026-07-11T17:47:06.583Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 75,
+    "fields": {
+        "course_code": "AD",
+        "course_name": "Artificial Intelligence and Data Science",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Artificial Intelligence and Data Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_75.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.722Z",
+        "updated_at": "2026-07-12T11:29:12.913Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 76,
+    "fields": {
+        "course_code": "CS",
+        "course_name": "Computer Science and Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Computer Science and Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_76.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.737Z",
+        "updated_at": "2026-07-12T11:29:09.928Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 77,
+    "fields": {
+        "course_code": "CS_CYBER",
+        "course_name": "Computer Science and Engineering (Cyber Security)",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Computer Science and Engineering (Cyber Security) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_77.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.754Z",
+        "updated_at": "2026-07-12T11:29:09.512Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 78,
+    "fields": {
+        "course_code": "IT",
+        "course_name": "Information Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Information Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_78.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.779Z",
+        "updated_at": "2026-07-12T11:29:14.861Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 79,
+    "fields": {
+        "course_code": "BME",
+        "course_name": "Biomedical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Biomedical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_79.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.729Z",
+        "updated_at": "2026-07-12T11:29:11.532Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 80,
+    "fields": {
+        "course_code": "EC",
+        "course_name": "Electronics and Communication Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Electronics and Communication Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_80.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.767Z",
+        "updated_at": "2026-07-12T11:29:09.000Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 81,
+    "fields": {
+        "course_code": "EEE",
+        "course_name": "Electrical and Electronics Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Electrical and Electronics Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_81.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.761Z",
+        "updated_at": "2026-07-12T11:29:08.264Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 82,
+    "fields": {
+        "course_code": "ME",
+        "course_name": "Mechanical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Mechanical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_82.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.805Z",
+        "updated_at": "2026-07-12T11:29:15.318Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 83,
+    "fields": {
+        "course_code": "AE",
+        "course_name": "Aeronautical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Aeronautical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_83.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.717Z",
+        "updated_at": "2026-07-12T11:29:13.382Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 84,
+    "fields": {
+        "course_code": "CE",
+        "course_name": "Civil Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Civil Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_84.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.733Z",
+        "updated_at": "2026-07-12T11:29:11.091Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 85,
+    "fields": {
+        "course_code": "FT",
+        "course_name": "Food Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Food Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_85.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.772Z",
+        "updated_at": "2026-07-12T11:29:14.258Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 86,
+    "fields": {
+        "course_code": "ME_CADCAM",
+        "course_name": "M.E - CAD/CAM",
+        "category": "engineering",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.E - CAD/CAM designed to prepare students for top industry opportunities.",
+        "image": "courses/images/me_86.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.786Z",
+        "updated_at": "2026-07-12T11:35:26.146Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 87,
+    "fields": {
+        "course_code": "ME_CSE",
+        "course_name": "M.E - Computer Science and Engineering",
+        "category": "engineering",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.E - Computer Science and Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/me_87.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.819Z",
+        "updated_at": "2026-07-12T11:35:25.772Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 88,
+    "fields": {
+        "course_code": "ME_CS",
+        "course_name": "M.E - Communication Systems",
+        "category": "engineering",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.E - Communication Systems designed to prepare students for top industry opportunities.",
+        "image": "courses/images/me_88.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.815Z",
+        "updated_at": "2026-07-12T11:35:25.917Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 89,
+    "fields": {
+        "course_code": "ME_PED",
+        "course_name": "M.E - Power Electronics and Drives",
+        "category": "engineering",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.E - Power Electronics and Drives designed to prepare students for top industry opportunities.",
+        "image": "courses/images/me_89.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.823Z",
+        "updated_at": "2026-07-12T11:35:25.621Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 90,
+    "fields": {
+        "course_code": "BSC_AGRI_HONS",
+        "course_name": "B.Sc (Hons) Agriculture",
+        "category": "agriculture",
+        "degree_type": "ug",
+        "duration": "4 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc (Hons) Agriculture designed to prepare students for top industry opportunities.",
+        "image": "courses/images/agri_90.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.099Z",
+        "updated_at": "2026-07-11T17:55:35.380Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 91,
+    "fields": {
+        "course_code": "DPHARM",
+        "course_name": "D.Pharm - Diploma in Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "diploma",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in D.Pharm - Diploma in Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_91.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.870Z",
+        "updated_at": "2026-07-11T18:03:14.534Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 92,
+    "fields": {
+        "course_code": "BPHARM",
+        "course_name": "B.Pharm - Bachelor of Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Pharm - Bachelor of Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.865Z",
+        "updated_at": "2026-07-11T17:47:06.583Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 93,
+    "fields": {
+        "course_code": "PHARMD",
+        "course_name": "Pharm.D",
+        "category": "pharmacy",
+        "degree_type": "phd",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Pharm.D designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_93.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.883Z",
+        "updated_at": "2026-07-11T18:03:15.150Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 94,
+    "fields": {
+        "course_code": "MPHARM_PHARM",
+        "course_name": "M.Pharm - Pharmaceuticals",
+        "category": "pharmacy",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Pharm - Pharmaceuticals designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_94.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.878Z",
+        "updated_at": "2026-07-11T18:03:14.851Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 95,
+    "fields": {
+        "course_code": "BSC_NURSING",
+        "course_name": "B.Sc - Nursing",
+        "category": "nursing",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Nursing designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.832Z",
+        "updated_at": "2026-07-11T17:47:06.580Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 96,
+    "fields": {
+        "course_code": "PB_BSC_NURSING",
+        "course_name": "Post Basic B.Sc - Nursing",
+        "category": "nursing",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Post Basic B.Sc - Nursing designed to prepare students for top industry opportunities.",
+        "image": "courses/images/nursing_96.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.856Z",
+        "updated_at": "2026-07-12T01:00:58.419Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 97,
+    "fields": {
+        "course_code": "MSC_NURSING",
+        "course_name": "M.Sc - Nursing",
+        "category": "nursing",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Sc - Nursing designed to prepare students for top industry opportunities.",
+        "image": "courses/images/nursing_97.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.849Z",
+        "updated_at": "2026-07-12T01:00:58.258Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 98,
+    "fields": {
+        "course_code": "DIP_CE",
+        "course_name": "Diploma in Computer Engineering",
+        "category": "polytechnic",
+        "degree_type": "diploma",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Diploma in Computer Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_98.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.901Z",
+        "updated_at": "2026-07-12T11:29:10.101Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 99,
+    "fields": {
+        "course_code": "DIP_EEE",
+        "course_name": "Diploma in Electrical & Electronics Engineering",
+        "category": "polytechnic",
+        "degree_type": "diploma",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Diploma in Electrical & Electronics Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_99.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.907Z",
+        "updated_at": "2026-07-12T11:29:08.136Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 100,
+    "fields": {
+        "course_code": "DIP_ME",
+        "course_name": "Diploma in Mechanical Engineering",
+        "category": "polytechnic",
+        "degree_type": "diploma",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in Diploma in Mechanical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_100.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.913Z",
+        "updated_at": "2026-07-12T11:29:16.005Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 101,
+    "fields": {
+        "course_code": "BSC_CPPT",
+        "course_name": "B.Sc - Cardio Pulmonary and Perfusion Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Cardio Pulmonary and Perfusion Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ddd0fc71fac51a3a8cb20037705535a6_Si7KLxn.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.114Z",
+        "updated_at": "2026-07-12T17:10:31.203Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 102,
+    "fields": {
+        "course_code": "BSC_DT",
+        "course_name": "B.Sc - Dialysis Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Dialysis Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/be2746bc5c723d3755f746a60158b97e_kxkp0Id.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.121Z",
+        "updated_at": "2026-07-12T17:10:27.699Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 103,
+    "fields": {
+        "course_code": "BSC_OTAT",
+        "course_name": "B.Sc - Operation Theatre and Anaesthesia Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Operation Theatre and Anaesthesia Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/913ad02c5fca5f1d416038e9e2b55751_3rSJ0h4.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.131Z",
+        "updated_at": "2026-07-12T17:10:29.734Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 104,
+    "fields": {
+        "course_code": "BOPTOM",
+        "course_name": "B.Optometry",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "4 Years + 1 Year Internship",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Optometry designed to prepare students for top industry opportunities.",
+        "image": "courses/images/3b3c378ad9189c8379f831e350511157_DkZo8aR.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.104Z",
+        "updated_at": "2026-07-12T17:10:32.262Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 105,
+    "fields": {
+        "course_code": "BSC_PA",
+        "course_name": "B.Sc - Physician Assistant",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Physician Assistant designed to prepare students for top industry opportunities.",
+        "image": "courses/images/0eebae842c68596402ac5c5e9bd2dddc_45b8lhz.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.153Z",
+        "updated_at": "2026-07-12T17:10:29.515Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 106,
+    "fields": {
+        "course_code": "BED",
+        "course_name": "B.Ed - Bachelor of Education",
+        "category": "education",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Ed - Bachelor of Education designed to prepare students for top industry opportunities.",
+        "image": "courses/images/edu_106.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.479Z",
+        "updated_at": "2026-07-12T01:25:20.019Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 107,
+    "fields": {
+        "course_code": "BPED",
+        "course_name": "B.P.Ed - Bachelor of Physical Education",
+        "category": "education",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.P.Ed - Bachelor of Physical Education designed to prepare students for top industry opportunities.",
+        "image": "courses/images/edu_107.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.487Z",
+        "updated_at": "2026-07-12T01:25:19.687Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 108,
+    "fields": {
+        "course_code": "MED",
+        "course_name": "M.Ed - Master of Education",
+        "category": "education",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Ed - Master of Education designed to prepare students for top industry opportunities.",
+        "image": "courses/images/edu_108.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.501Z",
+        "updated_at": "2026-07-12T01:25:20.162Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 109,
+    "fields": {
+        "course_code": "BPES",
+        "course_name": "B.P.E.S - Bachelor of Physical Education and Sports",
+        "category": "education",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.P.E.S - Bachelor of Physical Education and Sports designed to prepare students for top industry opportunities.",
+        "image": "courses/images/edu_109.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.495Z",
+        "updated_at": "2026-07-12T01:25:19.888Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 110,
+    "fields": {
+        "course_code": "BA_ENGLISH",
+        "course_name": "B.A English",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.A English designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ba-english.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.170Z",
+        "updated_at": "2026-07-12T16:12:42.983Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 111,
+    "fields": {
+        "course_code": "BBA",
+        "course_name": "B.B.A",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.B.A designed to prepare students for top industry opportunities.",
+        "image": "courses/images/e13d022c71a4eac0057c15f522584ca8.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.201Z",
+        "updated_at": "2026-07-12T16:12:45.573Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 112,
+    "fields": {
+        "course_code": "BCA",
+        "course_name": "B.C.A",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.C.A designed to prepare students for top industry opportunities.",
+        "image": "courses/images/image.php",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.230Z",
+        "updated_at": "2026-07-12T16:12:48.364Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 113,
+    "fields": {
+        "course_code": "BCOM",
+        "course_name": "B.Com",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Com designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b155af78b8a4fe1a5361d8332e548296.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.250Z",
+        "updated_at": "2026-07-12T16:12:49.223Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 114,
+    "fields": {
+        "course_code": "BCOM_CA",
+        "course_name": "B.Com - Computer Applications",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Com - Computer Applications designed to prepare students for top industry opportunities.",
+        "image": "courses/images/61cf194ce3154d95fd694e192bbd2e50.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.254Z",
+        "updated_at": "2026-07-12T16:12:49.490Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 115,
+    "fields": {
+        "course_code": "BSC_AIML",
+        "course_name": "B.Sc - Artificial Intelligence and Machine Learning",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Artificial Intelligence and Machine Learning designed to prepare students for top industry opportunities.",
+        "image": "courses/images/c705404a9ac522d5881d862f6c6bf852.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.264Z",
+        "updated_at": "2026-07-12T16:12:50.088Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 116,
+    "fields": {
+        "course_code": "BSC_BC",
+        "course_name": "B.Sc - Biochemistry",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Biochemistry designed to prepare students for top industry opportunities.",
+        "image": "courses/images/1c069d7d27c9bc6d1a0e7b20abc3b112.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.269Z",
+        "updated_at": "2026-07-12T16:12:50.245Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 117,
+    "fields": {
+        "course_code": "BSC_BT",
+        "course_name": "B.Sc - Biotechnology",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Biotechnology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/d9b5f27505e371edda2e6c15e9303518.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.273Z",
+        "updated_at": "2026-07-12T16:12:50.765Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 118,
+    "fields": {
+        "course_code": "BSC_CS",
+        "course_name": "B.Sc - Computer Science",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Computer Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/71f27d031aa3b37c70af2a87647cb905.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.283Z",
+        "updated_at": "2026-07-12T16:12:51.412Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 119,
+    "fields": {
+        "course_code": "BSC_MB",
+        "course_name": "B.Sc - Microbiology",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Microbiology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/62b363fbd33abde87309eec8fd950a3e.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.378Z",
+        "updated_at": "2026-07-12T16:12:54.395Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 120,
+    "fields": {
+        "course_code": "BSC_MATHS",
+        "course_name": "B.Sc - Mathematics",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Mathematics designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ac86d7f4800865ccf755a61cf3022a5f.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.355Z",
+        "updated_at": "2026-07-12T16:12:53.748Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 121,
+    "fields": {
+        "course_code": "BSC_FTCD",
+        "course_name": "B.Sc - Fashion Technology and Costume Designing",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Fashion Technology and Costume Designing designed to prepare students for top industry opportunities.",
+        "image": "courses/images/3df7d1bea7a99291ff74e4e6ada8ee79.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.302Z",
+        "updated_at": "2026-07-12T16:12:52.882Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 122,
+    "fields": {
+        "course_code": "BBA_AVIATION",
+        "course_name": "B.B.A - Aviation Management",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.B.A - Aviation Management designed to prepare students for top industry opportunities.",
+        "image": "courses/images/7e16ddcc5d210b8fa9d84821a1e77c66.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.221Z",
+        "updated_at": "2026-07-12T16:12:46.110Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 123,
+    "fields": {
+        "course_code": "BSC_HOTEL_MGT",
+        "course_name": "B.Sc - Hotel Management & Catering Science",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Hotel Management & Catering Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/f17f8c8cb7e52c6bcf2b7abe4704381b.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.333Z",
+        "updated_at": "2026-07-12T16:12:53.280Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 124,
+    "fields": {
+        "course_code": "BSC_FORENSIC",
+        "course_name": "B.Sc - Forensic Science",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Forensic Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/0210312c4ffb8fa3a2b716fe61a18a3b.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.323Z",
+        "updated_at": "2026-07-12T16:12:53.109Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 125,
+    "fields": {
+        "course_code": "BSC_IT",
+        "course_name": "B.Sc - Information Technology",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in B.Sc - Information Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/82810bd772f4aa1d6e6aa3a08b954d1a.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.348Z",
+        "updated_at": "2026-07-12T16:12:53.419Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 126,
+    "fields": {
+        "course_code": "MA_TAMIL",
+        "course_name": "M.A Tamil",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.A Tamil designed to prepare students for top industry opportunities.",
+        "image": "courses/images/9094291e76c92d44f59d2eeaed8a89aa.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.389Z",
+        "updated_at": "2026-07-12T16:12:55.077Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 127,
+    "fields": {
+        "course_code": "MA_ENGLISH",
+        "course_name": "M.A English",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.A English designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ba-english_MB4LZsr.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.385Z",
+        "updated_at": "2026-07-12T16:12:44.768Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 128,
+    "fields": {
+        "course_code": "MCA",
+        "course_name": "M.C.A - Master of Computer Applications",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.C.A - Master of Computer Applications designed to prepare students for top industry opportunities.",
+        "image": "courses/images/61cf194ce3154d95fd694e192bbd2e50_ktS3fiK.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.394Z",
+        "updated_at": "2026-07-12T16:12:49.640Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 129,
+    "fields": {
+        "course_code": "MCOM",
+        "course_name": "M.Com",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Com designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b155af78b8a4fe1a5361d8332e548296_YWiTfX4.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.404Z",
+        "updated_at": "2026-07-12T16:12:49.373Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 130,
+    "fields": {
+        "course_code": "MCOM_CA",
+        "course_name": "M.Com (CA)",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Com (CA) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b155af78b8a4fe1a5361d8332e548296_RIaYPvO.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.412Z",
+        "updated_at": "2026-07-12T16:12:49.374Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 131,
+    "fields": {
+        "course_code": "MSC_BIOCHEM",
+        "course_name": "MSc Biochemistry",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in MSc Biochemistry designed to prepare students for top industry opportunities.",
+        "image": "courses/images/1c069d7d27c9bc6d1a0e7b20abc3b112_kQpijVr.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.430Z",
+        "updated_at": "2026-07-12T16:12:50.593Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 132,
+    "fields": {
+        "course_code": "MSC_CS",
+        "course_name": "M.Sc Computer Science",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Sc Computer Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/71f27d031aa3b37c70af2a87647cb905_nSuttvq.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.445Z",
+        "updated_at": "2026-07-12T16:12:51.579Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 133,
+    "fields": {
+        "course_code": "MSC_BIO_TECH",
+        "course_name": "M.Sc Biotechnology",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Sc Biotechnology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/d9b5f27505e371edda2e6c15e9303518_UcJpJNV.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.435Z",
+        "updated_at": "2026-07-12T16:12:50.897Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 134,
+    "fields": {
+        "course_code": "MSC_MATHS",
+        "course_name": "M.Sc Mathematics",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Sc Mathematics designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ac86d7f4800865ccf755a61cf3022a5f_MjUqCr9.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.450Z",
+        "updated_at": "2026-07-12T16:12:53.908Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 135,
+    "fields": {
+        "course_code": "MSC_MICRO",
+        "course_name": "M.Sc Microbiology",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Sc Microbiology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/62b363fbd33abde87309eec8fd950a3e_22VbZPI.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.469Z",
+        "updated_at": "2026-07-12T16:12:54.565Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 136,
+    "fields": {
+        "course_code": "MSC_PHYSICS",
+        "course_name": "M.Sc Physics",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Sc Physics designed to prepare students for top industry opportunities.",
+        "image": "courses/images/596326ea62c6f1c23ff12882c8c00e7e.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.474Z",
+        "updated_at": "2026-07-12T16:12:55.253Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 137,
+    "fields": {
+        "course_code": "MSC_CHEMISTRY",
+        "course_name": "M.Sc Chemistry",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 3,
+        "course_description": "A comprehensive program in M.Sc Chemistry designed to prepare students for top industry opportunities.",
+        "image": "courses/images/1c069d7d27c9bc6d1a0e7b20abc3b112_bHfpivB.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:10.439Z",
+        "updated_at": "2026-07-12T16:12:50.414Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 138,
+    "fields": {
+        "course_code": "AD",
+        "course_name": "Artificial Intelligence and Data Science",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Artificial Intelligence and Data Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_138.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.413Z",
+        "updated_at": "2026-07-12T11:29:12.914Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 139,
+    "fields": {
+        "course_code": "CS",
+        "course_name": "Computer Science and Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Computer Science and Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_139.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.436Z",
+        "updated_at": "2026-07-12T11:29:09.929Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 140,
+    "fields": {
+        "course_code": "CS_CYBER",
+        "course_name": "Computer Science and Engineering (Cyber Security)",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Computer Science and Engineering (Cyber Security) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_140.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.445Z",
+        "updated_at": "2026-07-12T11:29:09.513Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 141,
+    "fields": {
+        "course_code": "IT",
+        "course_name": "Information Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Information Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_141.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.470Z",
+        "updated_at": "2026-07-12T11:29:14.862Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 142,
+    "fields": {
+        "course_code": "AIML",
+        "course_name": "Artificial Intelligence and Machine Learning",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Artificial Intelligence and Machine Learning designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_142.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.418Z",
+        "updated_at": "2026-07-12T11:29:12.438Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 143,
+    "fields": {
+        "course_code": "EC",
+        "course_name": "Electronics and Communication Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Electronics and Communication Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_143.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.464Z",
+        "updated_at": "2026-07-12T11:29:09.001Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 144,
+    "fields": {
+        "course_code": "BT",
+        "course_name": "Bio Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Bio Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_144.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.431Z",
+        "updated_at": "2026-07-12T11:29:12.014Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 145,
+    "fields": {
+        "course_code": "BME",
+        "course_name": "Biomedical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Biomedical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_145.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.422Z",
+        "updated_at": "2026-07-12T11:29:11.534Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 146,
+    "fields": {
+        "course_code": "CS_IOT",
+        "course_name": "Computer Science Engineering with IOT",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Computer Science Engineering with IOT designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_146.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.451Z",
+        "updated_at": "2026-07-12T11:29:10.632Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 147,
+    "fields": {
+        "course_code": "ME",
+        "course_name": "Mechanical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Mechanical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_147.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.478Z",
+        "updated_at": "2026-07-12T11:29:15.319Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 148,
+    "fields": {
+        "course_code": "EEE",
+        "course_name": "Electrical and Electronics Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in Electrical and Electronics Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_148.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.456Z",
+        "updated_at": "2026-07-12T11:29:08.265Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 149,
+    "fields": {
+        "course_code": "BA_LLB",
+        "course_name": "B.A. LLB (Hons.)",
+        "category": "law",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in B.A. LLB (Hons.) designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.485Z",
+        "updated_at": "2026-07-11T17:47:06.577Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 150,
+    "fields": {
+        "course_code": "BBA_LLB",
+        "course_name": "B.B.A. LLB (Hons.)",
+        "category": "law",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in B.B.A. LLB (Hons.) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/e13d022c71a4eac0057c15f522584ca8_khkJp6n.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.490Z",
+        "updated_at": "2026-07-12T16:12:45.579Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 151,
+    "fields": {
+        "course_code": "BSC_AECT",
+        "course_name": "B.Sc - Accident and Emergency Care Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Accident and Emergency Care Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/6bfcf93d1bdbbcefd330d2c97390701d_dG5CMGs.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.332Z",
+        "updated_at": "2026-07-12T17:10:28.414Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 152,
+    "fields": {
+        "course_code": "BSC_CPPT",
+        "course_name": "B.Sc - Cardio Pulmonary and Perfusion Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Cardio Pulmonary and Perfusion Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ddd0fc71fac51a3a8cb20037705535a6_tfFUKRt.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.346Z",
+        "updated_at": "2026-07-12T17:10:31.205Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 153,
+    "fields": {
+        "course_code": "BSC_CVT",
+        "course_name": "B.Sc - Cardio Vascular Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Cardio Vascular Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/7ceeaed4583a22380fa5a33d686743ce_zevTsXO.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.352Z",
+        "updated_at": "2026-07-12T17:10:30.944Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 154,
+    "fields": {
+        "course_code": "BSC_CCT",
+        "course_name": "B.Sc - Critical Care Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Critical Care Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/Webp_rCWWY2X.net-compress-image-80-1024x683.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.359Z",
+        "updated_at": "2026-07-12T17:10:30.712Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 155,
+    "fields": {
+        "course_code": "BSC_DT",
+        "course_name": "B.Sc - Dialysis Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Dialysis Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/be2746bc5c723d3755f746a60158b97e_KCauX7v.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.366Z",
+        "updated_at": "2026-07-12T17:10:27.701Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 156,
+    "fields": {
+        "course_code": "BSC_MLT",
+        "course_name": "B.Sc - Medical Laboratory Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Medical Laboratory Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/4f0247c02e3ec04a97588520d57c851c_E1EPzCc.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.370Z",
+        "updated_at": "2026-07-12T17:10:30.284Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 157,
+    "fields": {
+        "course_code": "BSC_APBH",
+        "course_name": "B.Sc - Applied Psychology and Behavioural Health",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Applied Psychology and Behavioural Health designed to prepare students for top industry opportunities.",
+        "image": "courses/images/4bb24de4cd18a712b766660197ca77e4.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.338Z",
+        "updated_at": "2026-07-12T17:10:31.801Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 158,
+    "fields": {
+        "course_code": "BSC_OTAT",
+        "course_name": "B.Sc - Operation Theatre and Anaesthesia Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Operation Theatre and Anaesthesia Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/913ad02c5fca5f1d416038e9e2b55751_ampwBEY.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.379Z",
+        "updated_at": "2026-07-12T17:10:29.735Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 159,
+    "fields": {
+        "course_code": "BOPTOM",
+        "course_name": "B.Optometry",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "4 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Optometry designed to prepare students for top industry opportunities.",
+        "image": "courses/images/3b3c378ad9189c8379f831e350511157_XGj4D6q.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.325Z",
+        "updated_at": "2026-07-12T17:10:32.263Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 160,
+    "fields": {
+        "course_code": "BSC_PA",
+        "course_name": "B.Sc - Physician Assistant",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Physician Assistant designed to prepare students for top industry opportunities.",
+        "image": "courses/images/0eebae842c68596402ac5c5e9bd2dddc_lgD02DO.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.386Z",
+        "updated_at": "2026-07-12T17:10:29.517Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 161,
+    "fields": {
+        "course_code": "BSC_RIT",
+        "course_name": "B.Sc - Radiography and Imaging Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc - Radiography and Imaging Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b99364002ddf391b220a849063399241_L7JbAOc.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.394Z",
+        "updated_at": "2026-07-12T17:10:26.313Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 162,
+    "fields": {
+        "course_code": "BSC_AGRI_HONS",
+        "course_name": "B.Sc (Hons) Agriculture",
+        "category": "agriculture",
+        "degree_type": "ug",
+        "duration": "4 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Sc (Hons) Agriculture designed to prepare students for top industry opportunities.",
+        "image": "courses/images/agri_162.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.319Z",
+        "updated_at": "2026-07-11T17:55:35.382Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 163,
+    "fields": {
+        "course_code": "BPT",
+        "course_name": "B.P.T - Bachelor of Physiotherapy",
+        "category": "physiotherapy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in B.P.T - Bachelor of Physiotherapy designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.501Z",
+        "updated_at": "2026-07-11T17:47:06.589Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 164,
+    "fields": {
+        "course_code": "BPHARM",
+        "course_name": "B.Pharm - Bachelor of Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 6,
+        "course_description": "A comprehensive program in B.Pharm - Bachelor of Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.496Z",
+        "updated_at": "2026-07-11T17:47:06.584Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 165,
+    "fields": {
+        "course_code": "CS",
+        "course_name": "Computer Science and Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Computer Science and Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_165.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.089Z",
+        "updated_at": "2026-07-12T11:29:09.930Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 166,
+    "fields": {
+        "course_code": "AD",
+        "course_name": "Artificial Intelligence and Data Science",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Artificial Intelligence and Data Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_166.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.065Z",
+        "updated_at": "2026-07-12T11:29:12.915Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 167,
+    "fields": {
+        "course_code": "CS_CYBER",
+        "course_name": "Computer Science and Engineering (Cyber Security)",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Computer Science and Engineering (Cyber Security) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_167.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.095Z",
+        "updated_at": "2026-07-12T11:29:09.514Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 168,
+    "fields": {
+        "course_code": "AIML",
+        "course_name": "Artificial Intelligence and Machine Learning",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Artificial Intelligence and Machine Learning designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_168.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.071Z",
+        "updated_at": "2026-07-12T11:29:12.440Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 169,
+    "fields": {
+        "course_code": "IT",
+        "course_name": "Information Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Information Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_169.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.119Z",
+        "updated_at": "2026-07-12T11:29:14.863Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 170,
+    "fields": {
+        "course_code": "EC",
+        "course_name": "Electronics and Communication Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Electronics and Communication Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_170.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.114Z",
+        "updated_at": "2026-07-12T11:29:09.001Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 171,
+    "fields": {
+        "course_code": "BT",
+        "course_name": "Bio Technology",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Bio Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_171.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.083Z",
+        "updated_at": "2026-07-12T11:29:12.015Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 172,
+    "fields": {
+        "course_code": "BME",
+        "course_name": "Biomedical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Biomedical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_172.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.077Z",
+        "updated_at": "2026-07-12T11:29:11.535Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 173,
+    "fields": {
+        "course_code": "AG",
+        "course_name": "Agriculture Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Agriculture Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/agri_173.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.056Z",
+        "updated_at": "2026-07-11T17:55:35.387Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 174,
+    "fields": {
+        "course_code": "ME",
+        "course_name": "Mechanical Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Mechanical Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_174.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.123Z",
+        "updated_at": "2026-07-12T11:29:15.320Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 175,
+    "fields": {
+        "course_code": "EEE",
+        "course_name": "Electrical and Electronics Engineering",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Electrical and Electronics Engineering designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_175.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.108Z",
+        "updated_at": "2026-07-12T11:29:08.267Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 176,
+    "fields": {
+        "course_code": "BA_LLB",
+        "course_name": "B.A. LLB (Hons.)",
+        "category": "law",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.A. LLB (Hons.) designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.130Z",
+        "updated_at": "2026-07-11T17:47:06.578Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 177,
+    "fields": {
+        "course_code": "BBA_LLB",
+        "course_name": "B.B.A. LLB (Hons.)",
+        "category": "law",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.B.A. LLB (Hons.) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/e13d022c71a4eac0057c15f522584ca8_jFMhEUS.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.144Z",
+        "updated_at": "2026-07-12T16:12:45.580Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 178,
+    "fields": {
+        "course_code": "BCOM_LLB",
+        "course_name": "B.Com. LLB (Hons.)",
+        "category": "law",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Com. LLB (Hons.) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b155af78b8a4fe1a5361d8332e548296_5Vt4jqQ.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.150Z",
+        "updated_at": "2026-07-12T16:12:49.228Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 179,
+    "fields": {
+        "course_code": "BSC_DT",
+        "course_name": "B.Sc - Dialysis Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Dialysis Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/be2746bc5c723d3755f746a60158b97e_6RD4dN5.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.811Z",
+        "updated_at": "2026-07-12T17:10:27.703Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 180,
+    "fields": {
+        "course_code": "BSC_PA",
+        "course_name": "B.Sc - Physician Assistant",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Physician Assistant designed to prepare students for top industry opportunities.",
+        "image": "courses/images/0eebae842c68596402ac5c5e9bd2dddc_pBkYYgc.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.838Z",
+        "updated_at": "2026-07-12T17:10:29.519Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 181,
+    "fields": {
+        "course_code": "BSC_RIT",
+        "course_name": "B.Sc - Radiography and Imaging Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Radiography and Imaging Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b99364002ddf391b220a849063399241_ZhzwLrN.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.845Z",
+        "updated_at": "2026-07-12T17:10:26.314Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 182,
+    "fields": {
+        "course_code": "BSC_CPPT",
+        "course_name": "B.Sc - Cardio Pulmonary and Perfusion Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Cardio Pulmonary and Perfusion Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ddd0fc71fac51a3a8cb20037705535a6_lAs7mS8.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.540Z",
+        "updated_at": "2026-07-12T17:10:31.206Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 183,
+    "fields": {
+        "course_code": "BSC_OTAT",
+        "course_name": "B.Sc - Operation Theatre and Anaesthesia Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Operation Theatre and Anaesthesia Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/913ad02c5fca5f1d416038e9e2b55751_vaeFhTh.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.834Z",
+        "updated_at": "2026-07-12T17:10:29.736Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 184,
+    "fields": {
+        "course_code": "BSC_CVT",
+        "course_name": "B.Sc - Cardio Vascular Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Cardio Vascular Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/7ceeaed4583a22380fa5a33d686743ce_dpiiM0F.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.548Z",
+        "updated_at": "2026-07-12T17:10:30.946Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 185,
+    "fields": {
+        "course_code": "BSC_MLT",
+        "course_name": "B.Sc - Medical Laboratory Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Medical Laboratory Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/4f0247c02e3ec04a97588520d57c851c_aLqlL0o.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.817Z",
+        "updated_at": "2026-07-12T17:10:30.285Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 186,
+    "fields": {
+        "course_code": "BSC_NEP",
+        "course_name": "B.Sc - Neuro Electro Physiology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Neuro Electro Physiology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/62e541c8cd086bb8c4a96dcddd078de8.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.821Z",
+        "updated_at": "2026-07-12T17:10:30.124Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 187,
+    "fields": {
+        "course_code": "BSC_CND",
+        "course_name": "B.Sc - Nutrition and Dietetics",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Nutrition and Dietetics designed to prepare students for top industry opportunities.",
+        "image": "courses/images/a36ab111d1192e7a3c85e60e8fb15fec.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.829Z",
+        "updated_at": "2026-07-12T17:10:29.913Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 188,
+    "fields": {
+        "course_code": "BSC_CCT",
+        "course_name": "B.Sc - Critical Care Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Critical Care Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/Webp_4jePAWQ.net-compress-image-80-1024x683.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.772Z",
+        "updated_at": "2026-07-12T17:10:30.714Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 189,
+    "fields": {
+        "course_code": "BSC_AECT",
+        "course_name": "B.Sc - Accident and Emergency Care Technology",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Accident and Emergency Care Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/6bfcf93d1bdbbcefd330d2c97390701d_l4Kapck.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.529Z",
+        "updated_at": "2026-07-12T17:10:28.415Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 190,
+    "fields": {
+        "course_code": "BOPTOM",
+        "course_name": "B.Optometry",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "4 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Optometry designed to prepare students for top industry opportunities.",
+        "image": "courses/images/3b3c378ad9189c8379f831e350511157_goDSLhD.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.518Z",
+        "updated_at": "2026-07-12T17:10:32.265Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 191,
+    "fields": {
+        "course_code": "MSC_AT",
+        "course_name": "M.Sc - Anaesthesia Tech",
+        "category": "allied_health_science",
+        "degree_type": "pg",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 6,
+        "course_description": "A comprehensive program in M.Sc - Anaesthesia Tech designed to prepare students for top industry opportunities.",
+        "image": "courses/images/7b0c6db0fc8c8567236a5ec922cb6f48.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.403Z",
+        "updated_at": "2026-07-12T17:10:28.155Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 193,
+    "fields": {
+        "course_code": "MSC_AT",
+        "course_name": "M.Sc - Anaesthesia Tech",
+        "category": "allied_health_science",
+        "degree_type": "pg",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Sc - Anaesthesia Tech designed to prepare students for top industry opportunities.",
+        "image": "courses/images/7b0c6db0fc8c8567236a5ec922cb6f48_IOCmDni.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.855Z",
+        "updated_at": "2026-07-12T17:10:28.157Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 194,
+    "fields": {
+        "course_code": "MSC_DT",
+        "course_name": "M.Sc - Dialysis Technology",
+        "category": "allied_health_science",
+        "degree_type": "pg",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Sc - Dialysis Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/be2746bc5c723d3755f746a60158b97e_WintHhL.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.862Z",
+        "updated_at": "2026-07-12T17:10:27.931Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 195,
+    "fields": {
+        "course_code": "MSC_MM",
+        "course_name": "M.Sc - Medical Microbiology",
+        "category": "allied_health_science",
+        "degree_type": "pg",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Sc - Medical Microbiology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/67b9cd1e7db4b9b13b3b90c8e99c6a11.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.878Z",
+        "updated_at": "2026-07-12T17:10:27.012Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 196,
+    "fields": {
+        "course_code": "MSC_MB",
+        "course_name": "M.Sc - Medical Biochemistry",
+        "category": "allied_health_science",
+        "degree_type": "pg",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Sc - Medical Biochemistry designed to prepare students for top industry opportunities.",
+        "image": "courses/images/6254b81120e41e8a912de6b130e55013.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.867Z",
+        "updated_at": "2026-07-12T17:10:27.503Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 197,
+    "fields": {
+        "course_code": "MSC_RIT",
+        "course_name": "M.Sc - Radiography and Imaging Tech",
+        "category": "allied_health_science",
+        "degree_type": "pg",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Sc - Radiography and Imaging Tech designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b99364002ddf391b220a849063399241_iHgFxf8.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.886Z",
+        "updated_at": "2026-07-12T17:10:26.563Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 198,
+    "fields": {
+        "course_code": "MSC_AECT",
+        "course_name": "M.Sc - Accident and Emergency Care",
+        "category": "allied_health_science",
+        "degree_type": "pg",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Sc - Accident and Emergency Care designed to prepare students for top industry opportunities.",
+        "image": "courses/images/6bfcf93d1bdbbcefd330d2c97390701d_S5nhF35.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.850Z",
+        "updated_at": "2026-07-12T17:10:28.901Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 199,
+    "fields": {
+        "course_code": "BPT",
+        "course_name": "B.P.T - Bachelor of Physiotherapy",
+        "category": "physiotherapy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.P.T - Bachelor of Physiotherapy designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.244Z",
+        "updated_at": "2026-07-11T17:47:06.590Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 200,
+    "fields": {
+        "course_code": "MPT_MUSCULOSKELETAL",
+        "course_name": "M.P.T - Musculoskeletal Science",
+        "category": "physiotherapy",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.P.T - Musculoskeletal Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/06141f528673d86202ef90af0147a0ea.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.250Z",
+        "updated_at": "2026-07-12T17:10:25.432Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 201,
+    "fields": {
+        "course_code": "MPT_SPORTS",
+        "course_name": "M.P.T - Sports & Fitness",
+        "category": "physiotherapy",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.P.T - Sports & Fitness designed to prepare students for top industry opportunities.",
+        "image": "courses/images/499651c859cff28469cbd104a93b93d0.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.259Z",
+        "updated_at": "2026-07-12T17:10:25.242Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 202,
+    "fields": {
+        "course_code": "MPT_NEURO",
+        "course_name": "M.P.T - Neurology",
+        "category": "physiotherapy",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.P.T - Neurology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ea8da6f6125fdeda60e47002b0a44ab8.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.254Z",
+        "updated_at": "2026-07-12T17:10:23.130Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 203,
+    "fields": {
+        "course_code": "CS_IOT",
+        "course_name": "Computer Science Engineering with IOT",
+        "category": "engineering",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Computer Science Engineering with IOT designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eng_203.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.100Z",
+        "updated_at": "2026-07-12T11:29:10.633Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 204,
+    "fields": {
+        "course_code": "BSC_APBH",
+        "course_name": "B.Sc - Applied Psychology and Behavioural Health",
+        "category": "allied_health_science",
+        "degree_type": "ug",
+        "duration": "3 Years + 1 Year Internship",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Applied Psychology and Behavioural Health designed to prepare students for top industry opportunities.",
+        "image": "courses/images/4bb24de4cd18a712b766660197ca77e4_w5S0HKM.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.535Z",
+        "updated_at": "2026-07-12T17:10:31.803Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 205,
+    "fields": {
+        "course_code": "BOT",
+        "course_name": "B.O.T - Bachelor of Occupational Therapy",
+        "category": "occupational_therapy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.O.T - Bachelor of Occupational Therapy designed to prepare students for top industry opportunities.",
+        "image": "courses/images/024be8b1cb853e8438c597abe95fca9b.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.185Z",
+        "updated_at": "2026-07-12T17:10:26.064Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 206,
+    "fields": {
+        "course_code": "BPHARM",
+        "course_name": "B.Pharm - Bachelor of Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Pharm - Bachelor of Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.194Z",
+        "updated_at": "2026-07-11T17:47:06.584Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 207,
+    "fields": {
+        "course_code": "DPHARM",
+        "course_name": "D.Pharm - Diploma in Pharmacy",
+        "category": "pharmacy",
+        "degree_type": "diploma",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in D.Pharm - Diploma in Pharmacy designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_207.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.201Z",
+        "updated_at": "2026-07-11T18:03:14.535Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 208,
+    "fields": {
+        "course_code": "PHARMD",
+        "course_name": "Pharm.D",
+        "category": "pharmacy",
+        "degree_type": "phd",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in Pharm.D designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_208.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.236Z",
+        "updated_at": "2026-07-11T18:03:15.151Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 209,
+    "fields": {
+        "course_code": "MPHARM_PHARM",
+        "course_name": "M.Pharm - Pharmaceuticals",
+        "category": "pharmacy",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Pharm - Pharmaceuticals designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_209.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.218Z",
+        "updated_at": "2026-07-11T18:03:14.854Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 210,
+    "fields": {
+        "course_code": "MPHARM_ANALYSIS",
+        "course_name": "M.Pharm - Pharmaceutical Analysis",
+        "category": "pharmacy",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Pharm - Pharmaceutical Analysis designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_210.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.206Z",
+        "updated_at": "2026-07-11T18:03:14.696Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 211,
+    "fields": {
+        "course_code": "MPHARM_PCOG",
+        "course_name": "M.Pharm - Pharmacognosy",
+        "category": "pharmacy",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Pharm - Pharmacognosy designed to prepare students for top industry opportunities.",
+        "image": "courses/images/pharm_211.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.229Z",
+        "updated_at": "2026-07-11T18:03:15.016Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 212,
+    "fields": {
+        "course_code": "BSC_NURSING",
+        "course_name": "B.Sc - Nursing",
+        "category": "nursing",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Nursing designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.167Z",
+        "updated_at": "2026-07-11T17:47:06.581Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 213,
+    "fields": {
+        "course_code": "GNM",
+        "course_name": "GNM - General Nursing and Midwifery",
+        "category": "nursing",
+        "degree_type": "diploma",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in GNM - General Nursing and Midwifery designed to prepare students for top industry opportunities.",
+        "image": "courses/images/nursing_213.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.175Z",
+        "updated_at": "2026-07-12T01:00:58.554Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 214,
+    "fields": {
+        "course_code": "BARCH",
+        "course_name": "B.Arch - Bachelor of Architecture",
+        "category": "architecture",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Arch - Bachelor of Architecture designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.893Z",
+        "updated_at": "2026-07-11T17:47:06.528Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 215,
+    "fields": {
+        "course_code": "BDES_INTERIOR",
+        "course_name": "B.Des - Interior Design",
+        "category": "architecture",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Des - Interior Design designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.900Z",
+        "updated_at": "2026-07-11T17:47:06.528Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 216,
+    "fields": {
+        "course_code": "BSC_AGRI_HONS",
+        "course_name": "B.Sc (Hons) Agriculture",
+        "category": "agriculture",
+        "degree_type": "ug",
+        "duration": "4 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc (Hons) Agriculture designed to prepare students for top industry opportunities.",
+        "image": "courses/images/agri_216.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.506Z",
+        "updated_at": "2026-07-11T17:55:35.383Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 217,
+    "fields": {
+        "course_code": "BSC_HORT_HONS",
+        "course_name": "B.Sc (Hons) Horticulture",
+        "category": "agriculture",
+        "degree_type": "ug",
+        "duration": "4 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc (Hons) Horticulture designed to prepare students for top industry opportunities.",
+        "image": "courses/images/horti_217.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.513Z",
+        "updated_at": "2026-07-11T17:55:35.599Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 218,
+    "fields": {
+        "course_code": "MBA",
+        "course_name": "M.B.A - Master of Business Administration",
+        "category": "management",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.B.A - Master of Business Administration designed to prepare students for top industry opportunities.",
+        "image": "",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.156Z",
+        "updated_at": "2026-07-11T17:47:06.580Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 219,
+    "fields": {
+        "course_code": "MCA",
+        "course_name": "M.C.A - Master of Computer Applications",
+        "category": "computer_applications",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.C.A - Master of Computer Applications designed to prepare students for top industry opportunities.",
+        "image": "courses/images/61cf194ce3154d95fd694e192bbd2e50_GuO1iUP.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.045Z",
+        "updated_at": "2026-07-12T16:12:49.642Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 220,
+    "fields": {
+        "course_code": "MA_ENGLISH",
+        "course_name": "M.A English",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.A English designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ba-english_slx2GAW.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.018Z",
+        "updated_at": "2026-07-12T16:12:44.770Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 221,
+    "fields": {
+        "course_code": "MSC_CS",
+        "course_name": "M.Sc Computer Science",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Sc Computer Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/71f27d031aa3b37c70af2a87647cb905_Je3ljFe.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.024Z",
+        "updated_at": "2026-07-12T16:12:51.581Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 222,
+    "fields": {
+        "course_code": "MSC_IT",
+        "course_name": "M.Sc Information Technology",
+        "category": "arts_science",
+        "degree_type": "pg",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in M.Sc Information Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/82810bd772f4aa1d6e6aa3a08b954d1a_gs3iBS7.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.034Z",
+        "updated_at": "2026-07-12T16:12:53.575Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 223,
+    "fields": {
+        "course_code": "BCOM",
+        "course_name": "B.Com",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Com designed to prepare students for top industry opportunities.",
+        "image": "courses/images/b155af78b8a4fe1a5361d8332e548296_rmw9Fwi.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.944Z",
+        "updated_at": "2026-07-12T16:12:49.224Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 224,
+    "fields": {
+        "course_code": "BCOM_CA",
+        "course_name": "B.Com - Computer Applications",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Com - Computer Applications designed to prepare students for top industry opportunities.",
+        "image": "courses/images/61cf194ce3154d95fd694e192bbd2e50_pFvgDH0.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.949Z",
+        "updated_at": "2026-07-12T16:12:49.492Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 225,
+    "fields": {
+        "course_code": "BCOM_PA",
+        "course_name": "B.Com - Professional Accounting",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Com - Professional Accounting designed to prepare students for top industry opportunities.",
+        "image": "courses/images/dcdb72add51845fde1aed06a6d18901f.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.953Z",
+        "updated_at": "2026-07-12T16:12:49.808Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 226,
+    "fields": {
+        "course_code": "BBA",
+        "course_name": "B.B.A",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.B.A designed to prepare students for top industry opportunities.",
+        "image": "courses/images/e13d022c71a4eac0057c15f522584ca8_1BUVE9T.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.921Z",
+        "updated_at": "2026-07-12T16:12:45.574Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 227,
+    "fields": {
+        "course_code": "BBA_LOGISTICS",
+        "course_name": "B.B.A - Logistic & Supply Chain Management",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.B.A - Logistic & Supply Chain Management designed to prepare students for top industry opportunities.",
+        "image": "courses/images/25fc34ca69fe8d90d9a18f2155b67c96.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.932Z",
+        "updated_at": "2026-07-12T16:12:46.701Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 228,
+    "fields": {
+        "course_code": "BBA_AVIATION",
+        "course_name": "B.B.A - Aviation Management",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.B.A - Aviation Management designed to prepare students for top industry opportunities.",
+        "image": "courses/images/7e16ddcc5d210b8fa9d84821a1e77c66_aVYLJGD.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.928Z",
+        "updated_at": "2026-07-12T16:12:46.112Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 229,
+    "fields": {
+        "course_code": "BA_ENGLISH",
+        "course_name": "B.A English",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.A English designed to prepare students for top industry opportunities.",
+        "image": "courses/images/ba-english_Td82OVZ.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.904Z",
+        "updated_at": "2026-07-12T16:12:42.985Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 230,
+    "fields": {
+        "course_code": "BA_PUBLIC_ADMIN",
+        "course_name": "B.A Public Administration",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.A Public Administration designed to prepare students for top industry opportunities.",
+        "image": "courses/images/6d8b0e7feb42db1b76db4c24b6d0ffcb.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.911Z",
+        "updated_at": "2026-07-12T16:12:44.947Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 231,
+    "fields": {
+        "course_code": "BA_SOCIAL_WORK",
+        "course_name": "B.A Social Work",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.A Social Work designed to prepare students for top industry opportunities.",
+        "image": "courses/images/196256fb04b43ea69c0496c2c1a9b40c.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.917Z",
+        "updated_at": "2026-07-12T16:12:45.439Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 232,
+    "fields": {
+        "course_code": "BSC_CS",
+        "course_name": "B.Sc - Computer Science",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Computer Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/71f27d031aa3b37c70af2a87647cb905_RcUSUBv.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.968Z",
+        "updated_at": "2026-07-12T16:12:51.413Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 233,
+    "fields": {
+        "course_code": "BSC_AI_DS",
+        "course_name": "B.Sc - Artificial Intelligence & Data Science",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Artificial Intelligence & Data Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/51f233f4e9ceab328fda4882eb6457ad.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.964Z",
+        "updated_at": "2026-07-12T16:12:49.955Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 234,
+    "fields": {
+        "course_code": "BSC_IT",
+        "course_name": "B.Sc - Information Technology",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Information Technology designed to prepare students for top industry opportunities.",
+        "image": "courses/images/82810bd772f4aa1d6e6aa3a08b954d1a_hHj4F1C.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.999Z",
+        "updated_at": "2026-07-12T16:12:53.421Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 235,
+    "fields": {
+        "course_code": "BSC_CYBER",
+        "course_name": "B.Sc - Cyber Security & Ethical Hacking",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Cyber Security & Ethical Hacking designed to prepare students for top industry opportunities.",
+        "image": "courses/images/3ea2af7423260d8608de8b6f535e91f6.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.972Z",
+        "updated_at": "2026-07-12T16:12:51.780Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 236,
+    "fields": {
+        "course_code": "BSC_DATA_SCIENCE",
+        "course_name": "B.Sc - Data Science & Analytics",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Data Science & Analytics designed to prepare students for top industry opportunities.",
+        "image": "courses/images/eaf668c65e81d703fa85a2aa8e865597.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.979Z",
+        "updated_at": "2026-07-12T16:12:51.955Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 237,
+    "fields": {
+        "course_code": "BSC_IOT",
+        "course_name": "B.Sc Internet of Things (IoT)",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc Internet of Things (IoT) designed to prepare students for top industry opportunities.",
+        "image": "courses/images/31ac6dfee5e4b094d42fe7c15cb52912.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.004Z",
+        "updated_at": "2026-07-12T16:12:54.942Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 238,
+    "fields": {
+        "course_code": "BCA",
+        "course_name": "B.C.A",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.C.A designed to prepare students for top industry opportunities.",
+        "image": "courses/images/image_Gss71Pq.php",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.936Z",
+        "updated_at": "2026-07-12T16:12:48.365Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 239,
+    "fields": {
+        "course_code": "BSC_VISUAL_COMM",
+        "course_name": "B.Sc - Visual Communication",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Visual Communication designed to prepare students for top industry opportunities.",
+        "image": "courses/images/f3a4bd38a185cf1b4f984de2c8ef004e.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:12.012Z",
+        "updated_at": "2026-07-12T16:12:54.745Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 240,
+    "fields": {
+        "course_code": "BSC_DEFENCE",
+        "course_name": "B.Sc - Defence and Strategic Studies",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Defence and Strategic Studies designed to prepare students for top industry opportunities.",
+        "image": "courses/images/652ebadb699610bb14dc425c8717ef4d.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.983Z",
+        "updated_at": "2026-07-12T16:12:52.356Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 241,
+    "fields": {
+        "course_code": "BSC_FORENSIC",
+        "course_name": "B.Sc - Forensic Science",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Forensic Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/0210312c4ffb8fa3a2b716fe61a18a3b_8t9nqAJ.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.988Z",
+        "updated_at": "2026-07-12T16:12:53.111Z"
+    }
+},
+{
+    "model": "colleges.course",
+    "pk": 242,
+    "fields": {
+        "course_code": "BSC_HOTEL_MGT",
+        "course_name": "B.Sc - Hotel Management & Catering Science",
+        "category": "arts_science",
+        "degree_type": "ug",
+        "duration": "3 Years",
+        "college": 7,
+        "course_description": "A comprehensive program in B.Sc - Hotel Management & Catering Science designed to prepare students for top industry opportunities.",
+        "image": "courses/images/f17f8c8cb7e52c6bcf2b7abe4704381b_MatU3uD.jpg",
+        "is_active": true,
+        "created_at": "2026-06-24T10:26:11.994Z",
+        "updated_at": "2026-07-12T16:12:53.281Z"
+    }
+},
+{
+    "model": "applications.application",
+    "pk": 1,
+    "fields": {
+        "application_id": "APP-20260709072959",
+        "first_name": "DHASHMITHA",
+        "last_name": "M",
+        "full_name": "DHASHMITHA M",
+        "gender": "Female",
+        "dob": "2003-06-03",
+        "mobile": "9876545678",
+        "email": "mwari6403@gmail.com",
+        "blood_group": "B+",
+        "community": "BCM",
+        "aadhar_number": "658634567834",
+        "father_name": "Raj",
+        "father_mobile": "8778635855",
+        "mother_name": "Lakshmi",
+        "mother_mobile": "8746415874",
+        "address_line1": "No 5",
+        "address_line2": "Anna Steet",
+        "city": "Namakkal",
+        "pincode": "646845",
+        "tenth_percentage": "49.00",
+        "twelfth_percentage": "66.00",
+        "has_diploma": false,
+        "diploma_percentage": null,
+        "has_ug": false,
+        "ug_percentage": null,
+        "college": 4,
+        "college_name": "Dhanalakshmi Srinivasan Medical College and Hospital - DSMCH",
+        "category": "pharmacy",
+        "degree_type": "ug",
+        "course_name": "B.Pharm - Bachelor of Pharmacy",
+        "department_name": "",
+        "reference_name": "Mani",
+        "photo": "",
+        "tenth_marksheet": "",
+        "twelfth_marksheet": "",
+        "aadhar": "",
+        "status": "submitted",
+        "rejection_reason": "",
+        "counselor_notes": "",
+        "created_at": "2026-07-09T07:29:59.371Z",
+        "updated_at": "2026-07-09T07:29:59.371Z"
+    }
+},
+{
+    "model": "applications.application",
+    "pk": 2,
+    "fields": {
+        "application_id": "APP-20260710130149",
+        "first_name": "Rajesh",
+        "last_name": "Kumar",
+        "full_name": "Rajesh Kumar",
+        "gender": "Male",
+        "dob": "2005-06-12",
+        "mobile": "9876543210",
+        "email": "rajesh@gmail.com",
+        "blood_group": "A+",
+        "community": "BC",
+        "aadhar_number": "123456789012",
+        "father_name": "Ramesh Kumar",
+        "father_mobile": "9876543211",
+        "mother_name": "Lakshmi",
+        "mother_mobile": "9876543212",
+        "address_line1": "12, Main Street",
+        "address_line2": "",
+        "city": "Chennai",
+        "pincode": "600001",
+        "tenth_percentage": "92.50",
+        "twelfth_percentage": "88.30",
+        "has_diploma": false,
+        "diploma_percentage": null,
+        "has_ug": false,
+        "ug_percentage": null,
+        "college": 1,
+        "college_name": "Dhanalakshmi Srinivasan College of Engineering and Technology - DSCET",
+        "category": "management",
+        "degree_type": "pg",
+        "course_name": "M.B.A - Master of Business Administration",
+        "department_name": "",
+        "reference_name": "",
+        "photo": "",
+        "tenth_marksheet": "",
+        "twelfth_marksheet": "",
+        "aadhar": "",
+        "status": "submitted",
+        "rejection_reason": "",
+        "counselor_notes": "",
+        "created_at": "2026-07-10T13:01:49.219Z",
+        "updated_at": "2026-07-10T13:01:49.219Z"
+    }
+}
+]
