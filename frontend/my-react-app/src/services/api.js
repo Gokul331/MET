@@ -17,7 +17,7 @@ import catPhysicalEducation   from '../assets/categories/cat_physical_education.
 import catAgriculture         from '../assets/cat_agriculture.jpg';
 import catDefault             from '../assets/cat_default.jpg';
 
-const BASE_URL = 'http://localhost:8000/api';
+const BASE_URL = 'https://met-5a4d.onrender.com/api';
 
 const api = axios.create({
   baseURL: BASE_URL,
