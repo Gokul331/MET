@@ -166,7 +166,6 @@ export default function Courses() {
         return groupCoursesByName(DEFAULT_COURSES);
       }
     },
-    initialData: [],
   });
   
   const [search, setSearch] = useState('');
