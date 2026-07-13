@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { fetchCourses, groupCoursesByName, getCourseImage } from '../services/api';
 import PageTransition from '../components/common/PageTransition';
@@ -153,8 +154,21 @@ function Stars({ rating }) {
 }
 
 export default function Courses() {
-  const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data: courses = [], isLoading: loading } = useQuery({
+    queryKey: ['courses'],
+    queryFn: async () => {
+      try {
+        const response = await fetchCourses();
+        const data = Array.isArray(response) ? response : response.results || [];
+        const rawList = data.length > 0 ? data : DEFAULT_COURSES;
+        return groupCoursesByName(rawList);
+      } catch {
+        return groupCoursesByName(DEFAULT_COURSES);
+      }
+    },
+    initialData: [],
+  });
+  
   const [search, setSearch] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sortBy, setSortBy] = useState('default');
@@ -183,18 +197,6 @@ export default function Courses() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    (async () => {
-      try {
-        const response = await fetchCourses();
-        const data = Array.isArray(response) ? response : response.results || [];
-        const rawList = data.length > 0 ? data : DEFAULT_COURSES;
-        setCourses(groupCoursesByName(rawList));
-      } catch {
-        setCourses(groupCoursesByName(DEFAULT_COURSES));
-      } finally {
-        setLoading(false);
-      }
-    })();
   }, []);
 
   const toggle = (arr, setArr, id) =>

@@ -24,7 +24,7 @@ export default function ApplicationForm() {
     const [isSuccess, setIsSuccess] = useState(false); // User had it set to true for testing
     const [showSuccessUI, setShowSuccessUI] = useState(false);
     const [successAppId, setSuccessAppId] = useState(null);
-    const [countdown, setCountdown] = useState(5);
+    const [countdown, setCountdown] = useState(15);
     // Derived filtered lists for cascading dropdowns (computed below)
 
     const [form, setForm] = useState({
@@ -432,11 +432,11 @@ export default function ApplicationForm() {
                             pointerEvents: 'none',
                             zIndex: 0
                         }} />
-                        
+
                         {/* Main Content */}
                         <div style={{ position: 'relative', zIndex: 1 }}>
                             <img src={Logo} alt="MET Logo" style={{ height: '70px', marginBottom: '24px', objectFit: 'contain' }} />
-                            
+
                             <div className="success-checkmark" style={{ marginBottom: '20px' }}>
                                 <div className="check-icon">
                                     <span className="icon-line line-tip"></span>
