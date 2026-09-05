@@ -45,21 +45,58 @@ api.interceptors.response.use(
   (error) => Promise.reject(error)
 );
 
+import COLLEGES_DATA from '../data/collegesData';
+import COURSES_DATA from '../data/coursesData';
+
 // Colleges
 export const fetchColleges = (params = {}) =>
-  api.get('/colleges/', { params });
+  api.get('/colleges/', { params, timeout: 5000 })
+    .then(data => {
+      const list = Array.isArray(data) ? data : (data?.results || []);
+      if (list.length > 0) return list;
+      return COLLEGES_DATA;
+    })
+    .catch((err) => {
+      console.warn('API fetchColleges failed/timed out, using internal colleges data:', err.message);
+      let list = COLLEGES_DATA;
+      if (params.search) {
+        const q = params.search.toLowerCase();
+        list = list.filter(c =>
+          (c.college_name || c.name || '').toLowerCase().includes(q) ||
+          (c.short_name || '').toLowerCase().includes(q) ||
+          (c.location_city || '').toLowerCase().includes(q)
+        );
+      }
+      return list;
+    });
+
+const getLocalCollegeDetail = (slug) => {
+  if (!slug) return COLLEGES_DATA[0];
+  const slugStr = String(slug).toLowerCase();
+  const found = COLLEGES_DATA.find(c =>
+    c.slug === slug ||
+    String(c.short_name).toLowerCase() === slugStr ||
+    String(c.id || c.college_id) === slugStr
+  );
+  return found || COLLEGES_DATA[0];
+};
 
 export const fetchCollegeDetail = (slug) =>
-  api.get(`/colleges/${slug}/`);
+  api.get(`/colleges/${slug}/`, { timeout: 5000 })
+    .then(data => data || getLocalCollegeDetail(slug))
+    .catch((err) => {
+      console.warn('API fetchCollegeDetail failed, using internal data for slug:', slug);
+      return getLocalCollegeDetail(slug);
+    });
 
 // Helper to normalize course fields for legacy compatibility
 export const normalizeCourse = (item) => {
   if (!item) return item;
-  if (item.course_name_display) {
-    const cat = (item.category || '').toLowerCase();
-    let level = 'Undergraduate';
-    if (item.degree_type === 'pg') level = 'Postgraduate';
-    else if (item.degree_type === 'diploma') level = 'Diploma';
+  if (item.course_name_display || item.title || item.course_name) {
+    const cat = (item.category_display || item.category || '').toLowerCase();
+    let level = item.level || 'Undergraduate';
+    if (item.degree_type === 'pg' || item.degree_type_display === 'PG') level = 'Postgraduate';
+    else if (item.degree_type === 'diploma' || item.degree_type_display === 'Diploma') level = 'Diploma';
     else if (item.degree_type === 'phd') level = 'Postgraduate';
 
     let duration = item.duration;
@@ -74,8 +111,8 @@ export const normalizeCourse = (item) => {
       }
     }
 
-    let icon = '📚';
-    const name = (item.course_name_display || '').toLowerCase();
+    let icon = item.icon || '📚';
+    const name = (item.course_name_display || item.title || item.course_name || '').toLowerCase();
     if (name.includes('computer') || name.includes('information') || name.includes('data') || name.includes('ai') || name.includes('machine')) {
       icon = '💻';
     } else if (cat.includes('engineering') || cat.includes('polytechnic')) {
@@ -99,13 +136,13 @@ export const normalizeCourse = (item) => {
     }
 
     const collegeName = item.college_details ? item.college_details.college_name : '';
-    const description = collegeName 
-      ? `Offered at ${collegeName}. A comprehensive program in ${item.course_name_display} designed to prepare students for top industry opportunities.`
-      : `A comprehensive program in ${item.course_name_display} designed to prepare students for top industry opportunities.`;
+    const description = item.description || (collegeName 
+      ? `Offered at ${collegeName}. A comprehensive program in ${item.course_name_display || item.title} designed to prepare students for top industry opportunities.`
+      : `A comprehensive program in ${item.course_name_display || item.title} designed to prepare students for top industry opportunities.`);
 
     const cid = item.course_id || item.id || 1;
-    const students = 120 + (cid % 5) * 30;
-    const rating = (4.4 + (cid % 7) * 0.08).toFixed(1);
+    const students = item.students || (120 + (cid % 5) * 30);
+    const rating = item.rating || (4.4 + (cid % 7) * 0.08).toFixed(1);
 
     const colleges_info = item.college_details ? [{
       id: item.college_details.college_id,
@@ -114,12 +151,12 @@ export const normalizeCourse = (item) => {
       location_state: item.college_details.location_state,
       short_name: item.college_details.college_name.split(' - ').pop() || '',
       image: item.college_details.primary_image_url || item.college_details.banner_image || item.college_details.logo_url || null
-    }] : [];
+    }] : (item.colleges_info || []);
 
     return {
       ...item,
       id: item.course_id || item.id,
-      title: item.course_name_display,
+      title: item.course_name_display || item.title || item.course_name,
       category_display: item.category_display || item.category,
       level: level,
       duration: duration,
@@ -128,7 +165,7 @@ export const normalizeCourse = (item) => {
       students: students,
       rating: parseFloat(rating),
       colleges_info: colleges_info,
-      image: item.image_url || getCourseImage(item.course_name_display, item.category_display || item.category)
+      image: item.image_url || item.image || getCourseImage(item.course_name_display || item.title || item.course_name, item.category_display || item.category)
     };
   }
   return item;
@@ -136,20 +173,35 @@ export const normalizeCourse = (item) => {
 
 // Courses
 export const fetchCourses = (params = {}) =>
-  api.get('/courses/', { params }).then(data => {
-    if (data && data.results) {
-      return {
-        ...data,
-        results: data.results.map(normalizeCourse)
-      };
-    } else if (Array.isArray(data)) {
-      return data.map(normalizeCourse);
-    }
-    return data;
-  });
+  api.get('/courses/', { params, timeout: 5000 })
+    .then(data => {
+      let list = Array.isArray(data) ? data : (data?.results || []);
+      if (list.length > 0) {
+        return list.map(normalizeCourse);
+      }
+      return COURSES_DATA.map(normalizeCourse);
+    })
+    .catch((err) => {
+      console.warn('API fetchCourses failed/timed out, using internal courses data:', err.message);
+      let list = COURSES_DATA;
+      if (params.search) {
+        const q = params.search.toLowerCase();
+        list = list.filter(c =>
+          (c.course_name || c.title || c.name || '').toLowerCase().includes(q) ||
+          (c.category || '').toLowerCase().includes(q)
+        );
+      }
+      return list.map(normalizeCourse);
+    });
 
 export const fetchCourseDetail = (id) =>
-  api.get(`/courses/${id}/`).then(normalizeCourse);
+  api.get(`/courses/${id}/`, { timeout: 5000 })
+    .then(normalizeCourse)
+    .catch((err) => {
+      console.warn('API fetchCourseDetail failed, using internal data for id:', id);
+      const found = COURSES_DATA.find(c => String(c.id || c.course_id) === String(id));
+      return normalizeCourse(found || COURSES_DATA[0]);
+    });
 
 // Applications
 export const submitApplication = (formData) =>
